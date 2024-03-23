@@ -1,6 +1,9 @@
 import Login from "./pages/Login.js";
 import SignUp from "./pages/SignUp.js";
 import Profile from "./pages/components/profile.js";
+import Attendance from "./pages/components/attendance.js";
+import Result from "./pages/components/result.js";
+
 import {
   Route,
   Routes,
@@ -21,7 +24,9 @@ function RoutesWithAnimation() {
         <Route path="/signup" element={<SignUp />} />
         <Route path="/" element={<Navigate to="/login" />} />
         <Route path="/Dashboard" element={<Dashboard/>}/>
-        <Route path="/profile" element={<Dashboard props={<Profile/>}/>}/>  
+        <Route path="/profile" element={<Dashboard props={<Profile/>}/>}/>
+        <Route path="/attendance" element={<Dashboard props={<Attendance/>}/>}/>
+        <Route path="/result" element={<Dashboard props={<Result/>}/>}/>  
         
       </Routes>
     </AnimatePresence>
