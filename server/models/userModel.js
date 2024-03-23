@@ -1,7 +1,8 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
+const validator = require('validator')
 
-const studentSchema = new mongoose.Schema({
+const userSchema = new mongoose.Schema({
     name: {
         type: String,
         required: [true, 'Please tell us your name!']
@@ -12,8 +13,9 @@ const studentSchema = new mongoose.Schema({
     },
     DOB: {
         type: Date,
-        required: [true, 'Please provide your date of birth']
+        required: [false, 'Please provide your date of birth']
     },
+
     email: {
         type: String,
         required: [true, 'Please provide your email'],
@@ -23,33 +25,31 @@ const studentSchema = new mongoose.Schema({
     },
     role: {
         type: String,
+        required: true,
         enum: ['student', 'faculty'],
+    },
+    uniqueId: {
+        type: String,
+        required: [true, "Unique ID can't be blank"],
+        unique: true
     },
     password: {
         type: String,
         required: [true, 'Please provide a password'],
         minlength: 8,
-        select: false
     },
-    // passwordConfirm: {
-    //   type: String,
-    //   required: [true, 'Please confirm your password'],
-    //   validate: {
-       
-    //     validator: function(el) {
-    //       return el === this.password;
-    //     },
-    //     message: 'Passwords are not the same!'
-    //   }
-    // },
 
 });
 
-studentSchema.pre('save', async function(next) {
+userSchema.pre('save', async function(next) {
     this.password = await bcrypt.hash(this.password, 12);
     next();
   });
 
-const Student = mongoose.model('Student', studentSchema);
+userSchema.methods.comparePassword = async function (enteredPassword, userPassword) {
+    return await bcrypt.compare(enteredPassword, userPassword);
+}
 
-module.exports = Student;
+const User = mongoose.model('User', userSchema);
+
+module.exports = User;  
