@@ -4,54 +4,79 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
-const Dashboard = ({props}) => {
+const Dashboard = ({ props }) => {
   const [cookies, , removeCookie] = useCookies("token");
-    const nav = useNavigate();
-//   useEffect(() => {
-//     const verifyCookie = async () => {
-//       if (!cookies.token) {
-//         return nav("/login");
-//       }
-//       const { data } = await axios.post(
-//         "http://localhost:3000/user/login",
-//         { token: cookies.token }
-//         // { withCredentials: true }
-//       );
-//       // console.log(data);
-//       const { status } = data;
-//       return (status==="success")
-//         ? {}
-//         : (removeCookie("token"), console.log("cookie removed"), nav("/login"));
-//     };
-//     verifyCookie();
-//   }, [cookies, nav, removeCookie]);
+  const navigate = useNavigate();
+  const [isOpen, setIsOpen] = useState(false);
+  //   useEffect(() => {
+  //     const verifyCookie = async () => {
+  //       if (!cookies.token) {
+  //         return nav("/login");
+  //       }
+  //       const { data } = await axios.post(
+  //         "http://localhost:3000/user/login",
+  //         { token: cookies.token }
+  //         // { withCredentials: true }
+  //       );
+  //       // console.log(data);
+  //       const { status } = data;
+  //       return (status==="success")
+  //         ? {}
+  //         : (removeCookie("token"), console.log("cookie removed"), nav("/login"));
+  //     };
+  //     verifyCookie();
+  //   }, [cookies, nav, removeCookie]);
+
   return (
     <div className="flex flex-col justify-center items-center w-screen h-screen bg-blue-200 p-1 gap-1">
-      <div className="flex justify-between items-center w-full h-20 bg-black p-2">
+      <div className="flex justify-between items-center w-full h-20 bg-black py-2 px-5">
         <div className="flex justify-end items-center gap-2">
           <img className="h-16 w-16 object-contain" src={logo} alt="IIT BBS" />
           <p className="text-white text-2xl">IIT Bhubaneswar</p>
         </div>
-        <div className="flex justify-center items-center">
-          <p className="text-white text-xl">Welcome to ERP, Akkad Bakkad </p>
+        <div className="flex justify-center items-center gap-3">
+          <p className="text-white text-l">Welcome to ERP, Akkad Bakkad </p>
           <div>
-            <button class="relative group transition-all duration-200 text-white focus:overflow-visible w-max h-max p-2 overflow-hidden flex flex-row items-center justify-center gap-2 rounded-lg">
-              <span className={`fa fa-user`}></span>
-              <div class="absolute shadow-lg -bottom-40 right-0 w-40 h-max p-2 bg-white border border-zinc-200 rounded-lg flex flex-col gap-2">
-                <span class="flex flex-row justify-between items-center hover:bg-zinc-100 p-2 rounded-lg text-black">
-                  <p>View Profile</p>
-                  <p className="fa fa-badge"></p>
-                </span>
-                <span class="flex flex-row justify-between items-center hover:bg-zinc-100 p-2 rounded-lg text-black">
-                  <p>Edit Profile</p>
-                  <p className="fa fa-edit"></p>
-                </span>
-                <span class="flex flex-row justify-between items-center hover:bg-zinc-100 p-2 rounded-lg text-black">
-                  <p>Logout</p>
-                  <p className="fa fa-sign-out"></p>
-                </span>
-              </div>
+            <button
+              className="w-10 h-10 border-2 rounded-full"
+              onClick={() => {
+                setIsOpen(!isOpen);
+              }}
+            >
+              <span className="fa fa-user text-l text-white"></span>
             </button>
+            {isOpen && (
+              <div class="absolute shadow-lg top-16 right-4 w-40 h-max p-2 bg-white rounded-lg flex flex-col gap-2">
+                <button
+                  onClick={() => {
+                    console.log("abcdcd");
+                    navigate("/profile");
+                  }}
+                  className="flex flex-row justify-between items-center hover:bg-zinc-100 p-2 rounded-lg text-black"
+                >
+                  <div>View Profile</div>
+                  <div className="fa fa-badge"></div>
+                </button>
+                <button
+                  onClick={() => {
+                    navigate("/editprofile");
+                  }}
+                  className="flex flex-row justify-between items-center hover:bg-zinc-100 p-2 rounded-lg text-black"
+                >
+                  <div>Edit Profile</div>
+                  <div className="fa fa-edit"></div>
+                </button>
+                <button
+                  onClick={() => {
+                    navigate("/login");
+                  }}
+                  className="flex flex-row justify-between items-center hover:bg-zinc-100 p-2 rounded-lg text-black"
+                >
+                  <div>Logout</div>
+                  <div className="fa fa-sign-out"></div>
+                </button>
+              </div>
+            )}
           </div>
         </div>
       </div>
@@ -60,16 +85,40 @@ const Dashboard = ({props}) => {
           <button className="flex justify-between items-center h-20 w-full">
             <div>Courses</div>
           </button>
-          <button className="flex justify-between items-center h-20 w-full">
+          <button
+            onClick={() => {
+              navigate("/attendance");
+            }}
+            className="flex justify-between items-center h-20 w-full"
+          >
             <div>Attendance</div>
             <div class="fa-solid fa-clipboard-user"></div>
           </button>
-          <button className="flex justify-between items-center h-20 w-full">
+          <button
+            onClick={() => {
+              navigate("/result");
+            }}
+            className="flex justify-between items-center h-20 w-full"
+          >
             <div>Result</div>
             <div class="fa-solid fa-square-poll-vertical"></div>
           </button>
-          <button className="flex justify-between items-center h-20 w-full">
+          <button
+            onClick={() => {
+              navigate("/feedback");
+            }}
+            className="flex justify-between items-center h-20 w-full"
+          >
             <div>Feedback</div>
+            <div class="fa-regular fa-comment-dots"></div>
+          </button>
+          <button
+            onClick={() => {
+              navigate("/survey");
+            }}
+            className="flex justify-between items-center h-20 w-full"
+          >
+            <div>Survey</div>
             <div class="fa-regular fa-comment-dots"></div>
           </button>
         </div>

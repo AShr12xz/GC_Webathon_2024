@@ -1,45 +1,41 @@
-import React from 'react';
+import React from "react";
 
 const Result = () => {
-  // Hardcoded grades for 8 subjects
-  const grades = {
-    mathematics: 'Ex',
-    science: 'B',
-    history: 'B',
-    english: 'A',
-    computerScience: 'A',
-    physics: 'B',
-    chemistry: 'A',
-    biology: 'C',
-  };
-
-  // Hardcoded SGPA and CGPA
-  const sgpa = 8.5;
-  const cgpa = 8.2;
+  // Grades structured as an array of objects
+  const grades = [
+    { subjectName: "Mathematics", subjectCode: "MAT", grade: "Ex" },
+    { subjectName: "Science", subjectCode: "SCI", grade: "B" },
+    { subjectName: "History", subjectCode: "HIS", grade: "B" },
+    { subjectName: "English", subjectCode: "ENG", grade: "A" },
+    { subjectName: "Computer Science", subjectCode: "CSE", grade: "A" },
+    { subjectName: "Physics", subjectCode: "PHY", grade: "B" },
+    { subjectName: "Chemistry", subjectCode: "CHE", grade: "A" },
+    { subjectName: "Biology", subjectCode: "BIO", grade: "C" },
+  ];
 
   return (
     <div className="w-3/5 mx-auto mt-8 bg-white rounded-3xl overflow-hidden shadow-lg p-6 border border-gray-200">
-      <h2 className="text-lg font-semibold mb-4 text-center">Subject-wise Grades</h2>
-      <div>
-        {Object.entries(grades).map(([subject, grade]) => (
-          <div key={subject} className="flex justify-between items-center mb-2">
-            <p className="text-gray-600 font-semibold">{subject}:</p>
-            <p>{grade}</p>
-          </div>
-        ))}
-      </div>
-      <div className="mt-6 border-t border-gray-300 pt-4">
-        <div className="flex justify-between items-center mb-2">
-          <div className="text-gray-600 font-semibold">SGPA:</div>
-          <div className="h-0.5 w-16 bg-gray-300"></div>
-          <div>{sgpa}</div>
-        </div>
-        <div className="flex justify-between items-center">
-          <div className="text-gray-600 font-semibold">CGPA:</div>
-          <div className="h-0.5 w-16 bg-gray-300"></div>
-          <div>{cgpa}</div>
-        </div>
-      </div>
+      <h2 className="text-lg font-semibold mb-4 text-center">
+        Subject-wise Grades
+      </h2>
+      <table className="w-full table-auto">
+        <thead>
+          <tr className="bg-gray-200">
+            <th className="px-4 py-2">Subject Name</th>
+            <th className="px-4 py-2">Subject Code</th>
+            <th className="px-4 py-2">Grade</th>
+          </tr>
+        </thead>
+        <tbody>
+          {grades.map((grade, index) => (
+            <tr key={index} className={index % 2 === 0 ? "bg-gray-100" : ""}>
+              <td className="border px-4 py-2">{grade.subjectName}</td>
+              <td className="border px-4 py-2">{grade.subjectCode}</td>
+              <td className="border px-4 py-2">{grade.grade}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
     </div>
   );
 };
