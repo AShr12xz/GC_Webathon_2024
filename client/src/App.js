@@ -1,5 +1,6 @@
 import Login from "./pages/Login.js";
 import SignUp from "./pages/SignUp.js";
+import Profile from "./pages/components/profile.js";
 import {
   Route,
   Routes,
@@ -19,7 +20,9 @@ function RoutesWithAnimation() {
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/" element={<Navigate to="/login" />} />
-        <Route path="/Dashboard" element={<Dashboard/>}></Route>
+        <Route path="/Dashboard" element={<Dashboard/>}/>
+        <Route path="/profile" element={<Dashboard props={<Profile/>}/>}/>  
+        
       </Routes>
     </AnimatePresence>
   );
