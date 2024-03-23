@@ -1,16 +1,16 @@
-import React from 'react';
+import React from "react";
 
 const Result = () => {
   // Hardcoded grades for 8 subjects
   const grades = {
-    mathematics: 'Ex',
-    science: 'B',
-    history: 'B',
-    english: 'A',
-    computerScience: 'A',
-    physics: 'B',
-    chemistry: 'A',
-    biology: 'C',
+    mathematics: "Ex",
+    science: "B",
+    history: "B",
+    english: "A",
+    computerScience: "A",
+    physics: "B",
+    chemistry: "A",
+    biology: "C",
   };
 
   // Hardcoded SGPA and CGPA
@@ -19,7 +19,9 @@ const Result = () => {
 
   return (
     <div className="w-3/5 mx-auto mt-8 bg-white rounded-3xl overflow-hidden shadow-lg p-6 border border-gray-200">
-      <h2 className="text-lg font-semibold mb-4 text-center">Subject-wise Grades</h2>
+      <h2 className="text-lg font-semibold mb-4 text-center">
+        Subject-wise Grades
+      </h2>
       <div>
         {Object.entries(grades).map(([subject, grade]) => (
           <div key={subject} className="flex justify-between items-center mb-2">
