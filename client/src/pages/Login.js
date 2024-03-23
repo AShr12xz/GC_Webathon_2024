@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import styles from "../styles/login.module.css";
 import logo from "../assets/IITBBSlogo.png";
 import axios from "axios";
+import { useCookies } from "react-cookie";
 import { Link, useNavigate } from "react-router-dom";
 import { motion, useAnimationControls } from "framer-motion";
 import { ToastContainer, toast } from "react-toastify";
@@ -13,6 +14,7 @@ const Login = () => {
     uniqueId: "",
     password: "",
   });
+  const [cookies, setCookies] = useCookies("token");
   const navigate = useNavigate();
   const control = useAnimationControls();
   const handleToggle = () => {
@@ -93,6 +95,7 @@ const Login = () => {
       setTimeout(() => {
         if (res.data.status === "success") {
           // setTimeout(() => {}, 1000);
+          setCookies("token", res.data.token, { path: "/" });
           navigate(`/dashboard`);
         } else {
           const usr = document.getElementById("uniqueId");
