@@ -8,7 +8,7 @@ const userSchema = new mongoose.Schema({
         required: [true, 'Please tell us your name!']
     },
     number: {
-        type: Number,
+        type: String,
         required: [true, 'Please provide your number']
     },
     DOB: {
