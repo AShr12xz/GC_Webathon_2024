@@ -1,19 +1,25 @@
 import { useState, useEffect } from "react";
 import { motion, useAnimationControls } from "framer-motion";
+import styles from "../styles/login.module.css";
 import logo from "../assets/IITBBSlogo.png";
+// import { motion, useAnimationControls } from "framer-motion";
+import axios from "axios";
+import {useNavigate} from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 const SignUp = () => {
   const [form, setForm] = useState({
     name: "",
     emailid: "",
     DOB: "",
-    number: "",
     password: "",
     role: "",
     uniqueId: "",
     code: "",
     phone: "",
   });
-
+ const navigate= useNavigate();
   const [isfaculty, setIsfaculty] = useState(false);
   const control = useAnimationControls();
   const routeVariants = {
@@ -61,8 +67,75 @@ const SignUp = () => {
     });
   };
 
+  const checkSignUp = async (e) => {
+    e.preventDefault();
+    console.log(form);
+    if(isfaculty){
+      form.role="faculty";
+    }
+    else{
+      form.role="student";
+    }
+    control.start({
+      scale: [0, 15],
+      transition: {
+        times: [0, 1],
+        ease: "easeInOut",
+        duration: 0.4,
+      },
+    });
+
+    try {
+      const res = await axios.post(
+        "http://localhost:3000/users/signup",
+        form
+      );
+        console.log(res.data.status);
+      setTimeout(() => {
+        if (res.data.status==="success") {
+          setTimeout(() => {}, 1000);
+          navigate(`/Dashboard`);
+        } else {
+          control.start({
+            scale: [15, 0],
+            transition: {
+              times: [0, 1],
+              ease: "easeInOut",
+              duration: 0.4,
+            },
+          });
+
+          control.start({
+            opacity: [0, 1, 1, 0],
+            y: ["-20px", "0px", "0px", "-20px"],
+            transition: {
+              times: [0, 0.1, 0.99, 1],
+              duration: 3,
+              delay: 0.5,
+            },
+          });
+        }
+      }, 2000);
+    } catch (error) {
+      console.log(error.message);
+      toast.error("Incorrect Roll No/ Emp Code or Password");
+    }
+    // setForm({
+    //   name: "",
+    // emailid: "",
+    // DOB: "",
+    // number: "",
+    // password: "",
+    // role: "",
+    // uniqueId: "",
+    // code: "",
+    // phone: "",
+    // });
+  };
+
   return (
     <div className="flex justify-center items-center w-screen h-screen bg-amber-100">
+    <ToastContainer></ToastContainer>
       <motion.div
         variants={routeVariants}
         initial="show"
@@ -85,7 +158,7 @@ const SignUp = () => {
 
         {/* h-[105px] w-[118px] md:h-[219px] md:w-[237px] */}
 
-        <form className="grid grid-cols-2 gap-4 justify-items-center w-full ">
+        <form className="grid grid-cols-2 gap-4 justify-items-center w-full "  onSubmit={checkSignUp}>
           <div className="w-full">
             <label htmlFor="name" className="text-sm font-medium mb-2">
               Full Name
@@ -222,7 +295,7 @@ const SignUp = () => {
             </div>
           ) : null}
 
-        <button className="btn" onSubmit={{}}> Submit</button>
+        <button className="btn" type="submit"> Submit</button>
         </form>
       </motion.div>
     </div>

@@ -7,26 +7,26 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: [true, 'Please tell us your name!']
     },
-    number: {
-        type: String,
-        required: [true, 'Please provide your number']
-    },
     DOB: {
         type: Date,
         required: [false, 'Please provide your date of birth']
     },
 
-    email: {
+    emailid: {
         type: String,
         required: [true, 'Please provide your email'],
         unique: true,
         lowercase: true,
         validate: [validator.isEmail, 'Please provide a valid email']
     },
+    phone:{
+        type: Number,
+        required: [true, 'Please enter your mobile number']
+    },
     role: {
         type: String,
         required: true,
-        enum: ['student', 'faculty'],
+        // enum: ['student', 'faculty'],
     },
     uniqueId: {
         type: String,
