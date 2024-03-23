@@ -1,5 +1,7 @@
 const jwt = require('jsonwebtoken');
 const User = require('../models/userModel')
+const Student = require('../models/studentModel')
+const Faculty = require('../models/facultyModel')
 const error = require('../utils/error')
 const asyncCheck = require('../utils/asyncCheck')
 
@@ -20,6 +22,15 @@ exports.signup = asyncCheck(async (req, res, next) => {
     const filteredBody={...req.body};
     delete filteredBody.code;
     console.log(filteredBody);
+
+    if(req.body.role === 'student')
+    {
+        const newStudent = await Student.create(filteredBody);
+    }
+    else{
+        const newFaculty = await Faculty.create(filteredBody)
+    }
+
     const newUser = await User.create(filteredBody);
 
     const token = signToken(newUser._id);
