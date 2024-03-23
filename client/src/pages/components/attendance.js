@@ -14,7 +14,7 @@ const AttendanceDetails = () => {
   };
 
   return (
-    <div className="w-full m-8 mx-auto px-4  md:px-32  bg-white rounded-3xl overflow-hidden shadow-lg p-6 border border-gray-200">
+    <div className="w-full m-8 mx-auto px-4  md:px-32  bg-red-100 rounded-3xl overflow-hidden shadow-lg p-6 border border-gray-200">
       <h2 className="text-lg font-semibold mb-4 text-center">Subject-wise Attendance</h2>
       <div>
         {Object.entries(attendance).map(([subject, percentage]) => (
