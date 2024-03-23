@@ -1,0 +1,43 @@
+.texteffect {
+  border: 0;
+  padding: 4px 0;
+  border-bottom: 1px solid #000000;
+  background-color: transparent;
+  color: #fff5e9;
+}
+
+.texteffect ~ .focusborder {
+  position: absolute;
+  bottom: -3px;
+  left: 0;
+  width: 0;
+  height: 3px;
+  background-color: #2264a6;
+  transition: 0.4s;
+}
+
+.texteffect:focus ~ .focusborder,
+.hascontent.texteffect ~ .focusborder {
+  width: 100%;
+  transition: 0.4s;
+}
+
+.texteffect ~ label {
+  position: absolute;
+  font-weight: bold;
+  left: 0;
+  width: 100%;
+  top: 4px;
+  color: rgb(92, 99, 108);
+  transition: 0.3s;
+  z-index: -1;
+  letter-spacing: 0.5px;
+  font-size: 15px;
+}
+
+.texteffect:focus ~ label,
+.hascontent.texteffect ~ label {
+  top: -16px;
+  font-size: 12px;
+  transition: 0.3s;
+}
