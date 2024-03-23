@@ -10,6 +10,16 @@ const signToken = id => {
 };
 
 exports.signup = asyncCheck(async (req, res, next) => {
+    
+
+    if(req.body.role === 'faculty')
+    {
+        if(req.body.code != 'abcd')
+        {
+            return next(new error('Wrong faculty code', 401))
+        }
+    }
+
     const newUser = await User.create(req.body);
 
     const token = signToken(newUser._id);
