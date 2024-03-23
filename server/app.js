@@ -1,5 +1,6 @@
 const express = require('express');
 const morgan = require('morgan');
+const userRouter = require('./routes/userRoutes')
 
 const app = express();
 
@@ -20,5 +21,7 @@ app.get('/', (req, res) => {
 });
 
 // 2) ROUTES
+
+app.use('/users', userRouter);
 
 module.exports = app;

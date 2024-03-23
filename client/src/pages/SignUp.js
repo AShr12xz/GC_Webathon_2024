@@ -7,7 +7,14 @@ const SignUp = () => {
     emailid: "",
     DOB: "",
     number: "",
+    password: "",
+    role: "",
+    uniqueId: "",
+    code: "",
+    phone: "",
   });
+
+  const [isfaculty, setIsfaculty] = useState(false);
   const control = useAnimationControls();
   const routeVariants = {
     initial: {
@@ -68,13 +75,15 @@ const SignUp = () => {
         ></motion.div>
 
         <h1 className="text-2xl font-bold">Sign Up</h1>
-        
-        <div className="h-2/5 w-full bg-blue-700 rounded-lg mt-2 mb-4  flex items-center justify-center">
+
+        <div className="h-1/4 w-full  rounded-lg mt-2 mb-4  flex items-center justify-center">
           <div
-            className="bg-cover bg-center bg-no-repeat h-[105px] w-[118px] md:h-[219px] md:w-[237px]"
+            className="bg-cover bg-center bg-no-repeat h-[90px] w-[100px]"
             style={{ backgroundImage: `url(${logo})` }}
           ></div>
         </div>
+
+        {/* h-[105px] w-[118px] md:h-[219px] md:w-[237px] */}
 
         <form className="grid grid-cols-2 gap-4 justify-items-center w-full ">
           <div className="w-full">
@@ -130,13 +139,29 @@ const SignUp = () => {
             </label>
             <div className="relative">
               <input
-                type="text"
+                type="phone"
                 id="phone"
                 name="phone"
                 onChange={updateFormField}
-                value={form.number}
+                value={form.phone}
                 className="p-2 w-full border-2 shadow-sm rounded-lg text-sm focus:z-10 focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none"
-                // placeholder="91-"  
+                placeholder="91-"
+              />
+            </div>
+          </div>
+          <div className="w-full">
+            <label htmlFor="number" className="text-sm font-medium mb-2">
+              Roll no. / Faculty code
+            </label>
+            <div className="relative">
+              <input
+                type="text"
+                id="uniqueId"
+                name="uniqueId"
+                onChange={updateFormField}
+                value={form.uniqueId}
+                className="p-2 w-full border-2 shadow-sm rounded-lg text-sm focus:z-10 focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none"
+                // placeholder="91-"
               />
             </div>
           </div>
@@ -149,6 +174,13 @@ const SignUp = () => {
                 name="role"
                 id="role"
                 className="p-2 w-full border-2 shadow-sm rounded-lg text-sm focus:z-10 focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none"
+                onChange={(event) => {
+                  if (event.target.value === "faculty") {
+                    setIsfaculty(true);
+                  } else {
+                    setIsfaculty(false);
+                  }
+                }}
               >
                 <option value="student">Student</option>
                 <option value="faculty">Faculty</option>
@@ -171,6 +203,26 @@ const SignUp = () => {
               />
             </div>
           </div>
+          {isfaculty ? (
+            <div className="w-full">
+              <label htmlFor="number" className="text-sm font-medium mb-2">
+                Code
+              </label>
+              <div className="relative">
+                <input
+                  type="text"
+                  id="code"
+                  name="code"
+                  onChange={updateFormField}
+                  value={form.code}
+                  className="p-2 w-full border-2 shadow-sm rounded-lg text-sm focus:z-10 focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none"
+                  placeholder="Code"
+                />
+              </div>
+            </div>
+          ) : null}
+
+        <button className="btn" onSubmit={{}}> Submit</button>
         </form>
       </motion.div>
     </div>
