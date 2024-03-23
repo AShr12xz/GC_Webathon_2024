@@ -1,6 +1,9 @@
 import Login from "./pages/Login.js";
 import SignUp from "./pages/SignUp.js";
-import Profile from "./pages/components/Profile.js";
+import Profile from "./pages/components/profile.js";
+import Attendance from "./pages/components/attendance.js";
+import Result from "./pages/components/result.js";
+
 import {
   Route,
   Routes,
@@ -27,30 +30,11 @@ function RoutesWithAnimation() {
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/" element={<Navigate to="/login" />} />
-        <Route path="/dashboard" element={<Dashboard />} />
-        <Route
-          path="/attendance"
-          element={<Dashboard props={<Attendance />} />}
-        />
-        <Route
-          path="/profile"
-          element={<Dashboard props={<Profile />} />}
-        />
-        <Route
-          path="/editprofile"
-          element={<Dashboard props={<EditProfile />} />}
-        />
-        <Route
-          path="/courseregistration"
-          element={<Dashboard props={<CourseReg />} />}
-        />
-        <Route
-          path="/courseenrolled"
-          element={<Dashboard props={<CourseView />} />}
-        />
-        <Route path="/feedback" element={<Dashboard props={<Feedback />} />} />
-        <Route path="/result" element={<Dashboard props={<Result />} />} />
-        <Route path="/survey" element={<Dashboard props={<Survey />} />} />
+        <Route path="/Dashboard" element={<Dashboard/>}/>
+        <Route path="/profile" element={<Dashboard props={<Profile/>}/>}/>
+        <Route path="/attendance" element={<Dashboard props={<Attendance/>}/>}/>
+        <Route path="/result" element={<Dashboard props={<Result/>}/>}/>  
+        
       </Routes>
     </AnimatePresence>
   );
