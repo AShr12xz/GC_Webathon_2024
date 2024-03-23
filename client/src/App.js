@@ -8,18 +8,20 @@ import {
   Navigate,
 } from "react-router-dom";
 import { AnimatePresence } from "framer-motion";
+import Dashboard from "./pages/Dashboard.js";
 
 function RoutesWithAnimation() {
   const location = useLocation();
   console.log(location);
   return (
-      <AnimatePresence mode="wait">
-        <Routes location={location} key={location.key}>
-          <Route path="/login" element={<Login />} />
-          <Route path="/signup" element={<SignUp />} />
-          <Route path="/" element={<Navigate to="/login" />}/>
-        </Routes>
-      </AnimatePresence>
+    <AnimatePresence mode="wait">
+      <Routes location={location} key={location.key}>
+        <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<SignUp />} />
+        <Route path="/" element={<Navigate to="/login" />} />
+        <Route path="/" element={<Dashboard/>}></Route>
+      </Routes>
+    </AnimatePresence>
   );
 }
 function App() {
@@ -29,5 +31,5 @@ function App() {
     </BrowserRouter>
   );
 }
-//
+
 export default App;
