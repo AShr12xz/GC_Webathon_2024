@@ -25,6 +25,7 @@ const Profile = () => {
                   <img
                     src="https://randomuser.me/api/portraits/men/94.jpg"
                     class="w-32 h-32 bg-gray-300 rounded-full mb-4 shrink-0"
+                    alt="Avatar"
                   />
 
                   <h1 class="text-xl font-bold">Name</h1>
