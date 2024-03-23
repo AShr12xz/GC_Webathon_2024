@@ -1,17 +1,15 @@
 import { useState, useEffect } from "react";
 import { motion, useAnimationControls } from "framer-motion";
-import styles from "../styles/login.module.css";
 import logo from "../assets/IITBBSlogo.png";
-// import { motion, useAnimationControls } from "framer-motion";
 import axios from "axios";
-import {useNavigate} from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const SignUp = () => {
   const [form, setForm] = useState({
     name: "",
-    emailid: "",
+    email: "",
     DOB: "",
     password: "",
     role: "",
@@ -37,8 +35,8 @@ const SignUp = () => {
       },
     },
     exit: {
-      scaleX: [1, 0.7],
-      scaleY: [1, 1],
+      scaleX: [1, 1],
+      scaleY: [1, 480/600],
       opacity: [1, 1],
       transition: {
         delay: 0.2,
@@ -93,8 +91,7 @@ const SignUp = () => {
         console.log(res.data.status);
       setTimeout(() => {
         if (res.data.status==="success") {
-          setTimeout(() => {}, 1000);
-          navigate(`/Dashboard`);
+          setTimeout(() => {navigate(`/dashboard`);}, 1000);
         } else {
           control.start({
             scale: [15, 0],
@@ -104,7 +101,6 @@ const SignUp = () => {
               duration: 0.4,
             },
           });
-
           control.start({
             opacity: [0, 1, 1, 0],
             y: ["-20px", "0px", "0px", "-20px"],
@@ -135,7 +131,7 @@ const SignUp = () => {
 
   return (
     <div className="flex justify-center items-center w-screen h-screen bg-amber-100">
-    <ToastContainer></ToastContainer>
+      <ToastContainer></ToastContainer>
       <motion.div
         variants={routeVariants}
         initial="show"
@@ -158,7 +154,10 @@ const SignUp = () => {
 
         {/* h-[105px] w-[118px] md:h-[219px] md:w-[237px] */}
 
-        <form className="grid grid-cols-2 gap-4 justify-items-center w-full "  onSubmit={checkSignUp}>
+        <form
+          className="grid grid-cols-2 gap-4 justify-items-center w-full "
+          onSubmit={checkSignUp}
+        >
           <div className="w-full">
             <label htmlFor="name" className="text-sm font-medium mb-2">
               Full Name
@@ -176,16 +175,16 @@ const SignUp = () => {
             </div>
           </div>
           <div className="w-full">
-            <label htmlFor="emailid" className="text-sm font-medium mb-2">
+            <label htmlFor="email" className="text-sm font-medium mb-2">
               Email-ID
             </label>
             <div className="relative">
               <input
                 type="text"
-                id="emailid"
-                name="emailid"
+                id="email"
+                name="email"
                 onChange={updateFormField}
-                value={form.emailid}
+                value={form.email}
                 className="p-2 w-full border-2 shadow-sm rounded-lg text-sm focus:z-10 focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none"
                 placeholder="20AG06***@iitbbs.ac.in"
               />
@@ -294,8 +293,26 @@ const SignUp = () => {
               </div>
             </div>
           ) : null}
-
-        <button className="btn" type="submit"> Submit</button>
+          <div>
+            <Link
+              onClick={() => {
+                control.start({
+                  scale: 15,
+                  transition: {
+                    ease: "easeInOut",
+                    duration: 0.6,
+                  },
+                });
+              }}
+              to="/login"
+            >
+              <span>Already have an account? Login</span>
+            </Link>
+          </div>
+          <button className="btn" type="submit">
+            {" "}
+            Submit
+          </button>
         </form>
       </motion.div>
     </div>

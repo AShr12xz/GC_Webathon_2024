@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import styles from "../styles/login.module.css";
 import logo from "../assets/IITBBSlogo.png";
 import axios from "axios";
@@ -23,6 +23,17 @@ const Login = () => {
     }
   };
 
+  useEffect(() => {
+    control.start({
+      scale: [15, 0],
+      transition: {
+        times: [0, 1],
+        ease: "easeInOut",
+        duration: 0.4,
+      },
+    });
+  }, [control]);
+
   const routeVariants = {
     initial: {
       y: "0vh",
@@ -38,8 +49,8 @@ const Login = () => {
       },
     },
     exit: {
-      scaleX: [1, 1.1],
-      scaleY: [1, 1.2],
+      scaleX: [1, 1],
+      scaleY: [1, 600 / 480],
       opacity: [1, 1],
       transition: {
         delay: 0.2,
@@ -65,49 +76,25 @@ const Login = () => {
   };
 
   const checkLogin = async (e) => {
-    console.log(userForm);
     e.preventDefault();
     control.start({
       scale: [0, 15],
       transition: {
         times: [0, 1],
         ease: "easeInOut",
-        duration: 0.4,
+        duration: 0.5,
       },
     });
-
     try {
-      const { data } = await axios.post(
+      const res = await axios.post(
         "http://localhost:3000/users/login",
         userForm
       );
-
-      const { success } = data;
-
       setTimeout(() => {
-        if (success) {
-          setTimeout(() => {}, 1000);
-          navigate(`/Dashboard`);
+        if (res.data.status === "success") {
+          // setTimeout(() => {}, 1000);
+          navigate(`/dashboard`);
         } else {
-          console.log(data.status);
-          control.start({
-            scale: [15, 0],
-            transition: {
-              times: [0, 1],
-              ease: "easeInOut",
-              duration: 0.4,
-            },
-          });
-
-          control.start({
-            opacity: [0, 1, 1, 0],
-            y: ["-20px", "0px", "0px", "-20px"],
-            transition: {
-              times: [0, 0.1, 0.99, 1],
-              duration: 3,
-              delay: 0.5,
-            },
-          });
           const usr = document.getElementById("uniqueId");
           const pas = document.getElementById("password");
           usr.classList.remove(`${styles.hascontent}`);
@@ -117,6 +104,14 @@ const Login = () => {
     } catch (error) {
       console.log(error.message);
       toast.error("Incorrect Roll No/ Emp Code or Password");
+      control.start({
+        scale: [15, 0],
+        transition: {
+          times: [0, 1],
+          ease: "easeInOut",
+          duration: 0.5,
+        },
+      });
     }
     setUserForm({
       uniqueId: "",
@@ -131,11 +126,11 @@ const Login = () => {
         variants={routeVariants}
         initial="show"
         exit="exit"
-        className="w-[250px] h-[425px] sm:w-[560px] sm:h-[480px] flex justify-start m-auto items-center border-2 border-solid border-black p-5 sm:p-2 rounded-2xl bg-white overflow-hidden gap-0 sm:gap-2 opacity-100"
+        className="w-[250px] h-[425px] sm:w-[560px] sm:h-[480px] flex justify-start m-auto items-center border-2 border-solid border-black p-5 sm:p-2 rounded-2xl bg-white overflow-hidden gap-0 sm:gap-2"
       >
         <motion.div
           animate={control}
-          className={`bg-[#005ab3] absolute top-[-80%] sm:top-[40%] sm:right-[-50%] z-[5] h-[200px] w-[200px] `}
+          className={`bg-[#005ab3] absolute top-[-80%] sm:top-[40%] sm:right-[-50%] z-[5] h-[200px] w-[200px]`}
         ></motion.div>
         <div className="flex flex-col justify-center items-center w-full sm:w-1/2 h-full p-0 sm:p-5 overflow-hidden">
           <form
@@ -177,7 +172,7 @@ const Login = () => {
                 <label>Password</label>
                 {type === "text" && (
                   <span
-                    className={`fa-solid fa-eye ${styles.eyeicon}`}
+                    className={`fa-solid fa-eye absolute right-[0] top-[5]`}
                     style={{ color: "#2264a6" }}
                     onClick={handleToggle}
                   ></span>
@@ -195,11 +190,11 @@ const Login = () => {
             <div
               className={`flex justify-center items-center my-5 h-1/10 w-full font-bold text-[140%]`}
             >
-              <div className="w-full bg-blue-500 rounded">
+              <div className="w-full bg-[#005ab3] rounded">
                 <button
                   type="submit"
                   id="login"
-                  className={`w-full text-white`}
+                  className={`w-full text-white `}
                 >
                   Sign in
                 </button>
@@ -207,24 +202,20 @@ const Login = () => {
             </div>
             <div className="flex justify-between w-full">
               <div>
-                <button
-                  onClick={(e) => {
-                    e.preventDefault();
+                <Link
+                  onClick={() => {
                     control.start({
                       scale: 15,
                       transition: {
                         ease: "easeInOut",
-                        duration: 1,
+                        duration: 0.6,
                       },
                     });
-                    setTimeout(() => {
-                      navigate("/signup");
-                    }, 1000);
                   }}
-                  // to="/signup"
+                  to="/signup"
                 >
                   <span>Sign Up</span>
-                </button>
+                </Link>
               </div>
               <div>
                 <Link to="/forgot">
