@@ -1,13 +1,16 @@
 import { useState } from "react";
 import styles from "../styles/login.module.css";
 import logo from "../assets/IITBBSlogo.png";
+import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import { motion, useAnimationControls } from "framer-motion";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Login = () => {
   const [type, setType] = useState("password");
-  const [form, setForm] = useState({
-    username: "",
+  const [userForm, setUserForm] = useState({
+    uniqueId: "",
     password: "",
   });
   const navigate = useNavigate();
@@ -47,23 +50,83 @@ const Login = () => {
     },
   };
 
-  const updateFormField = (e) => {
+  const updateUserFormField = (e) => {
     const { name, value } = e.target;
-    const check = { ...form, [name]: value };
+    const check = { ...userForm, [name]: value };
     if (check[e.target.name] !== "") {
       e.target.classList.add(`${styles.hascontent}`);
     } else {
       e.target.classList.remove(`${styles.hascontent}`);
     }
-    setForm({
-      ...form,
+    setUserForm({
+      ...userForm,
       [name]: value,
     });
   };
 
-  const checkLogin = async (e) => {};
+  const checkLogin = async (e) => {
+    console.log(userForm);
+    e.preventDefault();
+    control.start({
+      scale: [0, 15],
+      transition: {
+        times: [0, 1],
+        ease: "easeInOut",
+        duration: 0.4,
+      },
+    });
+
+    try {
+      const { data } = await axios.post(
+        "http://localhost:3000/users/login",
+        userForm
+      );
+
+      const { success } = data;
+
+      setTimeout(() => {
+        if (success) {
+          setTimeout(() => {}, 1000);
+          navigate(`/Dashboard`);
+        } else {
+          console.log(data.status);
+          control.start({
+            scale: [15, 0],
+            transition: {
+              times: [0, 1],
+              ease: "easeInOut",
+              duration: 0.4,
+            },
+          });
+
+          control.start({
+            opacity: [0, 1, 1, 0],
+            y: ["-20px", "0px", "0px", "-20px"],
+            transition: {
+              times: [0, 0.1, 0.99, 1],
+              duration: 3,
+              delay: 0.5,
+            },
+          });
+          const usr = document.getElementById("uniqueId");
+          const pas = document.getElementById("password");
+          usr.classList.remove(`${styles.hascontent}`);
+          pas.classList.remove(`${styles.hascontent}`);
+        }
+      }, 2000);
+    } catch (error) {
+      console.log(error.message);
+      toast.error("Incorrect Roll No/ Emp Code or Password");
+    }
+    setUserForm({
+      uniqueId: "",
+      password: "",
+    });
+  };
+
   return (
     <div className="flex justify-center items-center w-screen h-screen bg-amber-100">
+      <ToastContainer></ToastContainer>
       <motion.div
         variants={routeVariants}
         initial="show"
@@ -87,14 +150,14 @@ const Login = () => {
                   className={`${styles.texteffect} focus:border-none focus:outline-none w-full`}
                   type="text"
                   placeholder=""
-                  onChange={updateFormField}
-                  value={form.username}
-                  name="username"
-                  id="username"
+                  onChange={updateUserFormField}
+                  value={userForm.uniqueId}
+                  name="uniqueId"
+                  id="uniqueId"
                   required
                   autoComplete="off"
                 />
-                <label>Username</label>
+                <label>Roll No/ Emp Code</label>
                 <span className={styles.focusborder}></span>
               </div>
               <div
@@ -104,8 +167,8 @@ const Login = () => {
                   className={`${styles.texteffect} focus:border-none focus:outline-none w-full`}
                   type={type}
                   placeholder=""
-                  onChange={updateFormField}
-                  value={form.password}
+                  onChange={updateUserFormField}
+                  value={userForm.password}
                   name="password"
                   id="password"
                   required

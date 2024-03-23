@@ -19,7 +19,7 @@ function RoutesWithAnimation() {
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/" element={<Navigate to="/login" />} />
-        <Route path="/" element={<Dashboard/>}></Route>
+        <Route path="/Dashboard" element={<Dashboard/>}></Route>
       </Routes>
     </AnimatePresence>
   );
