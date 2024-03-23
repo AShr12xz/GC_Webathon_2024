@@ -8,7 +8,7 @@ const studentSchema = new mongoose.Schema({
     },
     number: {
         type: Number,
-        required: [true, 'Please provide your number']
+        required: [true, 'Please provide your Phone number']
     },
     DOB: {
         type: Date,
