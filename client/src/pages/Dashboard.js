@@ -30,16 +30,38 @@ const Dashboard = ({ props }) => {
     };
     verifyCookie();
   }, [cookies, navigate, removeCookie, setUser]);
+  const handleToggle = () => {
+    const sidebar = document.getElementById("sidebar");
+    if (sidebar.classList.contains(styles.hide)) {
+      sidebar.classList.remove(`${styles.hide}`);
+    } else {
+      sidebar.classList.add(`${styles.hide}`);
+    }
+  };
 
   return (
-    <div className="flex flex-col justify-center items-center w-screen h-screen bg-gray-400 p-1 gap-1">
+    <div
+      className={`flex flex-col justify-center items-center bg-gray-400 p-1 gap-1 ${styles.pg}`}
+    >
       <div className="flex justify-between items-center w-full min-h-[11%] bg-gradient-to-r from-black via-black to-blue-950 py-2 px-5 rounded font-serif">
         <div className="flex justify-end items-center gap-2">
-          <img className="h-16 w-16 object-contain" src={logo} alt="IIT BBS" />
-          <p className="text-white text-2xl">IIT Bhubaneswar</p>
+          <button onClick={handleToggle}>
+            <span class={`fa-solid fa-bars text-white ${styles.toggle}`}></span>
+          </button>
+          <img
+            className={`h-16 w-16 object-contain ${styles.gayab}`}
+            src={logo}
+            alt="IIT BBS"
+          />
+          <p className={`text-white sm:text-xl ${styles.gayab}`}>
+            IIT Bhubaneswar
+          </p>
         </div>
         <div className="flex justify-center items-center gap-3">
-          <p className="text-white text-l">Welcome to ERP, {user.name} </p>
+          <p className="text-white sm:text-xl flex">
+            <span className={` ${styles.gayab}`}>Welcome to ERP, &nbsp;</span>
+            {user.name}
+          </p>
           <div>
             <button
               className="w-10 h-10 border-2 rounded-full"
@@ -86,11 +108,14 @@ const Dashboard = ({ props }) => {
         </div>
       </div>
       <div className="flex w-full min-h-[88%] gap-1 ">
-        <div className="flex flex-col justify-start items-center w-1/6 bg-gradient-to-r from-black via-black to-blue-950 px-2 text-white text-xl gap-2 py-3 rounded font-mono font-black">
+        <div
+          id="sidebar"
+          className={`flex flex-col justify-start items-center w-1/5 bg-gradient-to-r from-black via-black to-blue-950 px-2 text-white text-xl gap-2 py-3 rounded font-mono font-black ${styles.sidebar}`}
+        >
           <div
             id="accordion-collapse"
             data-accordion="collapse"
-            className="text-white flex flex-col w-full"
+            className="flex flex-col w-full"
           >
             <div id="accordion-collapse-heading-1">
               <button
@@ -98,10 +123,12 @@ const Dashboard = ({ props }) => {
                 data-accordion-target="#accordion-collapse-body-1"
                 aria-expanded="false"
                 aria-controls="accordion-collapse-body-1"
-                className="flex justify-between items-center text-white h-10 w-full hover:bg-gray-100 hover:text-black hover:rounded-xl px-3"
+                className="flex justify-between items-center !text-white h-10 w-full hover:bg-gray-100 hover:!text-black hover:rounded-xl px-1 sm: px-3"
               >
-                <span>Courses</span>
-                <span className="fa-solid fa-book-open-reader text-2xl"></span>
+                <span className={`${styles.sidefont}`}>Courses</span>
+                <span
+                  className={`fa-solid fa-book-open-reader ${styles.sideicon}`}
+                ></span>
               </button>
             </div>
             <div
@@ -136,8 +163,10 @@ const Dashboard = ({ props }) => {
             }}
             className="flex justify-between items-center h-10 w-full hover:bg-gray-100 hover:text-black hover:rounded-xl px-3"
           >
-            <div>Attendance</div>
-            <div className="fa-solid fa-clipboard-user text-2xl"></div>
+            <div className={`${styles.sidefont}`}>Attendance</div>
+            <div
+              className={`fa-solid fa-clipboard-user ${styles.sideicon}`}
+            ></div>
           </button>
 
           <button
@@ -146,8 +175,10 @@ const Dashboard = ({ props }) => {
             }}
             className="flex justify-between items-center h-10 w-full hover:bg-gray-100 hover:text-black hover:rounded-xl px-3"
           >
-            <div>Result</div>
-            <div className="fa-solid fa-square-poll-vertical text-2xl"></div>
+            <div className={`${styles.sidefont}`}>Result</div>
+            <div
+              className={`fa-solid fa-square-poll-vertical ${styles.sideicon}`}
+            ></div>
           </button>
 
           <button
@@ -156,8 +187,10 @@ const Dashboard = ({ props }) => {
             }}
             className="flex justify-between items-center h-10 w-full hover:bg-gray-100 hover:text-black hover:rounded-xl px-3"
           >
-            <div>Feedback</div>
-            <div className="fa-regular fa-comment-dots text-2xl"></div>
+            <div className={`${styles.sidefont}`}>Feedback</div>
+            <div
+              className={`fa-regular fa-comment-dots ${styles.sideicon}`}
+            ></div>
           </button>
 
           <button
@@ -166,8 +199,10 @@ const Dashboard = ({ props }) => {
             }}
             className="flex justify-between items-center h-10 w-full hover:bg-gray-100 hover:text-black hover:rounded-xl px-3"
           >
-            <div>Survey</div>
-            <div className="fa-solid fa-square-poll-vertical text-2xl"></div>
+            <div className={`${styles.sidefont}`}> Survey</div>
+            <div
+              className={`fa-solid fa-square-poll-vertical ${styles.sideicon}`}
+            ></div>
           </button>
           <button
             onClick={() => {
@@ -175,12 +210,13 @@ const Dashboard = ({ props }) => {
             }}
             className="flex justify-between items-center h-10 w-full hover:bg-gray-100 hover:text-black hover:rounded-xl px-3"
           >
-            <div>Assignments</div>
-            <div class="fa-solid fa-list-check text-2xl"></div>
+            <div className={`${styles.sidefont}`}>Assignment</div>
+            <div class={`fa-solid fa-list-check ${styles.sideicon}`}></div>
           </button>
         </div>
         <div
-          className={`flex flex-col justify-start items-start w-5/6 bg-blue-950 p-2 overflow-y-scroll ${styles.content} rounded`}
+          id="content"
+          className={`flex flex-col justify-start items-start bg-blue-950 p-2 overflow-y-scroll ${styles.content} rounded`}
         >
           {props}
         </div>

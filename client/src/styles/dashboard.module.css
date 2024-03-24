@@ -11,3 +11,57 @@
   border-radius: 10%;
   border: 1px solid #ffffff;
 }
+.pg {
+  height: 100vh;
+  width: 100vw;
+}
+.gayab {
+  display: block;
+}
+.toggle {
+  display: none;
+  font-size: 2em;
+}
+.hide {
+  display: none;
+}
+.content {
+  width: 100%;
+}
+.sidebar {
+  height: 100%;
+  width: 350px;
+}
+.sidefont {
+  font-size: 100%;
+}
+.sideicon {
+  font-size: 100%;
+}
+
+@media screen and (max-width: 550px) {
+  .gayab {
+    display: none;
+  }
+  .toggle {
+    display: block;
+  }
+  .sidebar {
+    width: 215px;
+    position: fixed;
+    z-index: 5;
+  }
+}
+
+@media screen and (max-width: 370px) {
+  .gayab {
+    display: none;
+  }
+  .toggle {
+    display: block;
+  }
+  .sidebar {
+    position: fixed;
+    z-index: 5;
+  }
+}

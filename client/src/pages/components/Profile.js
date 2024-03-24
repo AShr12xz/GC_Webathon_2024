@@ -15,7 +15,7 @@ const Profile = () => {
   //   } = student;
 
   return (
-    <div class=" bg-gradient-to-r from-sky-400 to-blue-500 w-full h-full">
+    <div class="w-full h-full">
       <div class="grid grid-cols-4 sm:grid-cols-12 gap-6 md:gap-4 p-2">
         <div class="col-span-4 sm:col-span-3">
           {/* Image */}
