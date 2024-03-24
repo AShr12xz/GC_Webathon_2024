@@ -5,7 +5,7 @@ const studentCourseSchema = new mongoose.Schema({
     type: String,
     required: [true, "Course name is required"],
   },
-  name: {
+  studentName: {
     type: String,
     required: [true, "Name is required"],
   },
@@ -33,7 +33,7 @@ const studentCourseSchema = new mongoose.Schema({
     type: String,
   },
   attended: {
-    type: String,
+    type: [Date],
   },
   classes:[Date]
 });

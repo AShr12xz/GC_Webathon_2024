@@ -47,7 +47,7 @@ const FeedbackForm = (props) => {
     data.facultycode = fcode[0].facultycode;
     try {
       const res = await axios.post(
-        "http://localhost:3000/feedbacks/submitFeedback",
+        "http://localhost:3000/studentCourses/submitFeedback",
         data
       );
       toast.success("Feedback Submitted Successfully");
