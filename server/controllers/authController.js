@@ -4,6 +4,7 @@ const Student = require('../models/studentModel')
 const Faculty = require('../models/facultyModel')
 const error = require('../utils/error')
 const asyncCheck = require('../utils/asyncCheck')
+require("dotenv").config();
 
 const signToken = id => {
     return jwt.sign({ id }, process.env.JWT_SECRET, {
@@ -63,33 +64,23 @@ exports.login = asyncCheck(async (req, res, next) => {
     });
 })
 
-exports.protect = asyncCheck(async (req, res, next) => {
-    // 1) Getting token and check of it's there
-    let token;
-    if (
-        req.headers.authorization &&
-        req.headers.authorization.startsWith('Bearer')
-    ) {
-        token = req.headers.authorization.split(' ')[1];
+module.exports.userVerification = (req, res) => {
+  const { token } = req.body;
+  console.log(token);
+  if (!token) {
+    return res.json({ status: false });
+  }
+  jwt.verify(token, process.env.JWT_SECRET, async (err, data) => {
+    if (err) {
+      return res.json({ status: false });
+    } else {
+      const user = await User.findById(data.id);
+      if (user)
+        return res.json({
+          status: true,
+          user: user,
+        });
+      else return res.json({ status: false });
     }
-
-    if (!token) {
-        return next(
-            new AppError('You are not logged in! Please log in to get access.', 401)
-        );
-    }
-
-    // 2) Verification token
-    const decoded = await promisify(jwt.verify)(token, process.env.JWT_SECRET);
-
-    // 3) Check if user still exists
-    const currentUser = await User.findById(decoded.id);
-    if (!currentUser) {
-        return next(
-            new AppError(
-                'The user belonging to this token does no longer exist.',
-                401
-            )
-        );
-    }
-})
+  });
+};

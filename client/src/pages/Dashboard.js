@@ -8,24 +8,24 @@ const Dashboard = ({ props }) => {
   const [cookies, , removeCookie] = useCookies("token");
   const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
-  //   useEffect(() => {
-  //     const verifyCookie = async () => {
-  //       if (!cookies.token) {
-  //         return nav("/login");
-  //       }
-  //       const { data } = await axios.post(
-  //         "http://localhost:3000/user/login",
-  //         { token: cookies.token }
-  //         // { withCredentials: true }
-  //       );
-  //       // console.log(data);
-  //       const { status } = data;
-  //       return (status==="success")
-  //         ? {}
-  //         : (removeCookie("token"), console.log("cookie removed"), nav("/login"));
-  //     };
-  //     verifyCookie();
-  //   }, [cookies, nav, removeCookie]);
+    useEffect(() => {
+      const verifyCookie = async () => {
+        if (!cookies.token) {
+          return navigate("/login");
+        }
+        const res = await axios.post(
+          "http://localhost:3000/users/auth",
+          { token: cookies.token }
+          // { withCredentials: true }
+        );
+        console.log(res);
+        const { status } = res.data;
+        return (status)
+          ? {}
+          : (removeCookie("token"), console.log("cookie removed"), navigate("/login"));
+      };
+      verifyCookie();
+    }, [cookies, navigate, removeCookie]);
 
   return (
     <div className="flex flex-col justify-center items-center w-screen h-screen bg-blue-200 p-1 gap-1">
@@ -68,6 +68,7 @@ const Dashboard = ({ props }) => {
                 </button>
                 <button
                   onClick={() => {
+                    removeCookie("token");
                     navigate("/login");
                   }}
                   className="flex flex-row justify-between items-center hover:bg-zinc-100 p-2 rounded-lg text-black"
