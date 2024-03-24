@@ -20,7 +20,7 @@ import FeedbackForm from "./pages/components/Feedback.js";
 import Survey from "./pages/components/Survey.js";
 
 import FeedbackBox from "./pages/components/Faculty pages/Feedback.js";
-import FacultyDashboard from "./pages/components/FacultyDashboard.js";
+
 
 function RoutesWithAnimation() {
   const location = useLocation();
@@ -32,7 +32,7 @@ function RoutesWithAnimation() {
         <Route path="/signup" element={<SignUp />} />
         <Route path="/" element={<Navigate to="/login" />} />
         <Route path="/dashboard" element={<Dashboard />} />
-        <Route path="/facultydashboard" element={<FacultyDashboard />} />
+
         <Route path="/profile" element={<Dashboard props={<Profile />} />} />
         <Route
           path="/attendance"
@@ -49,7 +49,7 @@ function RoutesWithAnimation() {
         />
         <Route path="/survey" element={<Dashboard props={<Survey />} />} />
         <Route
-          path="/courseregistration"
+          path="/courseregister"
           element={<Dashboard props={<CourseReg />} />}
         />
         <Route
