@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import styles from "../styles/login.module.css";
 import logo from "../assets/IITBBSlogo.png";
-import bg from "../assets/bg.png";
+
 import axios from "axios";
 import { useCookies } from "react-cookie";
 import { Link, useNavigate } from "react-router-dom";
