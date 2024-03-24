@@ -36,7 +36,7 @@ const EditProfile = () => {
 
   return (
     <div>
-      <div class="bg-blue-950">
+      <div class="bg-gradient-to-r from-sky-400 to-blue-500">
         <div class="container mx-auto py-8">
           <div class="grid grid-cols-4 sm:grid-cols-12 gap-6 md:gap-24 px-4">
             <div class="col-span-4 sm:col-span-3">

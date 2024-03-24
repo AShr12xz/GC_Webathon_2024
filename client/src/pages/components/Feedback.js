@@ -58,7 +58,7 @@ const FeedbackForm = (props) => {
   };
 
   return (
-    <div className="w-3/5 mx-2 md:mx-auto my-16 bg-white rounded-3xl overflow-hidden shadow-lg p-6 border border-gray-200">
+    <div className="w-full h-full bg-white rounded-l overflow-hidden shadow-lg p-6 border border-gray-200">
       <ToastContainer></ToastContainer>
       <h2 className="text-lg font-semibold mb-4 text-center">
         Submit Feedback

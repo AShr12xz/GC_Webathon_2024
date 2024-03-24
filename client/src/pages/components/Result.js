@@ -52,13 +52,13 @@ const Result = () => {
   }, [user, setCourses]);
 
   return (
-    <div className="w-3/5 mx-auto mt-8 bg-white rounded-3xl overflow-hidden shadow-lg p-6 border border-gray-200">
-      <h2 className="text-lg font-semibold mb-4 text-center">
-        Subject-wise Grades SEMESTER-4
+    <div className="w-full h-full bg-white rounded-l overflow-hidden shadow-lg px-2 border border-gray-200">
+      <h2 className="text-4xl font-serif  my-5 text-center">
+        Subject-wise Grades
       </h2>
-      <table className="w-full table-auto">
+      <table className="w-full">
         <thead>
-          <tr className="bg-gray-200">
+          <tr className="bg-gray-300">
             <th className="px-4 py-2">Subject Name</th>
             <th className="px-4 py-2">Subject Code</th>
             <th className="px-4 py-2">Credits</th>
@@ -67,7 +67,7 @@ const Result = () => {
         </thead>
         <tbody>
           {courses.map((grade, index) => (
-            <tr key={index} className={index % 2 === 0 ? "bg-gray-100" : ""}>
+            <tr key={index} className={index % 2 !== 0 ? "bg-gray-300" : ""}>
               <td className="border px-4 py-2">{grade.courseName}</td>
               <td className="border px-4 py-2">{grade.coursecode}</td>
               <td className="border px-4 py-2">{grade.credits}</td>
@@ -75,7 +75,7 @@ const Result = () => {
             </tr>
           ))}
           {/* SGPA and CGPA row */}
-          <tr className="bg-gray-100">
+          <tr className="bg-gray-300">
             <td colSpan="3" className="border px-4 py-2 font-semibold">
               {/* SGPA: {sgpa} */}CGPA
             </td>
