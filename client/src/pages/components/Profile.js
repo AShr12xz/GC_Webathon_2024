@@ -15,7 +15,7 @@ const Profile = () => {
   //   } = student;
 
   return (
-    <div class="bg-blue-800 w-full ">
+    <div class="bg-blue-950 w-full h-full">
       <div class="grid grid-cols-4 sm:grid-cols-12 gap-6 md:gap-4 p-2">
         <div class="col-span-4 sm:col-span-3">
           {/* Image */}

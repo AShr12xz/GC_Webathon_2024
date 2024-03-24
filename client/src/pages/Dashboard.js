@@ -4,6 +4,7 @@ import axios from "axios";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useUserContext } from "../store/UserContext";
+import styles from "../styles/dashboard.module.css";
 
 const Dashboard = ({ props }) => {
   const [cookies, , removeCookie] = useCookies("token");
@@ -32,7 +33,7 @@ const Dashboard = ({ props }) => {
 
   return (
     <div className="flex flex-col justify-center items-center w-screen h-screen bg-blue-200 p-1 gap-1">
-      <div className="flex justify-between items-center w-full h-1/12 bg-black py-2 px-5">
+      <div className="flex justify-between items-center w-full min-h-[11%] bg-black py-2 px-5 rounded">
         <div className="flex justify-end items-center gap-2">
           <img className="h-16 w-16 object-contain" src={logo} alt="IIT BBS" />
           <p className="text-white text-2xl">IIT Bhubaneswar</p>
@@ -84,49 +85,57 @@ const Dashboard = ({ props }) => {
           </div>
         </div>
       </div>
-      <div className="flex w-full h-full gap-1">
-        <div className="flex flex-col justify-start items-center w-1/5 h-full bg-blue-900 divide-y-2 px-3 text-xl text-white">
-          <button className="flex justify-between items-center h-20 w-full">
+      <div className="flex w-full min-h-[88%] gap-1">
+        <div className="flex flex-col justify-start items-center w-1/6 bg-blue-950 px-3 text-xl text-white gap-2 py-3 rounded">
+          <button className="flex justify-between items-center h-12 w-full hover:bg-gray-300 hover:rounded-xl hover:text-black px-2">
             <div>Courses</div>
+            <div className="fa-solid fa-book-open-reader text-2xl"></div>
           </button>
+          <hr className="border-1 w-full" />
           <button
             onClick={() => {
               navigate("/attendance");
             }}
-            className="flex justify-between items-center h-20 w-full"
+            className="flex justify-between items-center h-12 w-full hover:bg-gray-300 hover:rounded-xl hover:text-black px-2"
           >
             <div>Attendance</div>
-            <div className="fa-solid fa-clipboard-user"></div>
+            <div className="fa-solid fa-clipboard-user text-2xl"></div>
           </button>
+          <hr className="border-1 w-full" />
           <button
             onClick={() => {
               navigate("/result");
             }}
-            className="flex justify-between items-center h-20 w-full"
+            className="flex justify-between items-center h-12 w-full hover:bg-gray-300 hover:rounded-xl hover:text-black px-2"
           >
             <div>Result</div>
-            <div className="fa-solid fa-square-poll-vertical"></div>
+            <div className="fa-solid fa-square-poll-vertical text-2xl"></div>
           </button>
+          <hr className="border-1 w-full" />
           <button
             onClick={() => {
               navigate("/feedback");
             }}
-            className="flex justify-between items-center h-20 w-full"
+            className="flex justify-between items-center h-12 w-full hover:bg-gray-300 hover:rounded-xl hover:text-black px-2"
           >
             <div>Feedback</div>
-            <div className="fa-regular fa-comment-dots"></div>
+            <div className="fa-regular fa-comment-dots text-2xl"></div>
           </button>
+          <hr className="border-1 w-full" />
           <button
             onClick={() => {
               navigate("/survey");
             }}
-            className="flex justify-between items-center h-20 w-full"
+            className="flex justify-between items-center h-12 w-full hover:bg-gray-300 hover:rounded-xl hover:text-black px-2"
           >
             <div>Survey</div>
-            <div className="fa-regular fa-comment-dots"></div>
+            <div className="fa-solid fa-square-poll-vertical text-2xl"></div>
           </button>
+          <hr className="border-1 w-full" />
         </div>
-        <div className="flex flex-col justify-start items-start w-4/5 bg-blue-900 overflow-y-scroll">
+        <div
+          className={`flex flex-col justify-start items-start w-5/6 bg-blue-950 overflow-y-scroll ${styles.content} rounded`}
+        >
           {props}
         </div>
       </div>
