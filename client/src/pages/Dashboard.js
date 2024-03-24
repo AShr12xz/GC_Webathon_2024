@@ -86,7 +86,7 @@ const Dashboard = ({ props }) => {
         </div>
       </div>
       <div className="flex w-full min-h-[88%] gap-1">
-        <div className="flex flex-col justify-start items-center w-1/6 bg-blue-950 px-3 text-xl text-white gap-2 py-3 rounded">
+        <div className="flex flex-col justify-start items-center w-1/6 bg-blue-950 px-2 text-xl text-white gap-2 py-3 rounded">
           <button className="flex justify-between items-center h-12 w-full hover:bg-gray-300 hover:rounded-xl hover:text-black px-2">
             <div>Courses</div>
             <div className="fa-solid fa-book-open-reader text-2xl"></div>
