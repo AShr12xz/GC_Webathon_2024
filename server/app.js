@@ -3,6 +3,7 @@ const morgan = require('morgan');
 const userRouter = require('./routes/userRoutes')
 const courseRouter = require('./routes/courseRoutes')
 const feedbackRouter = require('./routes/feedbackRoutes')
+const attendanceRoutes = require('./routes/attendanceRoutes')
 const cors = require("cors");
 const app = express();
 
@@ -36,5 +37,6 @@ app.get('/', (req, res) => {
 app.use('/users', userRouter);
 app.use('/courses', courseRouter);
 app.use('/feedbacks', feedbackRouter);
+app.use('/attendance',attendanceRoutes);
 
 module.exports = app;

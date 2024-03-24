@@ -13,7 +13,7 @@ const studentCourseSchema = new mongoose.Schema({
     type: String,
     required: [true, "Course name is required"],
   },
-  code: {
+  coursecode: {
     type: String,
     required: [true, "Course code is required"],
   },
@@ -29,6 +29,13 @@ const studentCourseSchema = new mongoose.Schema({
     type: Number,
     required: [true, "Credits are required"],
   },
+  feedback: {
+    type: String,
+  },
+  attended: {
+    type: String,
+  },
+  classes:[Date]
 });
 
 const studentCourse = mongoose.model("studentCourse", studentCourseSchema);
