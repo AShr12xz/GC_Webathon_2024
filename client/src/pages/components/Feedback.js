@@ -1,8 +1,13 @@
-import React, { useState } from "react";
+import axios from "axios";
+import { useState } from "react";
 
-const FeedbackForm = () => {
+const FeedbackForm = (props) => {
   const [selectedTeacher, setSelectedTeacher] = useState("");
-  const [feedback, setFeedback] = useState("");
+  const [data, setData] = useState({
+    rollno: "",
+    feedback: "",
+    facultycode: "",
+  });
 
   const teachers = [
     "Teacher 1",
@@ -15,11 +20,19 @@ const FeedbackForm = () => {
     "Teacher 8",
   ];
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-
     console.log("Teacher:", selectedTeacher);
-    console.log("Feedback:", feedback);
+    console.log("Feedback:", data);
+    data.rollno = props.user.uniqueId;
+    try {
+      const res = await axios.post(
+        "http://localhost:3000/users/feedback",
+        data
+      );
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -60,15 +73,12 @@ const FeedbackForm = () => {
             id="feedback"
             className="w-full border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:border-blue-500"
             rows="4"
-            value={feedback}
-            onChange={(e) => setFeedback(e.target.value)}
+            value={data.feedback}
+            onChange={(e) => setData(e.target.value)}
           ></textarea>
         </div>
         <div className="text-center">
-          <button
-            
-            className="bg-blue-400 text-white font-semibold py-2 px-4 rounded-md hover:bg-blue-600 focus:outline-none focus:bg-blue-600"
-          >
+          <button className="bg-blue-400 text-white font-semibold py-2 px-4 rounded-md hover:bg-blue-600 focus:outline-none focus:bg-blue-600">
             Submit
           </button>
         </div>
