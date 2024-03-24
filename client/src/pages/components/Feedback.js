@@ -1,64 +1,65 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { useUserContext } from "../../store/UserContext";
+import { ToastContainer, toast } from "react-toastify";
 
 const FeedbackForm = (props) => {
-  const { user, setUser } = useUserContext();
+  const { user } = useUserContext();
   const [selectedTeacher, setSelectedTeacher] = useState("");
   const [courses, setCourses] = useState([]);
   const [teachers, setTeachers] = useState([]);
-  console.log(user);
   const [data, setData] = useState({
-    rollno: user.uniqueId,
+    rollno: "",
     feedback: "",
     facultycode: "",
   });
 
-
-
   useEffect(() => {
-
     const fetchData = async () => {
       try {
         const res = await axios.post(
           "http://localhost:3000/courses/findStudentCourse",
           { rollno: user.uniqueId }
         );
-        console.log(res);
         setCourses(res.data.data.courses);
         // Extract faculty names from the response
         const teachers1 = res.data.data.courses.map((course) => course.faculty);
-        console.log(teachers1);
         setTeachers(teachers1);
-
       } catch (error) {
         console.log(error);
       }
     };
 
     fetchData();
-  }, []);
+  }, [user]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-
     // Find the faculty code from the selected teacher
-    const code = courses.filter((code) => code.faculty===selectedTeacher)[0]; 
-    console.log(code);
-    setData({ ...data, facultycode: code });
+    const fcode = courses.filter((code) => {
+      if (code.faculty === selectedTeacher) {
+        return code;
+      }
+    });
+    console.log(fcode);
+    data.rollno = user.uniqueId;
+    data.facultycode = fcode[0].facultycode;
     try {
       const res = await axios.post(
         "http://localhost:3000/feedbacks/submitFeedback",
         data
       );
+      toast.success("Feedback Submitted Successfully");
     } catch (error) {
+      toast.info("Feedback Already Submitted");
       console.log(error);
     }
   };
 
   return (
     <div className="w-3/5 mx-2 md:mx-auto my-16 bg-white rounded-3xl overflow-hidden shadow-lg p-6 border border-gray-200">
+      <ToastContainer></ToastContainer>
       <h2 className="text-lg font-semibold mb-4 text-center">
         Submit Feedback
       </h2>
@@ -97,7 +98,9 @@ const FeedbackForm = (props) => {
             rows="4"
             name="feedback"
             value={data.feedback}
-            onChange={(e) => setData({ ...data, [e.target.name]: e.target.value })}
+            onChange={(e) =>
+              setData({ ...data, [e.target.name]: e.target.value })
+            }
           ></textarea>
         </div>
         <div className="text-center">

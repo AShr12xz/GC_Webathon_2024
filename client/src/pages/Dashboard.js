@@ -20,14 +20,13 @@ const Dashboard = ({ props }) => {
           { token: cookies.token }
           // { withCredentials: true }
         );
-        console.log(res);
         const { status } = res.data;
         return (status)
           ? setUser(res.data.user)
           : (removeCookie("token"), console.log("cookie removed"), navigate("/login"));
       };
       verifyCookie();
-    }, [cookies, navigate, removeCookie]);
+    }, [cookies, navigate, removeCookie, setUser]);
 
     
 

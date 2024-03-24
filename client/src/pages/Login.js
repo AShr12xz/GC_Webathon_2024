@@ -14,7 +14,7 @@ const Login = () => {
     uniqueId: "",
     password: "",
   });
-  const [cookies, setCookies] = useCookies("token");
+  const [, setCookies] = useCookies("token");
   const navigate = useNavigate();
   const control = useAnimationControls();
   const handleToggle = () => {
@@ -94,7 +94,6 @@ const Login = () => {
       );
       setTimeout(() => {
         if (res.data.status === "success") {
-          // setTimeout(() => {}, 1000);
           setCookies("token", res.data.token, { path: "/" });
           navigate(`/dashboard`);
         } else {
