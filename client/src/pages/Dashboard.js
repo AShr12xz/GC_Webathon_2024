@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 
 const Dashboard = ({ props }) => {
   const [cookies, , removeCookie] = useCookies("token");
+  const[user, setUser]= useState("")
   const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
     useEffect(() => {
@@ -21,11 +22,13 @@ const Dashboard = ({ props }) => {
         console.log(res);
         const { status } = res.data;
         return (status)
-          ? {}
+          ? setUser(res.data.user)
           : (removeCookie("token"), console.log("cookie removed"), navigate("/login"));
       };
       verifyCookie();
     }, [cookies, navigate, removeCookie]);
+
+    
 
   return (
     <div className="flex flex-col justify-center items-center w-screen h-screen bg-blue-200 p-1 gap-1">
@@ -35,7 +38,7 @@ const Dashboard = ({ props }) => {
           <p className="text-white text-2xl">IIT Bhubaneswar</p>
         </div>
         <div className="flex justify-center items-center gap-3">
-          <p className="text-white text-l">Welcome to ERP, Akkad Bakkad </p>
+          <p className="text-white text-l">Welcome to ERP, {user.name} </p>
           <div>
             <button
               className="w-10 h-10 border-2 rounded-full"
@@ -124,7 +127,7 @@ const Dashboard = ({ props }) => {
           </button>
         </div>
         <div className="flex flex-col justify-start items-start w-4/5 h-full bg-blue-900 ">
-          {props}
+          {props }
         </div>
       </div>
     </div>

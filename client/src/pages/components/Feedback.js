@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 
-const FeedbackForm = () => {
+const FeedbackForm = (user) => {
   const [selectedTeacher, setSelectedTeacher] = useState("");
   const [feedback, setFeedback] = useState("");
-
+console.log(user);
   const teachers = [
     "Teacher 1",
     "Teacher 2",
