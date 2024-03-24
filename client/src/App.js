@@ -1,10 +1,3 @@
-import Login from "./pages/Login.js";
-import SignUp from "./pages/SignUp.js";
-import Profile from "./pages/components/Profile.js";
-import Attendance from "./pages/components/Attendance.js";
-import Result from "./pages/components/Result.js";
-
-
 import {
   Route,
   Routes,
@@ -12,6 +5,12 @@ import {
   BrowserRouter,
   Navigate,
 } from "react-router-dom";
+import Login from "./pages/Login.js";
+import SignUp from "./pages/SignUp.js";
+import Profile from "./pages/components/Profile.js";
+import Attendance from "./pages/components/Attendance.js";
+import Result from "./pages/components/Result.js";
+import { UserContextProvider } from "./store/UserContext.js";
 import { AnimatePresence } from "framer-motion";
 import Dashboard from "./pages/Dashboard.js";
 import EditProfile from "./pages/components/EditProfile.js";
@@ -40,7 +39,10 @@ function RoutesWithAnimation() {
           path="/editprofile"
           element={<Dashboard props={<EditProfile />} />}
         />
-        <Route path="/feedback" element={<Dashboard props={<FeedbackForm />} />} />
+        <Route
+          path="/feedback"
+          element={<Dashboard props={<FeedbackForm />} />}
+        />
         <Route path="/survey" element={<Dashboard props={<Survey />} />} />
         <Route
           path="/courseregistration"
@@ -56,9 +58,11 @@ function RoutesWithAnimation() {
 }
 function App() {
   return (
-    <BrowserRouter >
-      <RoutesWithAnimation />
-    </BrowserRouter>
+    <UserContextProvider>
+      <BrowserRouter>
+        <RoutesWithAnimation />
+      </BrowserRouter>
+    </UserContextProvider>
   );
 }
 

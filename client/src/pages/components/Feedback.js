@@ -1,8 +1,11 @@
 import axios from "axios";
 import { useState } from "react";
+import { useUserContext } from "../../store/UserContext";
 
 const FeedbackForm = (props) => {
+  const {user, setUser}=useUserContext();
   const [selectedTeacher, setSelectedTeacher] = useState("");
+  console.log(user);
   const [data, setData] = useState({
     rollno: "",
     feedback: "",
@@ -24,7 +27,7 @@ const FeedbackForm = (props) => {
     e.preventDefault();
     console.log("Teacher:", selectedTeacher);
     console.log("Feedback:", data);
-    data.rollno = props.user.uniqueId;
+    data.rollno = user.uniqueId;
     try {
       const res = await axios.post(
         "http://localhost:3000/users/feedback",

@@ -3,10 +3,11 @@ import { useCookies } from "react-cookie";
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import { useUserContext } from "../store/UserContext";
 
 const Dashboard = ({ props }) => {
   const [cookies, , removeCookie] = useCookies("token");
-  const[user, setUser]= useState("")
+  const {user, setUser}= useUserContext();
   const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
     useEffect(() => {
