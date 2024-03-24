@@ -1,4 +1,5 @@
 const studentCourse = require("../models/studentCourseModel");
+const Course = require('../models/courseModel');
 const asyncCheck = require("../utils/asyncCheck");
 const error = require("../utils/error");
 
@@ -118,5 +119,49 @@ exports.showGrade = asyncCheck(async (req, res) => {
     data: {
       data,
     },
+  });
+});
+
+exports.showCourses = asyncCheck(async (req, res) => {
+  const student = await studentCourse.find({ rollno: req.body.rollno });
+  const data = student.filter((ele) => {
+    const { courseName, coursecode, faculty, credits } = ele;
+    return courseName, coursecode, faculty, credits;
+  });
+  
+  if (!data || data.length === 0) {
+    return next(new error("No courses found", 404));
+  }
+  res.status(200).json({
+    status: "success",
+    data: {
+      data,
+    },
+  });
+});
+
+// select courses from available options
+exports.selectCourses = asyncCheck(async (req, res) => {
+
+  req.body.map(async(ele) => {
+    const course = await Course.findOne({ coursecode: ele.coursecode });
+    const data = {
+      rollno: ele.rollno,
+      studentName: ele.studentName,
+      courseName: course.name,
+      coursecode: course.coursecode,
+      faculty: course.faculty,
+      facultycode: course.facultycode,
+      credits: course.credits,
+      attended: [],
+      classes: [],
+      feedback: "",
+      grade: "",
+    };
+    await studentCourse.create(data);
+  })
+  
+  res.status(201).json({
+    status: "success",
   });
 });

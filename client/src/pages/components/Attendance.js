@@ -35,11 +35,11 @@ const Attendance = () => {
   }, [user, setCourses]);
   // console.log(courses);
   return (
-    <div className="w-4/5 m-8 mx-auto px-4 md:px-16 bg-white rounded-3xl overflow-hidden shadow-lg p-6 border border-gray-200">
-      <h2 className="text-lg font-semibold mb-4 text-center">
+    <div className="w-full h-full bg-white rounded-l overflow-hidden shadow-lg p-2 border border-gray-200">
+      <h2 className="text-4xl font-serif text-center mt-3 mb-5 shadow-lg p-3">
         Subject-wise Attendance
       </h2>
-      <table className="w-full table-auto">
+      <table className="w-full">
         <thead>
           <tr className="bg-gray-200">
             <th className="px-4 py-2">Subject Name</th>
@@ -51,7 +51,12 @@ const Attendance = () => {
         <tbody>
           {/* {console.log(courses)} */}
           {courses.map((record, index) => (
-            <tr key={index} className={index % 2 === 0 ? "bg-gray-100" : ""}>
+            <tr
+              key={index}
+              className={
+                index % 2 === 0 ? "bg-gray-100 text-center" : "text-center"
+              }
+            >
               <td className="border px-4 py-2">{record.courseName}</td>
               <td className="border px-4 py-2">{record.coursecode}</td>
               <td className="border px-4 py-2">
@@ -69,8 +74,10 @@ const Attendance = () => {
                     }
                     style={{
                       width: `${
-                        record.classes.length?(record.attended.length * 100) /
-                        record.classes.length:0
+                        record.classes.length
+                          ? (record.attended.length * 100) /
+                            record.classes.length
+                          : 0
                       }%`,
                     }}
                   ></div>

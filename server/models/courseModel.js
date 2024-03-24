@@ -5,13 +5,17 @@ const courseSchema = new mongoose.Schema({
         type: String,
         required: [true, 'Course name is required']
     },
-    code: {
+    coursecode: {
         type: String,
         required: [true, 'Course code is required']
     },
     faculty: {
         type: String,
         required: [true, 'Faculty is required']
+    },
+    facultycode: {
+        type: String,
+        required: [true, 'Faculty code is required']
     },
     credits: {
         type: Number,
