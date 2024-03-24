@@ -7,14 +7,15 @@ const Attendance = () => {
     { subjectName: "Science", subjectCode: "SCI", percentage: 90 },
     { subjectName: "History", subjectCode: "HIS", percentage: 78 },
     { subjectName: "English", subjectCode: "ENG", percentage: 92 },
-    { subjectName: "Computer Science", subjectCode: "CSE", percentage: 88 },
+    { subjectName: "Computer Science", subjectCode: "CSE", percentage: 68 },
     { subjectName: "Physics", subjectCode: "PHY", percentage: 80 },
     { subjectName: "Chemistry", subjectCode: "CHE", percentage: 85 },
-    { subjectName: "Biology", subjectCode: "BIO", percentage: 15 },
+    { subjectName: "Biology", subjectCode: "BIO", percentage: 55 },
   ];
 
   return (
-    <div className="w-full m-8 mx-auto px-4 md:px-32 bg-white rounded-3xl overflow-hidden shadow-lg p-6 border border-gray-200">
+    
+    <div className="w-4/5 m-8 mx-auto px-4 md:px-16 bg-white rounded-3xl overflow-hidden shadow-lg p-6 border border-gray-200">
       <h2 className="text-lg font-semibold mb-4 text-center">
         Subject-wise Attendance
       </h2>

@@ -13,10 +13,14 @@ const Result = () => {
     { subjectName: "Biology", subjectCode: "BIO", grade: "C" },
   ];
 
+  // SGPA and CGPA values
+  const sgpa = 8.5;
+  const cgpa = 8.2;
+
   return (
     <div className="w-3/5 mx-auto mt-8 bg-white rounded-3xl overflow-hidden shadow-lg p-6 border border-gray-200">
       <h2 className="text-lg font-semibold mb-4 text-center">
-        Subject-wise Grades
+        Subject-wise Grades SEMESTER-4
       </h2>
       <table className="w-full table-auto">
         <thead>
@@ -34,6 +38,15 @@ const Result = () => {
               <td className="border px-4 py-2">{grade.grade}</td>
             </tr>
           ))}
+          {/* SGPA and CGPA row */}
+          <tr className="bg-gray-100">
+            <td colSpan="2" className="border px-4 py-2 font-semibold">
+              SGPA: {sgpa}
+            </td>
+            <td colSpan="2" className="border-r border-t border-b px-4 py-2 font-semibold">
+              CGPA: {cgpa}
+            </td>
+          </tr>
         </tbody>
       </table>
     </div>
