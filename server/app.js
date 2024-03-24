@@ -2,7 +2,6 @@ const express = require('express');
 const morgan = require('morgan');
 const userRouter = require('./routes/userRoutes')
 const courseRouter = require('./routes/courseRoutes')
-const attendanceRouter = require('./routes/attendanceRoutes')
 const studentCourseRouter = require('./routes/studentCourseRoutes')
 const cors = require("cors");
 const app = express();
@@ -36,8 +35,6 @@ app.get('/', (req, res) => {
 
 app.use('/users', userRouter);
 app.use('/courses', courseRouter);
-
-app.use('/attendance',attendanceRouter);
 app.use('/studentCourses',studentCourseRouter)
 
 module.exports = app;

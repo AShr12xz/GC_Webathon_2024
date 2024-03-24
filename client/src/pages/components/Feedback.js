@@ -46,7 +46,7 @@ const FeedbackForm = (props) => {
     data.rollno = user.uniqueId;
     data.facultycode = fcode[0].facultycode;
     try {
-      const res = await axios.post(
+      await axios.post(
         "http://localhost:3000/studentCourses/submitFeedback",
         data
       );

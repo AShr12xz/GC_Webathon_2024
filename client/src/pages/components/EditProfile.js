@@ -61,7 +61,7 @@ const EditProfile = () => {
                 <h2 className="flex justify-center text-xl font-semibold mb-4">
                   Edit-Profile
                 </h2>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-2 ">
+                <form onSubmit={handleSubmit} className="grid grid-cols-1 md:grid-cols-2 gap-2 ">
                   <div className="rounded-lg border border-gray-300 p-4">
                   <label htmlFor="name" className="text-gray-600">Name:</label>
                   <input
@@ -215,7 +215,7 @@ const EditProfile = () => {
                     className="block w-full mt-1 bg-gray-200 rounded-md border-gray-300 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50"
                   />
                   </div>
-                </div>
+                </form>
               </div>
             </div>
           </div>
