@@ -25,7 +25,6 @@ const Attendance = () => {
           "http://localhost:3000/studentCourses/showAttendanceforStudent",
           { rollno: user.uniqueId }
         );
-        console.log(res.data.data.data);
         setCourses(res.data.data.data);
       } catch (error) {
         console.log(error);

@@ -7,32 +7,32 @@ import { useUserContext } from "../store/UserContext";
 
 const Dashboard = ({ props }) => {
   const [cookies, , removeCookie] = useCookies("token");
-  const {user, setUser}= useUserContext();
+  const { user, setUser } = useUserContext();
   const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
-    useEffect(() => {
-      const verifyCookie = async () => {
-        if (!cookies.token) {
-          return navigate("/login");
-        }
-        const res = await axios.post(
-          "http://localhost:3000/users/auth",
-          { token: cookies.token }
-          // { withCredentials: true }
-        );
-        const { status } = res.data;
-        return (status)
-          ? setUser(res.data.user)
-          : (removeCookie("token"), console.log("cookie removed"), navigate("/login"));
-      };
-      verifyCookie();
-    }, [cookies, navigate, removeCookie, setUser]);
-
-    
+  useEffect(() => {
+    const verifyCookie = async () => {
+      if (!cookies.token) {
+        return navigate("/login");
+      }
+      const res = await axios.post(
+        "http://localhost:3000/users/auth",
+        { token: cookies.token }
+        // { withCredentials: true }
+      );
+      const { status } = res.data;
+      return status
+        ? setUser(res.data.user)
+        : (removeCookie("token"),
+          console.log("cookie removed"),
+          navigate("/login"));
+    };
+    verifyCookie();
+  }, [cookies, navigate, removeCookie, setUser]);
 
   return (
     <div className="flex flex-col justify-center items-center w-screen h-screen bg-blue-200 p-1 gap-1">
-      <div className="flex justify-between items-center w-full h-20 bg-black py-2 px-5">
+      <div className="flex justify-between items-center w-full h-1/12 bg-black py-2 px-5">
         <div className="flex justify-end items-center gap-2">
           <img className="h-16 w-16 object-contain" src={logo} alt="IIT BBS" />
           <p className="text-white text-2xl">IIT Bhubaneswar</p>
@@ -49,7 +49,7 @@ const Dashboard = ({ props }) => {
               <span className="fa fa-user text-l text-white"></span>
             </button>
             {isOpen && (
-              <div class="absolute shadow-lg top-16 right-4 w-40 h-max p-2 bg-white rounded-lg flex flex-col gap-2">
+              <div className="absolute shadow-lg top-16 right-4 w-40 h-max p-2 bg-white rounded-lg flex flex-col gap-2">
                 <button
                   onClick={() => {
                     console.log("abcdcd");
@@ -96,7 +96,7 @@ const Dashboard = ({ props }) => {
             className="flex justify-between items-center h-20 w-full"
           >
             <div>Attendance</div>
-            <div class="fa-solid fa-clipboard-user"></div>
+            <div className="fa-solid fa-clipboard-user"></div>
           </button>
           <button
             onClick={() => {
@@ -105,7 +105,7 @@ const Dashboard = ({ props }) => {
             className="flex justify-between items-center h-20 w-full"
           >
             <div>Result</div>
-            <div class="fa-solid fa-square-poll-vertical"></div>
+            <div className="fa-solid fa-square-poll-vertical"></div>
           </button>
           <button
             onClick={() => {
@@ -114,7 +114,7 @@ const Dashboard = ({ props }) => {
             className="flex justify-between items-center h-20 w-full"
           >
             <div>Feedback</div>
-            <div class="fa-regular fa-comment-dots"></div>
+            <div className="fa-regular fa-comment-dots"></div>
           </button>
           <button
             onClick={() => {
@@ -123,11 +123,11 @@ const Dashboard = ({ props }) => {
             className="flex justify-between items-center h-20 w-full"
           >
             <div>Survey</div>
-            <div class="fa-regular fa-comment-dots"></div>
+            <div className="fa-regular fa-comment-dots"></div>
           </button>
         </div>
-        <div className="flex flex-col justify-start items-start w-4/5 h-full bg-blue-900 ">
-          {props }
+        <div className="flex flex-col justify-start items-start w-4/5 bg-blue-900 overflow-y-scroll">
+          {props}
         </div>
       </div>
     </div>

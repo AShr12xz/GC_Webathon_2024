@@ -94,3 +94,29 @@ exports.updateAttendance = asyncCheck(async (req, res) => {
     status: "success",
   });
 });
+
+exports.addGrade = asyncCheck(async (req, res) => {
+  const student = await studentCourse.findOne({
+    rollno: req.body.rollno,
+    coursecode: req.body.coursecode,
+  });
+  student.grade = req.body.grade;
+  await student.save();
+  res.status(201).json({
+    status: "success",
+  });
+});
+
+exports.showGrade = asyncCheck(async (req, res) => {
+  const student = await studentCourse.find({ rollno: req.body.rollno });
+  const data = student.filter((ele) => {
+    const { courseName, coursecode, grade, credits } = ele;
+    return courseName, coursecode, grade, credits;
+  });
+  res.status(201).json({
+    status: "success",
+    data: {
+      data,
+    },
+  });
+});

@@ -35,7 +35,10 @@ const studentCourseSchema = new mongoose.Schema({
   attended: {
     type: [Date],
   },
-  classes:[Date]
+  grade: {
+    type: String,
+  },
+  classes: [Date],
 });
 
 const studentCourse = mongoose.model("studentCourse", studentCourseSchema);
