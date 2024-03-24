@@ -9,31 +9,31 @@ const Result = () => {
 
   var cgpa = 0;
   var totalcredit = 0;
-  courses.map((ele) => {
-    totalcredit += ele.credits;
-    switch (ele.grade) {
+  for (let i = 0; i < courses.length; i++) {
+    totalcredit += courses[i].credits;
+    switch (courses[i].grade) {
       case "EX":
-        cgpa += 10 * ele.credits;
+        cgpa += 10 * courses[i].credits;
         break;
       case "A":
-        cgpa += 9 * ele.credits;
+        cgpa += 9 * courses[i].credits;
         break;
       case "B":
-        cgpa += 8 * ele.credits;
+        cgpa += 8 * courses[i].credits;
         break;
       case "C":
-        cgpa += 7 * ele.credits;
+        cgpa += 7 * courses[i].credits;
         break;
       case "D":
-        cgpa += 6 * ele.credits;
+        cgpa += 6 * courses[i].credits;
         break;
       case "P":
-        cgpa += 5 * ele.credits;
+        cgpa += 5 * courses[i].credits;
         break;
-      case "F":
+      default:
         break;
     }
-  });
+  }
   cgpa /= totalcredit;
   useEffect(() => {
     const fetchData = async () => {

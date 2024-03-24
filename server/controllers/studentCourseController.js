@@ -1,5 +1,5 @@
 const studentCourse = require("../models/studentCourseModel");
-const Course = require('../models/courseModel');
+const Course = require("../models/courseModel");
 const asyncCheck = require("../utils/asyncCheck");
 const error = require("../utils/error");
 
@@ -128,7 +128,7 @@ exports.showCourses = asyncCheck(async (req, res) => {
     const { courseName, coursecode, faculty, credits } = ele;
     return courseName, coursecode, faculty, credits;
   });
-  
+
   if (!data || data.length === 0) {
     return next(new error("No courses found", 404));
   }
@@ -142,25 +142,31 @@ exports.showCourses = asyncCheck(async (req, res) => {
 
 // select courses from available options
 exports.selectCourses = asyncCheck(async (req, res) => {
-
-  req.body.map(async(ele) => {
-    const course = await Course.findOne({ coursecode: ele.coursecode });
-    const data = {
-      rollno: ele.rollno,
-      studentName: ele.studentName,
-      courseName: course.name,
-      coursecode: course.coursecode,
-      faculty: course.faculty,
-      facultycode: course.facultycode,
-      credits: course.credits,
-      attended: [],
-      classes: [],
-      feedback: "",
-      grade: "",
-    };
+  console.log(req.body);
+  req.body.selectedSubjects.map(async (ele) => {
+    const existing = await studentCourse.findOne({
+      rollno: req.body.rollno,
+      coursecode: ele.coursecode,
+    });
+    if (!existing) {
+      const course = await Course.findOne({ coursecode: ele.coursecode });
+      const data = {
+        rollno: req.body.rollno,
+        studentName: req.body.studentName,
+        courseName: course.name,
+        coursecode: course.coursecode,
+        faculty: course.faculty,
+        facultycode: course.facultycode,
+        credits: course.credits,
+        attended: [],
+        classes: [],
+        feedback: "",
+        grade: "",
+      };
+    }
     await studentCourse.create(data);
-  })
-  
+  });
+
   res.status(201).json({
     status: "success",
   });

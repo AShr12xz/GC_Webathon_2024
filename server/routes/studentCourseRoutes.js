@@ -11,5 +11,6 @@ router.post('/showFeedback',studentCourseController.showFeedback);
 router.post('/showAttendanceforStudent',studentCourseController.showAttendanceforStudent);
 router.post('/showAttendanceforFaculty',studentCourseController.showAttendanceforFaculty);
 router.post('/updateAttendance', studentCourseController.updateAttendance)
+router.post("/selectCourses", studentCourseController.selectCourses);
 
 module.exports = router;

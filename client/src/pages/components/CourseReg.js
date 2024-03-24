@@ -4,7 +4,6 @@ import { useUserContext } from "../../store/UserContext";
 import { ToastContainer, toast } from "react-toastify";
 
 const CourseReg = () => {
-
   const { user } = useUserContext();
   const [courses, setCourses] = useState([]);
 
@@ -14,11 +13,10 @@ const CourseReg = () => {
     const fetchData = async () => {
       try {
         const res = await axios.get(
-          "http://localhost:3000/courses/getAllCourses",
+          "http://localhost:3000/courses/getAllCourses"
         );
-        console.log(res.data);
+        // console.log(res.data);
         setCourses(res.data.data.courses);
-
       } catch (error) {
         console.log(error);
       }
@@ -26,26 +24,42 @@ const CourseReg = () => {
 
     fetchData();
   }, [user]);
+  const abcd = [];
+  const handleCheckboxChange = (index) => {
+    if(abcd.includes(index)){
 
-  const handleCheckboxChange = (subjectId) => {
-    const index = selectedSubjects.indexOf(subjectId);
-    if (index === -1) {
-      if (selectedSubjects.length < 6) {
-        setSelectedSubjects([...selectedSubjects, subjectId]);
-      }
-    } else {
-      setSelectedSubjects(selectedSubjects.filter((id) => id !== subjectId));
-    }
+    };
+    abcd.push(index);
+
+    // setSelectedSubjects({selectedSubjects});
+    console.log(abcd);
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Implement submission logic
-    console.log("Selected subjects:", selectedSubjects);
+    for(let i=0;i<courses.length;i++){
+      console.log(i);
+      const box=document.getElementById(`${i}`);
+      if(box.checked){
+          selectedSubjects.push(courses[i]);
+      }
+    }
+    try{
+      const res = await axios.post(
+          "http://localhost:3000/studentCourses/selectCourses",
+          { selectedSubjects,rollno:user.uniqueId,studentName:user.name }
+        );
+        toast.success("Courses Selected Successfully");
+        console.log(res.data);
+    }
+    catch(error){
+      console.log(error);
+    }
   };
 
   return (
     <div className="container mx-auto px-4 py-8">
+      <ToastContainer></ToastContainer>
       <h1 className="flex justify-center text-2xl font-semibold mb-4 border p-4 bg-gray-50 shadow-lg ">
         Course Registration
       </h1>
@@ -88,10 +102,12 @@ const CourseReg = () => {
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap">
                     <input
+                      id={`${index}`}
                       type="checkbox"
-
-                      checked={selectedSubjects.includes(index)}
-                      onChange={handleCheckboxChange(index)}
+                      // checked={selectedSubjects.includes(index)}
+                      // onChange={() => {
+                      //   handleCheckboxChange(index);
+                      // }}
                       className="h-5 w-5 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
                     />
                   </td>

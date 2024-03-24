@@ -10,7 +10,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const Login = () => {
-  const [type, setType] = useState("password");
+  const [type] = useState("password");
   const [userForm, setUserForm] = useState({
     uniqueId: "",
     password: "",
@@ -18,13 +18,13 @@ const Login = () => {
   const [, setCookies] = useCookies("token");
   const navigate = useNavigate();
   const control = useAnimationControls();
-  const handleToggle = () => {
-    if (type === "password") {
-      setType("text");
-    } else {
-      setType("password");
-    }
-  };
+  // const handleToggle = () => {
+  //   if (type === "password") {
+  //     setType("text");
+  //   } else {
+  //     setType("password");
+  //   }
+  // };
 
   useEffect(() => {
     control.start({
@@ -36,33 +36,6 @@ const Login = () => {
       },
     });
   }, [control]);
-
-  const routeVariants = {
-    initial: {
-      y: "0vh",
-      opacity: 0,
-    },
-    show: {
-      opacity: [0.8, 1],
-      y: "0vh",
-      transition: {
-        times: [0, 1],
-        duration: 0.2,
-        ease: "easeInOut",
-      },
-    },
-    exit: {
-      scaleX: [1, 1],
-      scaleY: [1, 600 / 480],
-      opacity: [1, 1],
-      transition: {
-        delay: 0.2,
-        times: [0, 1],
-        ease: "easeInOut",
-        duration: 0.4,
-      },
-    },
-  };
 
   const updateUserFormField = (e) => {
     const { name, value } = e.target;
@@ -130,12 +103,12 @@ const Login = () => {
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         exit={{ opacity: 0, y: -20 }}
-        className="flex w-full h-full p-0"
-        style={{ flexDirection: "column-reverse" }} // Reverses flex direction for smaller screens
+        className="flex flex-col w-full h-full p-0 sm:flex-row"
+        // style={{ flexDirection: "column-reverse" }} // Reverses flex direction for smaller screens
       >
         <div className="flex w-full h-full">
           {/* left Side (Logo) */}
-          <div className="sm:rotate(90deg) flex w-1/3 flex-col justify-center items-center bg-[#005ab3] rounded-r-3xl">
+          <div className="sm:rotate(90deg) hidden sm:flex w-1/3 flex-col justify-center items-center bg-[#005ab3] rounded-r-3xl">
             <div className="w-2/3">
               <img className="object-contain" src={logo} alt="IIT BBS" />
             </div>
@@ -180,7 +153,7 @@ const Login = () => {
                         Roll No/ Emp Code:
                       </label>
                       <div class="relative px-2 md:px-0">
-                        <div class="inline-flex items-center justify-center absolute left-0 top-0 h-full w-10 text-gray-400">
+                        <div class="inline-flex items-center justify-center absolute left-1 top-0 h-full w-10 text-gray-400">
                           <svg
                             class="h-6 w-6"
                             fill="none"
@@ -250,7 +223,7 @@ const Login = () => {
                       <div class="flex ml-auto">
                         <Link to="/forgot">
                           <a
-                            href="#"
+                            href="abc"
                             class="inline-flex text-xs sm:text-sm text-blue-500 hover:text-blue-700 px-2 md:px-0"
                           >
                             Forgot Your Password?
@@ -286,7 +259,7 @@ const Login = () => {
                 </div>
                 <div class="flex justify-center items-center mt-6">
                   <a
-                    href="#"
+                    href="abc"
                     target="_blank"
                     class="inline-flex items-center font-bold text-blue-500 hover:text-blue-700 text-xs text-center"
                   >
