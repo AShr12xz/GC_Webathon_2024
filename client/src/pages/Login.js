@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import styles from "../styles/login.module.css";
 import logo from "../assets/IITBBSlogo.png";
+import bg from "../assets/bg.png";
 import axios from "axios";
 import { useCookies } from "react-cookie";
 import { Link, useNavigate } from "react-router-dom";
@@ -31,7 +32,7 @@ const Login = () => {
       transition: {
         times: [0, 1],
         ease: "easeInOut",
-        duration: 0.4,
+        duration: 0.3,
       },
     });
   }, [control]);
@@ -58,7 +59,7 @@ const Login = () => {
         delay: 0.2,
         times: [0, 1],
         ease: "easeInOut",
-        duration: 0.5,
+        duration: 0.4,
       },
     },
   };
@@ -79,6 +80,7 @@ const Login = () => {
 
   const checkLogin = async (e) => {
     e.preventDefault();
+
     control.start({
       scale: [0, 15],
       transition: {
@@ -102,7 +104,7 @@ const Login = () => {
           usr.classList.remove(`${styles.hascontent}`);
           pas.classList.remove(`${styles.hascontent}`);
         }
-      }, 2000);
+      }, 500);
     } catch (error) {
       console.log(error.message);
       toast.error("Incorrect Roll No/ Emp Code or Password");
@@ -122,119 +124,204 @@ const Login = () => {
   };
 
   return (
-    <div className="flex justify-center items-center w-screen h-screen bg-amber-100">
+    <div className="flex justify-center items-center w-screen h-screen bg-mygrey ">
       <ToastContainer></ToastContainer>
       <motion.div
-        variants={routeVariants}
-        initial="show"
-        exit="exit"
-        className="w-[250px] h-[425px] sm:w-[560px] sm:h-[480px] flex justify-start m-auto items-center border-2 border-solid border-black p-5 sm:p-2 rounded-2xl bg-white overflow-hidden gap-0 sm:gap-2"
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+        exit={{ opacity: 0, y: -20 }}
+        className="flex w-full h-full p-0"
+        style={{ flexDirection: "column-reverse" }} // Reverses flex direction for smaller screens
       >
-        <motion.div
-          animate={control}
-          className={`bg-[#005ab3] absolute top-[-80%] sm:top-[40%] sm:right-[-50%] z-[5] h-[200px] w-[200px]`}
-        ></motion.div>
-        <div className="flex flex-col justify-center items-center w-full sm:w-1/2 h-full p-0 sm:p-5 overflow-hidden">
-          <form
-            onSubmit={checkLogin}
-            className="flex flex-col justify-center items-center w-full h-full p-0 overflow-hidden"
-          >
-            <div className="flex flex-col justify-center items-center w-full ">
-              <div
-                className={`z-[4] m-5 flex justify-center items-center float-left h-1/5 w-full relative `}
-              >
-                <input
-                  className={`${styles.texteffect} focus:border-none focus:outline-none w-full`}
-                  type="text"
-                  placeholder=""
-                  onChange={updateUserFormField}
-                  value={userForm.uniqueId}
-                  name="uniqueId"
-                  id="uniqueId"
-                  required
-                  autoComplete="off"
-                />
-                <label>Roll No/ Emp Code</label>
-                <span className={styles.focusborder}></span>
-              </div>
-              <div
-                className={`z-[3] m-5 flex justify-center items-center float-left h-1/5 w-full relative`}
-              >
-                <input
-                  className={`${styles.texteffect} focus:border-none focus:outline-none w-full`}
-                  type={type}
-                  placeholder=""
-                  onChange={updateUserFormField}
-                  value={userForm.password}
-                  name="password"
-                  id="password"
-                  required
-                  autoComplete="off"
-                />
-                <label>Password</label>
-                {type === "text" && (
-                  <span
-                    className={`fa-solid fa-eye absolute right-[0] top-[5]`}
-                    style={{ color: "#2264a6" }}
-                    onClick={handleToggle}
-                  ></span>
-                )}
-                {type === "password" && (
-                  <span
-                    className={`fa-solid fa-eye-slash absolute right-[0] top-[5]`}
-                    style={{ color: "#2264a6" }}
-                    onClick={handleToggle}
-                  ></span>
-                )}
-                <span className={styles.focusborder}></span>
-              </div>
+        <div className="flex w-full h-full">
+          {/* left Side (Logo) */}
+          <div className="sm:rotate(90deg) flex w-1/3 flex-col justify-center items-center bg-[#005ab3] rounded-r-3xl">
+            <div className="w-2/3">
+              <img className="object-contain" src={logo} alt="IIT BBS" />
             </div>
-            <div
-              className={`flex justify-center items-center my-5 h-1/10 w-full font-bold text-[140%]`}
-            >
-              <div className="w-full bg-[#005ab3] rounded">
-                <button
-                  type="submit"
-                  id="login"
-                  className={`w-full text-white `}
-                >
-                  Sign in
-                </button>
-              </div>
-            </div>
-            <div className="flex justify-between w-full">
-              <div>
-                <Link
-                  onClick={() => {
-                    control.start({
-                      scale: 15,
-                      transition: {
-                        ease: "easeInOut",
-                        duration: 0.6,
-                      },
-                    });
-                  }}
-                  to="/signup"
-                >
-                  <span>Sign Up</span>
-                </Link>
-              </div>
-              <div>
-                <Link to="/forgot">
-                  <span>Forgot Password?</span>
-                </Link>
-              </div>
-            </div>
-          </form>
-        </div>
-        <div className="h-full border-2 border-solid border-black hidden sm:flex sm:w-1"></div>
-        <div className="hidden h-full w-1/2 sm:flex flex-col justify-center items-center gap-5 bg-[#005ab3] rounded">
-          <div className="hidden sm:w-2/3 sm:flex">
-            <img className="object-contain" src={logo} alt="IIT BBS" />
+            <h1 className="md:text-2xl text-xl text-center px-2 text-white">
+              Enterprise Resource Planning System
+            </h1>
           </div>
-          <h1 className="text-2xl text-center text-white">
-            Enterprise Resource Planning System
-          </h1>
+
+          {/* right Side (Login Form) */}
+          <div className="flex justify-center items-center w-full sm:w-2/3">
+            {/* <!-- component --> */}
+            <link
+              rel="stylesheet"
+              href="https://kit-pro.fontawesome.com/releases/v5.15.1/css/pro.min.css"
+            />
+
+            <div class="min-h-screen flex flex-col items-center justify-center w-full px-4">
+              <div class="flex flex-col bg-white shadow-md sm:px-6 md:px-8 lg:px-10 py-8 rounded-md w-full max-w-md rounded-2xl">
+                <div class="font-medium self-center text-center text-xl sm:text-2xl uppercase text-gray-800">
+                  Login To Your Account
+                </div>
+                {/* <button class="relative mt-6 border rounded-md py-2 text-sm text-gray-800 bg-gray-100 hover:bg-gray-200">
+                  <span class="absolute left-0 top-0 flex items-center justify-center h-full w-10 text-blue-500">
+                    <i class="fab fa-facebook-f"></i>
+                  </span>
+                   <span>Login with Facebook</span> 
+    </button>*/}
+                <div class="relative mt-10 h-px bg-gray-300 px-2 ">
+                  <div class="absolute left-0 top-0 flex justify-center w-full -mt-2">
+                    <span class="bg-white px-4 text-xs text-gray-500 uppercase">
+                      Login With Roll Number
+                    </span>
+                  </div>
+                </div>
+                <div class="mt-10">
+                  <form onSubmit={checkLogin}>
+                    <div class="flex flex-col mb-6">
+                      <label
+                        for="email"
+                        class="mb-1 text-xs sm:text-sm tracking-wide text-gray-600 px-2 md:px-0"
+                      >
+                        Roll No/ Emp Code:
+                      </label>
+                      <div class="relative px-2 md:px-0">
+                        <div class="inline-flex items-center justify-center absolute left-0 top-0 h-full w-10 text-gray-400">
+                          <svg
+                            class="h-6 w-6"
+                            fill="none"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            viewBox="0 0 24 24"
+                            stroke="currentColor"
+                          >
+                            <path d="M16 12a4 4 0 10-8 0 4 4 0 008 0zm0 0v1.5a2.5 2.5 0 005 0V12a9 9 0 10-9 9m4.5-1.206a8.959 8.959 0 01-4.5 1.207" />
+                          </svg>
+                        </div>
+
+                        <input
+                          type="text"
+                          onChange={updateUserFormField}
+                          value={userForm.uniqueId}
+                          name="uniqueId"
+                          id="uniqueId"
+                          required
+                          autoComplete="off"
+                          class="text-sm sm:text-base placeholder-gray-500 pl-10 pr-4 rounded-lg border border-gray-400 w-full py-2 focus:outline-none focus:border-blue-400"
+                          placeholder="Roll Number"
+                        />
+                      </div>
+                    </div>
+                    <div class="flex flex-col mb-6">
+                      <label
+                        for="password"
+                        class="mb-1 text-xs sm:text-sm tracking-wide text-gray-600 px-2 md:px-0 "
+                      >
+                        Password:
+                      </label>
+
+                      <div class="relative px-2 md:px-0">
+                        <div class="inline-flex items-center justify-center absolute left-0 top-0 h-full w-10 text-gray-400">
+                          <span>
+                            <svg
+                              class="h-6 w-6"
+                              fill="none"
+                              stroke-linecap="round"
+                              stroke-linejoin="round"
+                              stroke-width="2"
+                              viewBox="0 0 24 24"
+                              stroke="currentColor"
+                            >
+                              <path d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+                            </svg>
+                          </span>
+                        </div>
+
+                        <input
+                          type={type}
+                          onChange={updateUserFormField}
+                          value={userForm.password}
+                          name="password"
+                          id="password"
+                          required
+                          autoComplete="off"
+                          class="text-sm sm:text-base placeholder-gray-500 pl-10 pr-4 rounded-lg border border-gray-400 w-full py-2 focus:outline-none focus:border-blue-400"
+                          placeholder="Password"
+                        />
+                      </div>
+                    </div>
+
+                    <div class="flex items-center mb-6 -mt-4">
+                      <div class="flex ml-auto">
+                        <Link to="/forgot">
+                          <a
+                            href="#"
+                            class="inline-flex text-xs sm:text-sm text-blue-500 hover:text-blue-700 px-2 md:px-0"
+                          >
+                            Forgot Your Password?
+                          </a>
+                        </Link>
+                      </div>
+                    </div>
+
+                    <div class="flex w-full px-2 md:px-0">
+                      <button
+                        type="submit"
+                        id="login"
+                        class="flex items-center justify-center focus:outline-none text-white text-sm sm:text-base bg-[#005ab3] hover:bg-blue-700 rounded py-2 w-full transition duration-150 ease-in"
+                      >
+                        <span class="mr-2 uppercase">Login</span>
+
+                        <span>
+                          <svg
+                            class="h-6 w-6"
+                            fill="none"
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            viewBox="0 0 24 24"
+                            stroke="currentColor"
+                          >
+                            <path d="M13 9l3 3m0 0l-3 3m3-3H8m13 0a9 9 0 11-18 0 9 9 0 0118 0z" />
+                          </svg>
+                        </span>
+                      </button>
+                    </div>
+                  </form>
+                </div>
+                <div class="flex justify-center items-center mt-6">
+                  <a
+                    href="#"
+                    target="_blank"
+                    class="inline-flex items-center font-bold text-blue-500 hover:text-blue-700 text-xs text-center"
+                  >
+                    <span>
+                      <svg
+                        class="h-6 w-6"
+                        fill="none"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        stroke-width="2"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                      >
+                        <path d="M18 9v3m0 0v3m0-3h3m-3 0h-3m-2-5a4 4 0 11-8 0 4 4 0 018 0zM3 20a6 6 0 0112 0v1H3v-1z" />
+                      </svg>
+                    </span>
+                    <Link
+                      onClick={() => {
+                        control.start({
+                          scale: 15,
+                          transition: {
+                            ease: "easeInOut",
+                            duration: 0.6,
+                          },
+                        });
+                      }}
+                      to="/signup"
+                    >
+                      <span class="ml-2">You don't have an account?</span>
+                    </Link>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </motion.div>
     </div>
