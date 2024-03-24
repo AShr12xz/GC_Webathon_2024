@@ -7,7 +7,8 @@ const courseSchema = new mongoose.Schema({
     },
     coursecode: {
         type: String,
-        required: [true, 'Course code is required']
+        required: [true, 'Course code is required'],
+        unique: true
     },
     faculty: {
         type: String,

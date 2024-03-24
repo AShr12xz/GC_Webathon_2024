@@ -1,58 +1,31 @@
-import React, { useState } from "react";
+import axios from "axios";
+import { useEffect, useState } from "react";
+import { useUserContext } from "../../store/UserContext";
+import { ToastContainer, toast } from "react-toastify";
 
 const CourseReg = () => {
+
+  const { user } = useUserContext();
+  const [courses, setCourses] = useState([]);
+
   const [selectedSubjects, setSelectedSubjects] = useState([]);
-  const subjects = [
-    {
-      id: 1,
-      name: "Subject 1",
-      code: "SUB101",
-      credits: 3,
-      faculty: "Dr. John Doe",
-    },
-    {
-      id: 2,
-      name: "Subject 2",
-      code: "SUB102",
-      credits: 4,
-      faculty: "Dr. Jane Smith",
-    },
-    {
-      id: 3,
-      name: "Subject 3",
-      code: "SUB103",
-      credits: 4,
-      faculty: "Dr. MD Smith",
-    },
-    {
-      id: 4,
-      name: "Subject 4",
-      code: "SUB104",
-      credits: 4,
-      faculty: "Dr. MD Smith",
-    },
-    {
-      id: 5,
-      name: "Subject 5",
-      code: "SUB105",
-      credits: 4,
-      faculty: "Dr. MD Smith",
-    },
-    {
-      id: 6,
-      name: "Subject 6",
-      code: "SUB106",
-      credits: 4,
-      faculty: "Dr. MD Smith",
-    },
-    {
-      id: 7,
-      name: "Subject 7",
-      code: "SUB107",
-      credits: 4,
-      faculty: "Dr. MD Smith",
-    },
-  ];
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const res = await axios.get(
+          "http://localhost:3000/courses/getAllCourses",
+        );
+        console.log(res.data);
+        setCourses(res.data.data.courses);
+
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    fetchData();
+  }, [user]);
 
   const handleCheckboxChange = (subjectId) => {
     const index = selectedSubjects.indexOf(subjectId);
@@ -99,13 +72,13 @@ const CourseReg = () => {
               </tr>
             </thead>
             <tbody className="bg-white divide-y divide-gray-200">
-              {subjects.map((subject) => (
-                <tr key={subject.id}>
+              {courses.map((subject, index) => (
+                <tr key={subject.index}>
                   <td className="px-6 py-4 whitespace-nowrap">
                     {subject.name}
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap">
-                    {subject.code}
+                    {subject.coursecode}
                   </td>
                   <td className="px-6 py-4 whitespace-nowrap">
                     {subject.credits}
@@ -116,8 +89,9 @@ const CourseReg = () => {
                   <td className="px-6 py-4 whitespace-nowrap">
                     <input
                       type="checkbox"
-                      checked={selectedSubjects.includes(subject.id)}
-                      onChange={() => handleCheckboxChange(subject.id)}
+
+                      checked={selectedSubjects.includes(index)}
+                      onChange={handleCheckboxChange(index)}
                       className="h-5 w-5 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
                     />
                   </td>
@@ -126,16 +100,7 @@ const CourseReg = () => {
             </tbody>
           </table>
         </div>
-        {/* <div className="mt-4">
-          <button
-            className=" bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-            disabled={
-              selectedSubjects.length < 4 || selectedSubjects.length > 6
-            }
-          >
-            Submit
-          </button>
-        </div> */}
+
         <div className="text-center mt-4">
           <button className="bg-blue-400 text-white font-semibold py-2 px-4 rounded-md hover:bg-blue-600 focus:outline-none focus:bg-blue-600">
             Submit

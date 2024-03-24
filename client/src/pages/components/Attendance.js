@@ -3,20 +3,9 @@ import axios from "axios";
 import { useUserContext } from "../../store/UserContext";
 
 const Attendance = () => {
-  // Hardcoded attendance percentages for 8 subjects
+  
   const [courses, setCourses] = useState([]);
   const { user } = useUserContext();
-
-  const attendance = [
-    { subjectName: "Mathematics", subjectCode: "MAT", percentage: 85 },
-    { subjectName: "Science", subjectCode: "SCI", percentage: 90 },
-    { subjectName: "History", subjectCode: "HIS", percentage: 78 },
-    { subjectName: "English", subjectCode: "ENG", percentage: 92 },
-    { subjectName: "Computer Science", subjectCode: "CSE", percentage: 68 },
-    { subjectName: "Physics", subjectCode: "PHY", percentage: 80 },
-    { subjectName: "Chemistry", subjectCode: "CHE", percentage: 85 },
-    { subjectName: "Biology", subjectCode: "BIO", percentage: 55 },
-  ];
 
   useEffect(() => {
     const fetchData = async () => {
