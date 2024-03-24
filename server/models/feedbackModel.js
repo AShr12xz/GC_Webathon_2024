@@ -12,7 +12,11 @@ const feedbackSchema = new mongoose.Schema({
   facultycode: {
     type: String,
     required: [true, "Faculty code is required"],
-  }
+  },
+  // courseCode: {
+  //   type: String,
+  //   required: [true, "Course code is required"],
+  // }
 });
 
 const Feedback = mongoose.model("Feedback", feedbackSchema);

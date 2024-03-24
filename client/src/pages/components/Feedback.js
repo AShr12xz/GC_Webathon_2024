@@ -1,36 +1,55 @@
 import axios from "axios";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useUserContext } from "../../store/UserContext";
 
 const FeedbackForm = (props) => {
-  const {user, setUser}=useUserContext();
+  const { user, setUser } = useUserContext();
   const [selectedTeacher, setSelectedTeacher] = useState("");
+  const [courses, setCourses] = useState([]);
+  const [teachers, setTeachers] = useState([]);
   console.log(user);
   const [data, setData] = useState({
-    rollno: "",
+    rollno: user.uniqueId,
     feedback: "",
     facultycode: "",
   });
 
-  const teachers = [
-    "Teacher 1",
-    "Teacher 2",
-    "Teacher 3",
-    "Teacher 4",
-    "Teacher 5",
-    "Teacher 6",
-    "Teacher 7",
-    "Teacher 8",
-  ];
+
+
+  useEffect(() => {
+
+    const fetchData = async () => {
+      try {
+        const res = await axios.post(
+          "http://localhost:3000/courses/findStudentCourse",
+          { rollno: user.uniqueId }
+        );
+        console.log(res);
+        setCourses(res.data.data.courses);
+        // Extract faculty names from the response
+        const teachers1 = res.data.data.courses.map((course) => course.faculty);
+        console.log(teachers1);
+        setTeachers(teachers1);
+
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    fetchData();
+  }, []);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log("Teacher:", selectedTeacher);
-    console.log("Feedback:", data);
-    data.rollno = user.uniqueId;
+
+
+    // Find the faculty code from the selected teacher
+    const code = courses.filter((code) => code.faculty===selectedTeacher)[0]; 
+    console.log(code);
+    setData({ ...data, facultycode: code });
     try {
       const res = await axios.post(
-        "http://localhost:3000/users/feedback",
+        "http://localhost:3000/feedbacks/submitFeedback",
         data
       );
     } catch (error) {
@@ -76,8 +95,9 @@ const FeedbackForm = (props) => {
             id="feedback"
             className="w-full border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:border-blue-500"
             rows="4"
+            name="feedback"
             value={data.feedback}
-            onChange={(e) => setData(e.target.value)}
+            onChange={(e) => setData({ ...data, [e.target.name]: e.target.value })}
           ></textarea>
         </div>
         <div className="text-center">
