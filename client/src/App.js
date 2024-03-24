@@ -19,6 +19,8 @@ import CourseView from "./pages/components/CourseView.js";
 import FeedbackForm from "./pages/components/Feedback.js";
 import Survey from "./pages/components/Survey.js";
 
+import FeedbackBox from "./pages/components/Faculty pages/Feedback.js";
+
 function RoutesWithAnimation() {
   const location = useLocation();
   console.log(location);
@@ -52,6 +54,12 @@ function RoutesWithAnimation() {
           path="/coursesenrolled"
           element={<Dashboard props={<CourseView />} />}
         />
+
+        <Route
+          path="/facultyfeedback"
+          element={<Dashboard props={<FeedbackBox />} />}
+        />
+
       </Routes>
     </AnimatePresence>
   );
