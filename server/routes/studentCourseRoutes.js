@@ -8,4 +8,8 @@ router.post('/createStudentCourse', courseController.createStudentCourse);
 router.post('/submitFeedback',studentCourseController.submitFeedback);
 router.post('/showFeedback',studentCourseController.showFeedback);
 
+router.post('/showAttendanceforStudent',studentCourseController.showAttendanceforStudent);
+router.post('/showAttendanceforFaculty',studentCourseController.showAttendanceforFaculty);
+router.post('/updateAttendance', studentCourseController.updateAttendance)
+
 module.exports = router;
