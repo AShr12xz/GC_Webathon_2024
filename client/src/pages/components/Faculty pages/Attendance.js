@@ -40,27 +40,27 @@ const StudentAttendancePortal = () => {
   };
 
   // // Function to handle checkbox change for marking attendance
-  // const handleCheckboxChange = (studentId) => {
-  //   const updatedAttendance = attendance.map((student) => {
-  //     if (student.id === studentId) {
-  //       return { ...student, present: !student.present };
-  //     }
-  //     return student;
-  //   });
-  //   setAttendance(updatedAttendance);
-  // };
+  const handleCheckboxChange = (studentId) => {
+    const updatedAttendance = attendance.map((student) => {
+      if (student.id === studentId) {
+        return { ...student, present: !student.present };
+      }
+      return student;
+    });
+    setAttendance(updatedAttendance);
+  };
 
-  // // Function to handle form submission
-  // const handleSubmitAttendance = (e) => {
-  //   e.preventDefault();
-  //   // Implement logic to submit attendance
-  //   console.log("Attendance submitted:", attendance);
-  // };
+  // Function to handle form submission
+  const handleSubmitAttendance = (e) => {
+    e.preventDefault();
+    // Implement logic to submit attendance
+    console.log("Attendance submitted:", attendance);
+  };
 
-  // // Calculate summary of attendance
-  // const totalStudents = students.length;
-  // const totalPresent = attendance.filter((student) => student.present).length;
-  // const totalAbsent = totalStudents - totalPresent;
+  // Calculate summary of attendance
+  const totalStudents = students.length;
+  const totalPresent = attendance.filter((student) => student.present).length;
+  const totalAbsent = totalStudents - totalPresent;
 
   return (
     <div className="w-full h-full bg-mygrey rounded-lg overflow-y-scroll shadow-lg p-6  border border-gray-200">

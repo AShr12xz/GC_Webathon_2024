@@ -25,6 +25,7 @@ const Dashboard = ({ props }) => {
         // { withCredentials: true }
       );
       const { status } = res.data;
+      
       return status
         ? setUser(res.data.user)
         : (removeCookie("token"),
@@ -34,8 +35,7 @@ const Dashboard = ({ props }) => {
     verifyCookie();
   }, [cookies, navigate, removeCookie, setUser]);
   const handleToggle = () => {
-    const sidebar = document.getElementById("sidebar");
-
+    const sidebar=document.getElementById("sidebar");
     if (sidebar.classList.contains(styles.hide)) {
       control.start({
         x: ["-300px", "0px"],
@@ -131,7 +131,7 @@ const Dashboard = ({ props }) => {
         </div>
       </div>
       <div className="flex w-full min-h-[88%] gap-1 ">
-        
+        {user.role === "student" && (
           <motion.div
             id="sidebar"
             animate={control}
@@ -241,6 +241,7 @@ const Dashboard = ({ props }) => {
               ></div>
             </button>
           </motion.div>
+        )}
 
         {user.role === "faculty" && (
           <motion.div
