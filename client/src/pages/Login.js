@@ -10,7 +10,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const Login = () => {
-  const [type] = useState("password");
+  const [type, setType] = useState("password");
   const [userForm, setUserForm] = useState({
     uniqueId: "",
     password: "",
@@ -18,13 +18,13 @@ const Login = () => {
   const [, setCookies] = useCookies("token");
   const navigate = useNavigate();
   const control = useAnimationControls();
-  // const handleToggle = () => {
-  //   if (type === "password") {
-  //     setType("text");
-  //   } else {
-  //     setType("password");
-  //   }
-  // };
+  const handleToggle = () => {
+    if (type === "password") {
+      setType("text");
+    } else {
+      setType("password");
+    }
+  };
 
   useEffect(() => {
     control.start({
@@ -126,7 +126,7 @@ const Login = () => {
             />
 
             <div class="min-h-screen flex flex-col items-center justify-center w-full px-4">
-              <div class="flex flex-col bg-white shadow-md sm:px-6 md:px-8 lg:px-10 py-8 rounded-md w-full max-w-md rounded-2xl">
+              <div class="flex flex-col bg-white shadow-md px-4 sm:px-6 md:px-8 lg:px-10 py-8 rounded-md w-full max-w-md rounded-2xl">
                 <div class="font-medium self-center text-center text-xl sm:text-2xl uppercase text-gray-800">
                   Login To Your Account
                 </div>
@@ -153,7 +153,7 @@ const Login = () => {
                         Roll No/ Emp Code:
                       </label>
                       <div class="relative px-2 md:px-0">
-                        <div class="inline-flex items-center justify-center absolute left-1 top-0 h-full w-10 text-gray-400">
+                        <div class="inline-flex items-center justify-center absolute left-1 top-0 h-full w-10">
                           <svg
                             class="h-6 w-6"
                             fill="none"
@@ -188,8 +188,8 @@ const Login = () => {
                         Password:
                       </label>
 
-                      <div class="relative px-2 md:px-0">
-                        <div class="inline-flex items-center justify-center absolute left-0 top-0 h-full w-10 text-gray-400">
+                      <div class="relative px-2 md:px-0 focus:border-5">
+                        <div class="inline-flex items-center justify-center absolute left-1 top-0 h-full w-10 ">
                           <span>
                             <svg
                               class="h-6 w-6"
@@ -216,6 +216,20 @@ const Login = () => {
                           class="text-sm sm:text-base placeholder-gray-500 pl-10 pr-4 rounded-lg border border-gray-400 w-full py-2 focus:outline-none focus:border-blue-400"
                           placeholder="Password"
                         />
+                        {type === "text" && (
+                          <span
+                            className={`fa-solid fa-eye inline-flex items-center justify-center absolute right-1 top-0 h-full w-10`}
+                            style={{ color: "#2264a6" }}
+                            onClick={handleToggle}
+                          ></span>
+                        )}
+                        {type === "password" && (
+                          <span
+                            className={`fa-solid fa-eye-slash inline-flex items-center justify-center absolute right-1 top-0 h-full w-10`}
+                            style={{ color: "#2264a6" }}
+                            onClick={handleToggle}
+                          ></span>
+                        )}
                       </div>
                     </div>
 

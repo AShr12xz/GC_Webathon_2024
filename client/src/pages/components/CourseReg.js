@@ -7,7 +7,7 @@ const CourseReg = () => {
   const { user } = useUserContext();
   const [courses, setCourses] = useState([]);
 
-  const [selectedSubjects, setSelectedSubjects] = useState([]);
+  const [selectedSubjects,] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -24,15 +24,6 @@ const CourseReg = () => {
 
     fetchData();
   }, [user]);
-  const abcd = [];
-  const handleCheckboxChange = (index) => {
-    if (abcd.includes(index)) {
-    }
-    abcd.push(index);
-
-    // setSelectedSubjects({selectedSubjects});
-    console.log(abcd);
-  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -102,10 +93,6 @@ const CourseReg = () => {
                     <input
                       id={`${index}`}
                       type="checkbox"
-                      // checked={selectedSubjects.includes(index)}
-                      // onChange={() => {
-                      //   handleCheckboxChange(index);
-                      // }}
                       className="h-5 w-5 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
                     />
                   </td>
