@@ -5,19 +5,19 @@ This web application serves as a comprehensive solution for managing various asp
 
 ## Features 
 - User Roles:
- - Admin: Manages overall system functionality, user roles, and permissions.
- - Student: Accesses academic records, course registrations, and communication tools.
- - Faculty: Manages courses, grades, and interacts with students.
+    - Admin: Manages overall system functionality, user roles, and permissions.
+    - Student: Accesses academic records, course registrations, and communication tools.
+    - Faculty: Manages courses, grades, and interacts with students.
 
 - Dashboard: 
-  -Personalized dashboard providing an overview of key academic and administrative metrics.
+    - Personalized dashboard providing an overview of key academic and administrative metrics.
 
 - Modules:
-  -Student Management: Manage student information, registrations, and academic progress.
-  -Faculty Management: Store faculty details, course assignments, and schedules.
-  -Course Management: Create, modify, and manage courses offered by the college.
-  -Academic Records: Maintain student grades, transcripts, and attendance records.
-  -Communication: Facilitate communication between students, faculty, and administration.
+    - Student Management: Manage student information, registrations, and academic progress.
+    - Faculty Management: Store faculty details, course assignments, and schedules.
+    - Course Management: Create, modify, and manage courses offered by the college.
+    - Academic Records: Maintain student grades, transcripts, and attendance records.
+    - Communication: Facilitate communication between students, faculty, and administration.
 
 ## Technologies Used
 MongoDB: Database to store item and user information
@@ -49,16 +49,18 @@ Inside config.env
 
 PORT = 3000
 MONGO_URI = your mongodb uri
+
+
 JWT_SECRET = ''
 
 
-Install Dependencies (frontend & backend)
+## Install Dependencies (frontend & backend)
 
-## Open  client
+### Open  client
 ``` npm install```
-## Open  Server
+### Open  Server
 ``` npm install ```
-## Run Client
+### Run Client
 ``` npm start ```
-## Run Server
+### Run Server
 ``` node server.js ```
