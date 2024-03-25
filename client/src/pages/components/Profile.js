@@ -16,10 +16,10 @@ const Profile = () => {
 
   return (
     <div class="w-full h-full">
-      <div class="grid grid-cols-4 sm:grid-cols-12 gap-6 md:gap-4 p-2">
+      <div class="w-full grid grid-cols-4 sm:grid-cols-12 gap-6 md:gap-4 p-2">
         <div class="col-span-4 sm:col-span-3">
           {/* Image */}
-          <div class="bg-white shadow rounded-3xl p-6 md:ml-8 ">
+          <div class="bg-white shadow rounded-3xl p-6 ">
             <div class="flex flex-col items-center">
               <img
                 src="https://randomuser.me/api/portraits/men/94.jpg"

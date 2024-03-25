@@ -112,7 +112,7 @@ const Login = () => {
             <div className="w-2/3">
               <img className="object-contain" src={logo} alt="IIT BBS" />
             </div>
-            <h1 className="md:text-2xl text-xl text-center px-2 text-white">
+            <h1 className="md:text-4xl text-xl text-center px-2 text-white mt-10">
               Enterprise Resource Planning System
             </h1>
           </div>

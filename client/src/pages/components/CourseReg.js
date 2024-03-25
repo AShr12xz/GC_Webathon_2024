@@ -26,9 +26,8 @@ const CourseReg = () => {
   }, [user]);
   const abcd = [];
   const handleCheckboxChange = (index) => {
-    if(abcd.includes(index)){
-
-    };
+    if (abcd.includes(index)) {
+    }
     abcd.push(index);
 
     // setSelectedSubjects({selectedSubjects});
@@ -37,30 +36,29 @@ const CourseReg = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    for(let i=0;i<courses.length;i++){
+    for (let i = 0; i < courses.length; i++) {
       console.log(i);
-      const box=document.getElementById(`${i}`);
-      if(box.checked){
-          selectedSubjects.push(courses[i]);
+      const box = document.getElementById(`${i}`);
+      if (box.checked) {
+        selectedSubjects.push(courses[i]);
       }
     }
-    try{
+    try {
       const res = await axios.post(
-          "http://localhost:3000/studentCourses/selectCourses",
-          { selectedSubjects,rollno:user.uniqueId,studentName:user.name }
-        );
-        toast.success("Courses Selected Successfully");
-        console.log(res.data);
-    }
-    catch(error){
+        "http://localhost:3000/studentCourses/selectCourses",
+        { selectedSubjects, rollno: user.uniqueId, studentName: user.name }
+      );
+      toast.success("Courses Selected Successfully");
+      console.log(res.data);
+    } catch (error) {
       console.log(error);
     }
   };
 
   return (
-    <div className="container mx-auto px-4 py-8">
+    <div className="container mx-auto px-4 py-4">
       <ToastContainer></ToastContainer>
-      <h1 className="flex justify-center text-2xl font-semibold mb-4 border p-4 bg-gray-50 shadow-lg ">
+      <h1 className="flex justify-center text-4xl font-bold mb-4 border p-4 bg-gray-50 shadow-lg font-sans rounded-xl">
         Course Registration
       </h1>
       <form onSubmit={handleSubmit}>

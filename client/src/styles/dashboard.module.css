@@ -22,15 +22,14 @@
   display: none;
   font-size: 2em;
 }
-.hide {
-  display: none;
-}
+
 .content {
   width: 100%;
 }
 .sidebar {
   height: 100%;
   width: 350px;
+  
 }
 .sidefont {
   font-size: 100%;
@@ -50,6 +49,12 @@
     width: 215px;
     position: fixed;
     z-index: 5;
+    box-shadow: 10000px 10000px 0 10000px rgba(0, 0, 0, 0.607)
+  }
+
+  .hide {
+    /* width: 0; */
+    /* visibility: hidden; */
   }
 }
 
@@ -63,5 +68,12 @@
   .sidebar {
     position: fixed;
     z-index: 5;
+    transition: width 0.5 linear;
+    overflow: hidden;
+    box-shadow: 10000px 10000px 0 100px rgba(0, 0, 0, 0.607)
+  }
+  .hide {
+    /* width: 0; */
+    /* visibility: hidden; */
   }
 }

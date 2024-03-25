@@ -35,13 +35,12 @@ const EditProfile = () => {
   };
 
   return (
-    <div>
+    
       <div class="w-full h-full">
-        <div class="container mx-auto py-8">
-          <div class="grid grid-cols-4 sm:grid-cols-12 gap-6 md:gap-24 px-4">
+          <div class="grid grid-cols-4 sm:grid-cols-12 gap-4 p-2">
             <div class="col-span-4 sm:col-span-3">
               {/* Image */}
-              <div class="bg-white shadow rounded-3xl p-6 md:ml-8 ">
+              <div class="bg-white shadow rounded-3xl p-6">
                 <div class="flex flex-col items-center">
                   <img
                     src="https://randomuser.me/api/portraits/men/94.jpg"
@@ -246,13 +245,14 @@ const EditProfile = () => {
                       className="block w-full mt-1 bg-gray-200 rounded-md border-gray-300 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50"
                     />
                   </div>
+                  <button>Submit</button>
                 </form>
               </div>
             </div>
           </div>
-        </div>
+        
       </div>
-    </div>
+   
   );
 };
 
