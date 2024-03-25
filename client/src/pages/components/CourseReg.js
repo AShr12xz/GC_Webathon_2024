@@ -24,15 +24,6 @@ const CourseReg = () => {
 
     fetchData();
   }, [user]);
-  const abcd = [];
-  const handleCheckboxChange = (index) => {
-    if (abcd.includes(index)) {
-    }
-    abcd.push(index);
-
-    // setSelectedSubjects({selectedSubjects});
-    console.log(abcd);
-  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
