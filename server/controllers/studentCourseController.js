@@ -114,12 +114,17 @@ exports.updateAttendance = asyncCheck(async (req, res) => {
 });
 
 exports.addGrade = asyncCheck(async (req, res) => {
-  const student = await studentCourse.findOne({
-    rollno: req.body.rollno,
-    coursecode: req.body.coursecode,
+
+  req.body.students.map(async (el) => {
+    console.log(el);
+    const student = await studentCourse.findOne({
+      rollno: el.rollno,
+      coursecode: el.coursecode,
+    });
+    student.grade=el.grade;
+    await student.save();
   });
-  student.grade = req.body.grade;
-  await student.save();
+
   res.status(201).json({
     status: "success",
   });
