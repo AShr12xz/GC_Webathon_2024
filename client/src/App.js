@@ -18,6 +18,7 @@ import CourseReg from "./pages/components/CourseReg.js";
 import CourseView from "./pages/components/CourseView.js";
 import FeedbackForm from "./pages/components/Feedback.js";
 import Survey from "./pages/components/Survey.js";
+import Assignment from "./pages/components/Assigments.js";
 
 import FeedbackBox from "./pages/components/Faculty pages/Feedback.js";
 import Material from "./pages/components/Faculty pages/Material.js";
@@ -57,6 +58,10 @@ function RoutesWithAnimation() {
         <Route
           path="/mycourses"
           element={<Dashboard props={<CourseView />} />}
+        />
+        <Route
+          path="/assignment"
+          element={<Dashboard props={<Assignment />} />}
         />
 
         <Route

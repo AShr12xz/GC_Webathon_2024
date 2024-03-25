@@ -17,7 +17,7 @@ const Material = () => {
               aria-expanded="true"
               aria-controls="accordion-arrow-icon-body-1"
             >
-              <span>Upload Study Material</span>
+              <span>View Study Material</span>
               <svg
                 data-accordion-icon
                 class="w-3 h-3 rotate-180 shrink-0"
@@ -40,92 +40,7 @@ const Material = () => {
             id="accordion-arrow-icon-body-1"
             aria-labelledby="accordion-arrow-icon-heading-1"
           >
-            <div class="p-2 border border-b-0 border-gray-200 dark:border-gray-700">
-              <div class="bg-mygrey rounded-lg overflow-hidden shadow-lg p-4 border border-gray-200">
-                <div class="p-4">
-                  <div class="mx-auto max-w-lg bg-white">
-                    <form
-                      class="py-6 px-3 md:px-9"
-                      action="https://formbold.com/s/FORM_ID"
-                      method="POST"
-                    >
-                      <div class="mb-5">
-                        <label
-                          for="email"
-                          class="mb-3 block text-base font-medium text-[#07074D]"
-                        >
-                          Select Course
-                        </label>
-                        <select
-                          id="teacher"
-                          required
-                          class="shadow appearance-none border rounded w-full py-1 px-2 md:py-2 md:px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                        >
-                          <option value="">Select</option>
-                          {teachers.map((teacher, index) => (
-                            <option key={index} value={teacher}>
-                              {teacher}
-                            </option>
-                          ))}
-                        </select>
-                      </div>
-
-                      <div class=" mb-2 md:mb-6  md:pt-2 md:pt-4">
-                        <label class="md:mb-2 md:mb-5 block text-md md:text-xl font-semibold text-[#07074D]">
-                          Upload File
-                        </label>
-
-                        <div class="mb-2 md:mb-8">
-                          <input
-                            type="file"
-                            name="file"
-                            id="file"
-                            class="sr-only"
-                          />
-                          <label
-                            for="file"
-                            class="relative flex min-h-[200px] items-center justify-center rounded-md border border-dashed border-[#e0e0e0]  p-2 md:p-12 text-center"
-                          >
-                            <div>
-                              <span class="md:mb-2 block text-lg md:text-xl font-semibold text-[#07074D]">
-                                Drop files here
-                              </span>
-                              <span class="md:mb-2 block text-base font-medium text-[#6B7280]">
-                                Or
-                              </span>
-                              <span class="inline-flex rounded border border-[#e0e0e0] py-1 md:py-2 px-7 text-base font-medium text-[#07074D]">
-                                Browse
-                              </span>
-                            </div>
-                          </label>
-                        </div>
-
-                        <div class="mb-5">
-                          <label
-                            for="Description"
-                            class="mb-3 block text-base font-medium text-[#07074D]"
-                          >
-                            Description
-                          </label>
-                          <input
-                            type="text"
-                            name="description"
-                            id="description"
-                            class="w-full rounded-md border border-[#e0e0e0] bg-white py-3 px-6 text-base font-medium text-[#6B7280] outline-none focus:border-[#6A64F1] focus:shadow-md"
-                          />
-                        </div>
-                      </div>
-
-                      <div>
-                        <button class="hover:shadow-form w-full rounded-md bg-[#6A64F1] py-2 px-6 md:py-3 md:px-8 text-center text-base font-semibold text-white outline-none">
-                          Send File
-                        </button>
-                      </div>
-                    </form>
-                  </div>
-                </div>
-              </div>
-            </div>
+            <div class="p-5 border border-b-0 border-gray-200 dark:border-gray-700 dark:bg-gray-900"></div>
           </div>
           <h2 id="accordion-arrow-icon-heading-2">
             <button
@@ -135,7 +50,7 @@ const Material = () => {
               aria-expanded="false"
               aria-controls="accordion-arrow-icon-body-2"
             >
-              <span>Upload Assignment</span>
+              <span>View Assignment</span>
               <svg
                 data-accordion-icon
                 class="w-3 h-3 rotate-180 shrink-0"
@@ -254,7 +169,7 @@ const Material = () => {
               aria-expanded="false"
               aria-controls="accordion-arrow-icon-body-3"
             >
-              <span>Grade Assignment</span>
+              <span>Submit Assignment</span>
               <svg
                 data-accordion-icon
                 class="w-3 h-3 rotate-180 shrink-0"
