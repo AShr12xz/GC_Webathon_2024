@@ -56,53 +56,57 @@ const CourseReg = () => {
   };
 
   return (
-    <div className="container mx-auto px-4 py-4">
+    <div className="w-full h-full bg-mygrey rounded-lg overflow-x-hidden lg:overflow-aut shadow-lg px-2 border border-gray-200">
       <ToastContainer></ToastContainer>
-      <h1 className="flex justify-center text-4xl font-bold mb-4 border p-4 bg-gray-50 shadow-lg font-sans rounded-xl">
+      <h2 className="text-4xl font-serif text-center mt-3 mb-5 shadow-lg p-3">
         Course Registration
-      </h1>
+      </h2>
       <form onSubmit={handleSubmit}>
         <div className="overflow-x-auto">
-          <table className="min-w-full divide-y divide-gray-200">
+          <table className="w-full bg-white shadow-md rounded-lg">
             <thead className="bg-gray-300">
               <tr>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="border px-4 sm:px-6 py-3 text-left text-lg sm:text-xl font-semibold">
                   Subject Name
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="border px-4 sm:px-6 py-3 text-left text-lg sm:text-xl font-semibold">
                   Subject Code
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="border px-4 sm:px-6 py-3 text-left text-lg sm:text-xl font-semibold">
                   Credits
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="border px-4 sm:px-6 py-3 text-left text-lg sm:text-xl font-semibold">
                   Faculty Name
                 </th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                <th className="border px-4 sm:px-6 py-3 text-left text-lg sm:text-xl font-semibold">
                   Select
                 </th>
               </tr>
             </thead>
-            <tbody className="bg-white divide-y divide-gray-200">
+            <tbody>
               {courses.map((subject, index) => (
-                <tr key={subject.index}>
-                  <td className="px-6 py-4 whitespace-nowrap">
-                    {subject.name}
-                  </td>
-                  <td className="px-6 py-4 whitespace-nowrap">
+                <tr
+                  key={subject.index}
+                  className={index % 2 !== 0 ? "bg-gray-100" : "bg-white"}
+                >
+                  <td className="border px-4 sm:px-6 py-4">{subject.name}</td>
+                  <td className="border px-4 sm:px-6 py-4">
                     {subject.coursecode}
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap">
+                  <td
+                    className="
+                  border px-4 sm:px-6 py-4"
+                  >
                     {subject.credits}
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap">
+                  <td className="border px-4 sm:px-6 py-4">
                     {subject.faculty}
                   </td>
-                  <td className="px-6 py-4 whitespace-nowrap">
+                  <td className="border px-4 sm:px-6 py-4">
                     <input
                       id={`${index}`}
                       type="checkbox"
-                      className="h-5 w-5 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
+                      className="h-5 w-5 text-blue-900 focus:ring-blue-900 border-gray-300 rounded"
                     />
                   </td>
                 </tr>
@@ -111,8 +115,8 @@ const CourseReg = () => {
           </table>
         </div>
 
-        <div className="text-center mt-4">
-          <button className="bg-blue-400 text-white font-semibold py-2 px-4 rounded-md hover:bg-blue-600 focus:outline-none focus:bg-blue-600">
+        <div className="text-center mt-4 mb-3">
+          <button className="bg-blue-800 text-white font-semibold py-2 px-4 rounded-md hover:bg-blue-700 focus:outline-none focus:bg-blue-700">
             Submit
           </button>
         </div>
