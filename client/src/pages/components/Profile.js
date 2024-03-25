@@ -42,6 +42,11 @@ const Profile = () => {
 
   const { _id, __v, password, ...rest } = profile;
   const { name, DOB, email, phone, role, uniqueId } = rest;
+
+  const formatDate = (dateString) => {
+    const date = new Date(dateString);
+    return date.toLocaleDateString("en-US");
+  };
   return (
     <section class="py-10 my-auto w-full h-full bg-mygrey rounded-lg overflow-x-hidden lg:overflow-aut shadow-lg p-2 border border-gray-200">
       <div class="lg:w-[80%] md:w-[90%] xs:w-[96%] mx-auto flex gap-4">
@@ -70,13 +75,13 @@ const Profile = () => {
                   <label htmlFor="name" class="mb-2 text-gray-500">
                     Name
                   </label>
-                  <h4 className="text-l font-semibold">{profile.name}</h4>
+                  <h4 className="text-l font-semibold">{user.name}</h4>
                 </div>
                 <div class="w-full  mb-4 mt-6">
                   <label htmlFor="rollNumber" class=" mb-2 text-gray-500">
                     Roll No
                   </label>
-                  <h4 className="text-l font-semibold">22EE01010</h4>
+                  <h4 className="text-l font-semibold">{user.uniqueId}</h4>
                 </div>
               </div>
 
@@ -85,28 +90,15 @@ const Profile = () => {
                   <h3 class="text-gray-500 mb-2" htmlFor="gender">
                     Gender
                   </h3>
-                  <select
-                    class="w-full border-2 rounded-lg p-4 pl-2 pr-2 border-gray-600 bg-white"
-                    id="gender"
-                    name="gender"
-                  >
-                    <option disabled value="">
-                      Select Gender
-                    </option>
-                    <option value="Male">Male</option>
-                    <option value="Female">Female</option>
-                  </select>
+                  <h4 className="text-l font-semibold">Female</h4>
                 </div>
                 <div class="w-full">
                   <h3 class="text-gray-500 mb-2" htmlFor="dateOfBirth">
                     Date Of Birth
                   </h3>
-                  <input
-                    type="date"
-                    id="dateOfBirth"
-                    name="dateOfBirth"
-                    class="text-grey p-4 w-full border-2 rounded-lg  border-gray-600 bg-white"
-                  />
+                  <h4 className="text-l font-semibold">
+                    {formatDate(user.DOB)}
+                  </h4>
                 </div>
               </div>
               <div class="flex lg:flex-row md:flex-col sm:flex-col xs:flex-col gap-2 justify-center w-full">
@@ -114,25 +106,13 @@ const Profile = () => {
                   <label htmlFor="email" class="mb-2 text-gray-500">
                     Email
                   </label>
-                  <input
-                    type="email"
-                    id="email"
-                    name="email"
-                    class="mt-2 p-4 w-full border-2 rounded-lg  border-gray-600 bg-white"
-                    placeholder="Email"
-                  />
+                  <h4 className="text-l font-semibold">{user.email}</h4>
                 </div>
                 <div class="w-full  mb-1 mt-3">
                   <label htmlFor="course" class="mb-2 text-gray-500">
                     Course
                   </label>
-                  <input
-                    type="text"
-                    id="course"
-                    name="course"
-                    class="mt-2 p-4 w-full border-2 rounded-lg border-gray-600 bg-white"
-                    placeholder="Course"
-                  />
+                  <h4 className="text-l font-semibold">B.Tech</h4>
                 </div>
               </div>
               <div class="flex lg:flex-row md:flex-col sm:flex-col xs:flex-col gap-2 justify-center w-full">
@@ -140,25 +120,13 @@ const Profile = () => {
                   <label htmlFor="year" class="mb-2 text-gray-500">
                     Year
                   </label>
-                  <input
-                    type="text"
-                    id="year"
-                    name="year"
-                    class="mt-2 p-4 w-full border-2 rounded-lg  border-gray-600 bg-white"
-                    placeholder="Year"
-                  />
+                  <h4 className="text-l font-semibold">2nd Year</h4>
                 </div>
                 <div class="w-full  mb-1 mt-3">
                   <label htmlFor="semester" class=" mb-2 text-gray-500">
                     Semester
                   </label>
-                  <input
-                    type="text"
-                    id="semester"
-                    name="semester"
-                    class="mt-2 p-4 w-full border-2 rounded-lg border-gray-600 bg-white"
-                    placeholder="Semester"
-                  />
+                  <h4 className="text-l font-semibold">4th semester</h4>
                 </div>
               </div>
               <div class="flex lg:flex-row md:flex-col sm:flex-col xs:flex-col gap-2 justify-center w-full">
@@ -166,25 +134,13 @@ const Profile = () => {
                   <label htmlFor="fatherName" class="mb-2 text-gray-500">
                     Father's Name
                   </label>
-                  <input
-                    type="text"
-                    id="fatherName"
-                    name="fatherName"
-                    class="mt-2 p-4 w-full border-2 rounded-lg  border-gray-600 bg-white"
-                    placeholder="Father's Name"
-                  />
+                  <h4 className="text-l font-semibold">N.C. Sawhney</h4>
                 </div>
                 <div class="w-full  mb-1 mt-3">
                   <label htmlFor="motherName" class=" mb-2 text-gray-500">
                     Mother's Name
                   </label>
-                  <input
-                    type="text"
-                    id="motherName"
-                    name="motherName"
-                    class="mt-2 p-4 w-full border-2 rounded-lg border-gray-600 bg-white"
-                    placeholder="Mother's Name"
-                  />
+                  <h4 className="text-l font-semibold">Riya Sawhney</h4>
                 </div>
               </div>
               <div class="flex lg:flex-row md:flex-col sm:flex-col xs:flex-col gap-2 justify-center w-full">
@@ -192,25 +148,13 @@ const Profile = () => {
                   <label htmlFor="phoneNumber" class="mb-2 text-gray-500">
                     Phone No
                   </label>
-                  <input
-                    type="text"
-                    id="phoneNumber"
-                    name="phoneNumber"
-                    class="mt-2 p-4 w-full border-2 rounded-lg  border-gray-600 bg-white"
-                    placeholder="Phone No"
-                  />
+                  <h4 className="text-l font-semibold">{user.phone}</h4>
                 </div>
                 <div class="w-full  mb-1 mt-3">
                   <label htmlFor="phoneNumber" class=" mb-2 text-gray-500">
                     Parent's Phone No
                   </label>
-                  <input
-                    type="text"
-                    id="phoneNumber"
-                    name="phoneNumber"
-                    class="mt-2 p-4 w-full border-2 rounded-lg border-gray-600 bg-white"
-                    placeholder="Parent's Phone No"
-                  />
+                  <h4 className="text-l font-semibold">9352433131</h4>
                 </div>
               </div>
               <div class="flex lg:flex-row md:flex-col sm:flex-col xs:flex-col gap-2 justify-center w-full">
@@ -218,25 +162,14 @@ const Profile = () => {
                   <label htmlFor="country" class="mb-2 text-gray-500">
                     Country
                   </label>
-                  <input
-                    type="text"
-                    id="country"
-                    name="country"
-                    class="mt-2 p-4 w-full border-2 rounded-lg  border-gray-600 bg-white"
-                    placeholder="Country"
-                  />
+                  <h4 className="text-l font-semibold">India</h4>
                 </div>
                 <div class="w-full  mb-4 mt-3">
                   <label htmlFor="state" class=" mb-2 text-gray-500">
                     State
                   </label>
-                  <input
-                    type="text"
-                    id="state"
-                    name="state"
-                    class="mt-2 p-4 w-full border-2 rounded-lg border-gray-600 bg-white"
-                    placeholder="State"
-                  />
+
+                  <h4 className="text-l font-semibold">Himachal Pradesh</h4>
                 </div>
               </div>
             </form>
