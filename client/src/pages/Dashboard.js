@@ -67,7 +67,9 @@ const Dashboard = ({ props }) => {
       <div className="flex justify-between items-center w-full min-h-[11%] bg-gradient-to-r from-black via-black to-blue-950 py-2 px-5 rounded font-serif">
         <div className="flex justify-end items-center gap-2">
           <button onClick={handleToggle}>
-            <span className={`fa-solid fa-bars text-white ${styles.toggle}`}></span>
+            <span
+              className={`fa-solid fa-bars text-white ${styles.toggle}`}
+            ></span>
           </button>
           <img
             className={`h-16 w-16 object-contain ${styles.gayab}`}
@@ -129,113 +131,161 @@ const Dashboard = ({ props }) => {
         </div>
       </div>
       <div className="flex w-full min-h-[88%] gap-1 ">
-        <motion.div
-          id="sidebar"
-          animate={control}
-          className={`flex flex-col justify-start items-center w-1/5 bg-gradient-to-r from-black via-black to-blue-950 px-2 text-white text-xl gap-2 py-3 rounded font-mono font-black ${styles.sidebar} origin-left ${styles.hide}`}
-        >
-          <div
-            id="accordion-collapse"
-            data-accordion="collapse"
-            className="flex flex-col w-full"
+        {user.role === "student" && (
+          <motion.div
+            id="sidebar"
+            animate={control}
+            className={`flex flex-col justify-start items-center w-1/5 bg-gradient-to-r from-black via-black to-blue-950 px-2 text-white text-xl gap-2 py-3 rounded font-mono font-black ${styles.sidebar} origin-left ${styles.hide}`}
           >
-            <div id="accordion-collapse-heading-1">
-              <button
-                type="button"
-                data-accordion-target="#accordion-collapse-body-1"
-                aria-expanded="false"
-                aria-controls="accordion-collapse-body-1"
-                className="flex justify-between items-center !text-white h-10 w-full hover:bg-gray-100 hover:!text-black hover:rounded-xl px-1 sm: px-3"
-              >
-                <span className={`${styles.sidefont}`}>Courses</span>
-                <span
-                  className={`fa-solid fa-book-open-reader ${styles.sideicon}`}
-                ></span>
-              </button>
-            </div>
             <div
-              id="accordion-collapse-body-1"
-              className="hidden text-white flex flex-col w-full text-base"
-              aria-labelledby="accordion-collapse-heading-1"
+              id="accordion-collapse"
+              data-accordion="collapse"
+              className="flex flex-col w-full"
             >
-              <button
-                onClick={() => {
-                  navigate("/courseregister");
-                }}
-                className="flex justify-between items-center px-3 ml-5 h-10 hover:bg-gray-100 hover:text-black hover:rounded-xl "
+              <div id="accordion-collapse-heading-1">
+                <button
+                  type="button"
+                  data-accordion-target="#accordion-collapse-body-1"
+                  aria-expanded="false"
+                  aria-controls="accordion-collapse-body-1"
+                  className="flex justify-between items-center !text-white h-10 w-full hover:bg-gray-100 hover:!text-black hover:rounded-xl px-1 sm: px-3"
+                >
+                  <span className={`${styles.sidefont}`}>Courses</span>
+                  <span
+                    className={`fa-solid fa-book-open-reader ${styles.sideicon}`}
+                  ></span>
+                </button>
+              </div>
+              <div
+                id="accordion-collapse-body-1"
+                className="hidden text-white flex flex-col w-full text-base"
+                aria-labelledby="accordion-collapse-heading-1"
               >
-                <div>Registration</div>
-                <div className="fa-regular fa-address-card text-xl"></div>
-              </button>
-              <button
-                onClick={() => {
-                  navigate("/mycourses");
-                }}
-                className="flex justify-between items-center px-3 ml-5 h-10 hover:bg-gray-100 hover:text-black hover:rounded-xl "
-              >
-                <div>My Courses</div>
-                <div className="fa-solid fa-book-open-reader text-2xl"></div>
-              </button>
+                <button
+                  onClick={() => {
+                    navigate("/courseregister");
+                  }}
+                  className="flex justify-between items-center px-3 ml-5 h-10 hover:bg-gray-100 hover:text-black hover:rounded-xl "
+                >
+                  <div>Registration</div>
+                  <div className="fa-regular fa-address-card text-xl"></div>
+                </button>
+                <button
+                  onClick={() => {
+                    navigate("/mycourses");
+                  }}
+                  className="flex justify-between items-center px-3 ml-5 h-10 hover:bg-gray-100 hover:text-black hover:rounded-xl "
+                >
+                  <div>My Courses</div>
+                  <div className="fa-solid fa-book-open-reader text-2xl"></div>
+                </button>
+              </div>
             </div>
-          </div>
 
-          <button
-            onClick={() => {
-              navigate("/attendance");
-            }}
-            className="flex justify-between items-center h-10 w-full hover:bg-gray-100 hover:text-black hover:rounded-xl px-3"
-          >
-            <div className={`${styles.sidefont}`}>Attendance</div>
-            <div
-              className={`fa-solid fa-clipboard-user ${styles.sideicon}`}
-            ></div>
-          </button>
+            <button
+              onClick={() => {
+                navigate("/attendance");
+              }}
+              className="flex justify-between items-center h-10 w-full hover:bg-gray-100 hover:text-black hover:rounded-xl px-3"
+            >
+              <div className={`${styles.sidefont}`}>Attendance</div>
+              <div
+                className={`fa-solid fa-clipboard-user ${styles.sideicon}`}
+              ></div>
+            </button>
 
-          <button
-            onClick={() => {
-              navigate("/result");
-            }}
-            className="flex justify-between items-center h-10 w-full hover:bg-gray-100 hover:text-black hover:rounded-xl px-3"
-          >
-            <div className={`${styles.sidefont}`}>Result</div>
-            <div
-              className={`fa-solid fa-square-poll-vertical ${styles.sideicon}`}
-            ></div>
-          </button>
+            <button
+              onClick={() => {
+                navigate("/result");
+              }}
+              className="flex justify-between items-center h-10 w-full hover:bg-gray-100 hover:text-black hover:rounded-xl px-3"
+            >
+              <div className={`${styles.sidefont}`}>Result</div>
+              <div
+                className={`fa-solid fa-square-poll-vertical ${styles.sideicon}`}
+              ></div>
+            </button>
 
-          <button
-            onClick={() => {
-              navigate("/feedback");
-            }}
-            className="flex justify-between items-center h-10 w-full hover:bg-gray-100 hover:text-black hover:rounded-xl px-3"
-          >
-            <div className={`${styles.sidefont}`}>Feedback</div>
-            <div
-              className={`fa-regular fa-comment-dots ${styles.sideicon}`}
-            ></div>
-          </button>
+            <button
+              onClick={() => {
+                navigate("/feedback");
+              }}
+              className="flex justify-between items-center h-10 w-full hover:bg-gray-100 hover:text-black hover:rounded-xl px-3"
+            >
+              <div className={`${styles.sidefont}`}>Feedback</div>
+              <div
+                className={`fa-regular fa-comment-dots ${styles.sideicon}`}
+              ></div>
+            </button>
 
-          <button
-            onClick={() => {
-              navigate("/survey");
-            }}
-            className="flex justify-between items-center h-10 w-full hover:bg-gray-100 hover:text-black hover:rounded-xl px-3"
+            <button
+              onClick={() => {
+                navigate("/survey");
+              }}
+              className="flex justify-between items-center h-10 w-full hover:bg-gray-100 hover:text-black hover:rounded-xl px-3"
+            >
+              <div className={`${styles.sidefont}`}> Survey</div>
+              <div
+                className={`fa-solid fa-square-poll-vertical ${styles.sideicon}`}
+              ></div>
+            </button>
+            <button
+              onClick={() => {
+                navigate("/survey");
+              }}
+              className="flex justify-between items-center h-10 w-full hover:bg-gray-100 hover:text-black hover:rounded-xl px-3"
+            >
+              <div className={`${styles.sidefont}`}>Assignment</div>
+              <div
+                className={`fa-solid fa-list-check ${styles.sideicon}`}
+              ></div>
+            </button>
+          </motion.div>
+        )}
+        {user.role === "faculty" && (
+          <motion.div
+            id="sidebar"
+            animate={control}
+            className={`flex flex-col justify-start items-center w-1/5 bg-gradient-to-r from-black via-black to-blue-950 px-2 text-white text-xl gap-2 py-3 rounded font-mono font-black ${styles.sidebar} origin-left ${styles.hide}`}
           >
-            <div className={`${styles.sidefont}`}> Survey</div>
-            <div
-              className={`fa-solid fa-square-poll-vertical ${styles.sideicon}`}
-            ></div>
-          </button>
-          <button
-            onClick={() => {
-              navigate("/survey");
-            }}
-            className="flex justify-between items-center h-10 w-full hover:bg-gray-100 hover:text-black hover:rounded-xl px-3"
-          >
-            <div className={`${styles.sidefont}`}>Assignment</div>
-            <div className={`fa-solid fa-list-check ${styles.sideicon}`}></div>
-          </button>
-        </motion.div>
+
+            <button
+              onClick={() => {
+                navigate("/material");
+              }}
+              className="flex justify-between items-center h-10 w-full hover:bg-gray-100 hover:text-black hover:rounded-xl px-3"
+            >
+              <div className={`${styles.sidefont}`}>Material</div>
+              <div
+                className={`fa-solid fa-clipboard-user ${styles.sideicon}`}
+              ></div>
+            </button>
+
+            <button
+              onClick={() => {
+                navigate("/facultyfeedback");
+              }}
+              className="flex justify-between items-center h-10 w-full hover:bg-gray-100 hover:text-black hover:rounded-xl px-3"
+            >
+              <div className={`${styles.sidefont}`}>Feedback</div>
+              <div
+                className={`fa-regular fa-comment-dots ${styles.sideicon}`}
+              ></div>
+            </button>
+
+            <button
+              onClick={() => {
+                navigate("/survey");
+              }}
+              className="flex justify-between items-center h-10 w-full hover:bg-gray-100 hover:text-black hover:rounded-xl px-3"
+            >
+              <div className={`${styles.sidefont}`}> Survey</div>
+              <div
+                className={`fa-solid fa-square-poll-vertical ${styles.sideicon}`}
+              ></div>
+            </button>
+          </motion.div>
+        )}
         <div
           onClick={() => {
             setIsOpen(false);
