@@ -94,7 +94,7 @@ exports.showAttendanceforFaculty = async (req, res) => {
 };
 
 exports.updateAttendance = asyncCheck(async (req, res) => {
-  req.body.map(async (el) => {
+  req.body.students.map(async (el) => {
     console.log(el);
     const student = await studentCourse.findOne({
       rollno: el.rollno,
@@ -102,9 +102,9 @@ exports.updateAttendance = asyncCheck(async (req, res) => {
     });
     console.log(student);
     if (el.attended !== "0") {
-      student.attended.push(el.attended);
+      student.attended.push(new Date(el.attended));
     }
-    student.classes.push(el.classes);
+    student.classes.push(new Date(el.classes));
     await student.save();
   });
 
