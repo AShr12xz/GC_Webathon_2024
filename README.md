@@ -3,13 +3,21 @@
  ## Description
 This web application serves as a comprehensive solution for managing various aspects of college administration, including student information, faculty management, academic records, and administrative tasks.
 
-## Features-
-### User Roles:
+## Features 
+-### User Roles:
+-Admin: Manages overall system functionality, user roles, and permissions.
+-Student: Accesses academic records, course registrations, and communication tools.
+-Faculty: Manages courses, grades, and interacts with students.
 
-Admin: Manages overall system functionality, user roles, and permissions.
-Student: Accesses academic records, course registrations, and communication tools.
-Faculty: Manages courses, grades, and interacts with students.
+-### Dashboard: 
+-Personalized dashboard providing an overview of key academic and administrative metrics.
 
+-### Modules:
+-Student Management: Manage student information, registrations, and academic progress.
+-Faculty Management: Store faculty details, course assignments, and schedules.
+-Course Management: Create, modify, and manage courses offered by the college.
+-Academic Records: Maintain student grades, transcripts, and attendance records.
+-Communication: Facilitate communication between students, faculty, and administration.
 
 ## Technologies Used
 MongoDB: Database to store item and user information
@@ -25,28 +33,25 @@ What you need to run this code
 Node JS
 NPM or Yarn
 MongoDB
-Cloudinary account to store images.
 
 ## How to run this code
 Make sure MongoDB is running on your system.
 Clone this repository.
-Update config.env with your MongoDB URI and Secret Key , Cloudinary api Key.
+Update config.env with your MongoDB URI and Secret Key along with that define the port .
 Open command line in the cloned folder,
 To install dependencies, run  npm install  , for client and server both directory.
 To run the application , run  node app.js  or  nodemon app.js  , for server side.
 And run  npm start  , for client side.
-Open localhost:3000 in the browser
+Open localhost:3001 in the browser
 
 ## Env Variables
 Inside config.env
 
-PORT = 5000
+PORT = 3000
 MONGO_URI = your mongodb uri
-JWT_SECRET = 'abc123'
+JWT_SECRET = ''
 
-CLOUDINARY_NAME= your API name
-CLOUDINARY_API_KEY=  your API key
-CLOUDINARY_API_SECRET= your API secret key
+
 Install Dependencies (frontend & backend)
 
 ## Open  client
@@ -56,4 +61,4 @@ Install Dependencies (frontend & backend)
 ## Run Client
 ``` npm start ```
 ## Run Server
-``` node app.js ```
+``` node server.js ```
