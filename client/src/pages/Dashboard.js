@@ -25,7 +25,7 @@ const Dashboard = ({ props }) => {
         // { withCredentials: true }
       );
       const { status } = res.data;
-      
+
       return status
         ? setUser(res.data.user)
         : (removeCookie("token"),
@@ -35,7 +35,7 @@ const Dashboard = ({ props }) => {
     verifyCookie();
   }, [cookies, navigate, removeCookie, setUser]);
   const handleToggle = () => {
-    const sidebar=document.getElementById("sidebar");
+    const sidebar = document.getElementById("sidebar");
     if (sidebar.classList.contains(styles.hide)) {
       control.start({
         x: ["-300px", "0px"],
@@ -137,50 +137,29 @@ const Dashboard = ({ props }) => {
             animate={control}
             className={`flex flex-col justify-start items-center w-1/5 bg-gradient-to-r from-black via-black to-blue-950 px-2 text-white text-xl gap-2 py-3 rounded font-mono font-black ${styles.sidebar} origin-left ${styles.hide}`}
           >
-            <div
-              id="accordion-collapse"
-              data-accordion="collapse"
-              className="flex flex-col w-full"
+            <button
+              onClick={() => {
+                navigate("/courseregister");
+              }}
+              className="flex justify-between items-center h-10 w-full hover:bg-gray-100 hover:text-black hover:rounded-xl px-3"
             >
-              <div id="accordion-collapse-heading-1">
-                <button
-                  type="button"
-                  data-accordion-target="#accordion-collapse-body-1"
-                  aria-expanded="false"
-                  aria-controls="accordion-collapse-body-1"
-                  className="flex justify-between items-center !text-white h-10 w-full hover:bg-gray-100 hover:!text-black hover:rounded-xl px-1 sm: px-3"
-                >
-                  <span className={`${styles.sidefont}`}>Courses</span>
-                  <span
-                    className={`fa-solid fa-book-open-reader ${styles.sideicon}`}
-                  ></span>
-                </button>
-              </div>
+              <div className={`${styles.sidefont}`}>Course Register</div>
               <div
-                id="accordion-collapse-body-1"
-                className="hidden text-white flex flex-col w-full text-base"
-                aria-labelledby="accordion-collapse-heading-1"
-              >
-                <button
-                  onClick={() => {
-                    navigate("/courseregister");
-                  }}
-                  className="flex justify-between items-center px-3 ml-5 h-10 hover:bg-gray-100 hover:text-black hover:rounded-xl "
-                >
-                  <div>Registration</div>
-                  <div className="fa-regular fa-address-card text-xl"></div>
-                </button>
-                <button
-                  onClick={() => {
-                    navigate("/mycourses");
-                  }}
-                  className="flex justify-between items-center px-3 ml-5 h-10 hover:bg-gray-100 hover:text-black hover:rounded-xl "
-                >
-                  <div>My Courses</div>
-                  <div className="fa-solid fa-book-open-reader text-2xl"></div>
-                </button>
-              </div>
-            </div>
+                className={`fa-regular fa-address-card ${styles.sideicon}`}
+              ></div>
+            </button>
+
+            <button
+              onClick={() => {
+                navigate("/mycourses");
+              }}
+              className="flex justify-between items-center h-10 w-full hover:bg-gray-100 hover:text-black hover:rounded-xl px-3"
+            >
+              <div className={`${styles.sidefont}`}>My Courses</div>
+              <div
+                className={`fa-solid fa-book-open-reader ${styles.sideicon}`}
+              ></div>
+            </button>
 
             <button
               onClick={() => {
@@ -218,20 +197,10 @@ const Dashboard = ({ props }) => {
               ></div>
             </button>
 
+            
             <button
               onClick={() => {
-                navigate("/survey");
-              }}
-              className="flex justify-between items-center h-10 w-full hover:bg-gray-100 hover:text-black hover:rounded-xl px-3"
-            >
-              <div className={`${styles.sidefont}`}> Survey</div>
-              <div
-                className={`fa-solid fa-square-poll-vertical ${styles.sideicon}`}
-              ></div>
-            </button>
-            <button
-              onClick={() => {
-                navigate("/survey");
+                navigate("/assignment");
               }}
               className="flex justify-between items-center h-10 w-full hover:bg-gray-100 hover:text-black hover:rounded-xl px-3"
             >
@@ -292,18 +261,6 @@ const Dashboard = ({ props }) => {
               className="flex justify-between items-center h-10 w-full hover:bg-gray-100 hover:text-black hover:rounded-xl px-3"
             >
               <div className={`${styles.sidefont}`}>Add Grade</div>
-              <div
-                className={`fa-solid fa-square-poll-vertical ${styles.sideicon}`}
-              ></div>
-            </button>
-
-            <button
-              onClick={() => {
-                navigate("/survey");
-              }}
-              className="flex justify-between items-center h-10 w-full hover:bg-gray-100 hover:text-black hover:rounded-xl px-3"
-            >
-              <div className={`${styles.sidefont}`}> Survey</div>
               <div
                 className={`fa-solid fa-square-poll-vertical ${styles.sideicon}`}
               ></div>

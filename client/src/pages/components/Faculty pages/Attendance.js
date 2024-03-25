@@ -2,6 +2,7 @@ import { React, useState, useEffect } from "react";
 import axios from "axios";
 import { useUserContext } from "../../../store/UserContext";
 import { ToastContainer, toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
 
 const StudentAttendancePortal = () => {
   // Sample data for courses, students, and attendance
@@ -11,6 +12,7 @@ const StudentAttendancePortal = () => {
   const [selectedCourse, setSelectedCourse] = useState("");
   const [selectedDate, setSelectedDate] = useState("");
   const [students] = useState([]);
+  const navigate=useNavigate();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -70,10 +72,12 @@ const StudentAttendancePortal = () => {
         "http://localhost:3000/studentCourses/updateAttendance",
         { students }
       );
-      toast.success("Courses Selected Successfully");
+      toast.success("Attendance updated Successfully");
       console.log(res.data);
     } catch (error) {
       console.log(error);
+      toast.error("Error in updating attendance");
+      navigate("/facultyattendance");
     }
   };
 
