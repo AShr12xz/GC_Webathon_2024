@@ -5,7 +5,6 @@ import { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { useUserContext } from "../store/UserContext";
 import styles from "../styles/dashboard.module.css";
-import { Collapsible } from "react-collapsible";
 import { motion, useAnimationControls } from "framer-motion";
 
 const Dashboard = ({ props }) => {
@@ -261,7 +260,7 @@ const Dashboard = ({ props }) => {
             }
           }}
           id="content"
-          className={`flex flex-col justify-start items-start bg-blue-950 p-2 overflow-y-scroll ${styles.content} rounded`}
+          className={`flex flex-col justify-start items-start bg-blue-950 p-2 ${styles.content} rounded`}
         >
           {props}
         </div>

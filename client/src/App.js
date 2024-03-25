@@ -20,6 +20,7 @@ import FeedbackForm from "./pages/components/Feedback.js";
 import Survey from "./pages/components/Survey.js";
 
 import FeedbackBox from "./pages/components/Faculty pages/Feedback.js";
+import Material from "./pages/components/Faculty pages/Material.js";
 
 
 function RoutesWithAnimation() {
@@ -60,6 +61,10 @@ function RoutesWithAnimation() {
         <Route
           path="/facultyfeedback"
           element={<Dashboard props={<FeedbackBox />} />}
+        />
+        <Route
+          path="/material"
+          element={<Dashboard props={<Material/>} />}
         />
 
       </Routes>

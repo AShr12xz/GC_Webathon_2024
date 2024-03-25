@@ -58,7 +58,8 @@ const FeedbackForm = (props) => {
   };
 
   return (
-    <div className="w-full h-full bg-mygrey rounded-lg overflow-hidden shadow-lg p-6  border border-gray-200">
+    
+    <div className="w-full h-full bg-mygrey rounded-lg overflow-y-scroll shadow-lg p-6  border border-gray-200">
       <h2 className="text-4xl font-serif text-center mt-0 mb-5 shadow-lg p-3 ">
         Student's Feedback
       </h2>
