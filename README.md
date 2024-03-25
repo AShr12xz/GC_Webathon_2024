@@ -1,23 +1,21 @@
 ﻿# GC_Webathon_2024
 
  ## Description
-This web application serves as a comprehensive solution for managing various aspects of college administration, including student information, faculty management, academic records, and administrative tasks.
+This responsive web application serves as a comprehensive solution for managing various aspects of college administration, including student information, faculty management, academic records, and administrative tasks.
 
 ## Features 
 - User Roles:
-    - Admin: Manages overall system functionality, user roles, and permissions.
-    - Student: Accesses academic records, course registrations, and communication tools.
-    - Faculty: Manages courses, grades, and interacts with students.
+    - Student: Accesses academic records, course registrations, and feedback.
+    - Faculty: Manages attendance, grades and see feedback.
 
 - Dashboard: 
     - Personalized dashboard providing an overview of key academic and administrative metrics.
 
 - Modules:
-    - Student Management: Manage student information, registrations, and academic progress.
-    - Faculty Management: Store faculty details, course assignments, and schedules.
+    - Student Management: Manage student information, registrations,check attendance and result, and academic progress .
+    - Faculty Management: Store faculty details, course grading, and mark attendance.
     - Course Management: Create, modify, and manage courses offered by the college.
     - Academic Records: Maintain student grades, transcripts, and attendance records.
-    - Communication: Facilitate communication between students, faculty, and administration.
 
 ## Technologies Used
 MongoDB: Database to store item and user information
