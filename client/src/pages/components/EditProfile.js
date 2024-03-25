@@ -35,223 +35,153 @@ const EditProfile = () => {
   };
 
   return (
-    <div>
-      <div class="w-full h-full">
-        <div class="container mx-auto py-8">
-          <div class="grid grid-cols-4 sm:grid-cols-12 gap-6 md:gap-24 px-4">
-            <div class="col-span-4 sm:col-span-3">
-              {/* Image */}
-              <div class="bg-white shadow rounded-3xl p-6 md:ml-8 ">
-                <div class="flex flex-col items-center">
-                  <img
-                    src="https://randomuser.me/api/portraits/men/94.jpg"
-                    class="w-32 h-32 bg-gray-300 rounded-full mb-4 shrink-0"
-                    alt="Avatar"
-                  />
-                  <h1 class="text-xl font-bold">Name</h1>
-                  <p class="text-gray-700">22EE01002</p>
-                </div>
-                <hr class="my-2 border-t border-gray-300" />
-              </div>
-            </div>
+    <div className="w-full h-full bg-mygrey rounded-lg overflow-x-hidden lg:overflow-aut shadow-lg px-2 border border-gray-200">
+      <section class="py-10 my-auto bg-mygrey">
+        <div class="lg:w-[80%] md:w-[90%] xs:w-[96%] mx-auto flex gap-4">
+          <div class="lg:w-[88%] md:w-[80%] sm:w-[88%] xs:w-full mx-auto shadow-2xl p-4 rounded-xl h-fit self-center bg-gray-100">
+            {/* <!--  --> */}
+            <div class="">
+              <h1 class="lg:text-3xl md:text-2xl sm:text-xl xs:text-xl text-center font-serif font-extrabold mb-2 ">
+                Edit Profile
+              </h1>
+              <h2 class="text-grey text-sm mb-4 dark:text-gray-400">
+                Create Profile
+              </h2>
+              <form>
+                {/* <!-- Cover Image --> */}
+                <div class="w-full rounded-sm bg-[url('https://images.unsplash.com/photo-1449844908441-8829872d2607?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NzEyNjZ8MHwxfHNlYXJjaHw2fHxob21lfGVufDB8MHx8fDE3MTA0MDE1NDZ8MA&ixlib=rb-4.0.3&q=80&w=1080')] bg-cover bg-center bg-no-repeat items-center">
+                  {/* <!-- Profile Image --> */}
+                  <div class="mx-auto flex justify-center w-[141px] h-[141px] bg-blue-300/20 rounded-full bg-[url('https://images.unsplash.com/photo-1438761681033-6461ffad8d80?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w0NzEyNjZ8MHwxfHNlYXJjaHw4fHxwcm9maWxlfGVufDB8MHx8fDE3MTEwMDM0MjN8MA&ixlib=rb-4.0.3&q=80&w=1080')] bg-cover bg-center bg-no-repeat">
+                    <div class="bg-white/90 rounded-full w-6 h-6 text-center ml-28 mt-4">
+                      <input
+                        type="file"
+                        name="profile"
+                        id="upload_profile"
+                        hidden
+                        required
+                      />
 
-            {/* Details Card */}
-            <div class="col-span-4 sm:col-span-9">
-              <div class="bg-white shadow w-full rounded-3xl p-6">
-                <h2 className="flex justify-center text-xl font-semibold mb-4">
-                  Edit-Profile
+                      <label for="upload_profile">
+                        <svg
+                          data-slot="icon"
+                          class="w-6 h-5 text-blue-700"
+                          fill="none"
+                          stroke-width="1.5"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                          xmlns="http://www.w3.org/2000/svg"
+                          aria-hidden="true"
+                        >
+                          <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            d="M6.827 6.175A2.31 2.31 0 0 1 5.186 7.23c-.38.054-.757.112-1.134.175C2.999 7.58 2.25 8.507 2.25 9.574V18a2.25 2.25 0 0 0 2.25 2.25h15A2.25 2.25 0 0 0 21.75 18V9.574c0-1.067-.75-1.994-1.802-2.169a47.865 47.865 0 0 0-1.134-.175 2.31 2.31 0 0 1-1.64-1.055l-.822-1.316a2.192 2.192 0 0 0-1.736-1.039 48.774 48.774 0 0 0-5.232 0 2.192 2.192 0 0 0-1.736 1.039l-.821 1.316Z"
+                          ></path>
+                          <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            d="M16.5 12.75a4.5 4.5 0 1 1-9 0 4.5 4.5 0 0 1 9 0ZM18.75 10.5h.008v.008h-.008V10.5Z"
+                          ></path>
+                        </svg>
+                      </label>
+                    </div>
+                  </div>
+                  <div class="flex justify-end">
+                    {/* <!--  --> */}
+                    <input
+                      type="file"
+                      name="profile"
+                      id="upload_cover"
+                      hidden
+                      required
+                    />
+
+                    <div class="bg-white flex items-center gap-1 rounded-tl-md px-2 text-center font-semibold">
+                      <label
+                        for="upload_cover"
+                        class="inline-flex items-center gap-1 cursor-pointer"
+                      >
+                        Cover
+                        <svg
+                          data-slot="icon"
+                          class="w-6 h-5 text-blue-700"
+                          fill="none"
+                          stroke-width="1.5"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                          xmlns="http://www.w3.org/2000/svg"
+                          aria-hidden="true"
+                        >
+                          <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            d="M6.827 6.175A2.31 2.31 0 0 1 5.186 7.23c-.38.054-.757.112-1.134.175C2.999 7.58 2.25 8.507 2.25 9.574V18a2.25 2.25 0 0 0 2.25 2.25h15A2.25 2.25 0 0 0 21.75 18V9.574c0-1.067-.75-1.994-1.802-2.169a47.865 47.865 0 0 0-1.134-.175 2.31 2.31 0 0 1-1.64-1.055l-.822-1.316a2.192 2.192 0 0 0-1.736-1.039 48.774 48.774 0 0 0-5.232 0 2.192 2.192 0 0 0-1.736 1.039l-.821 1.316Z"
+                          ></path>
+                          <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            d="M16.5 12.75a4.5 4.5 0 1 1-9 0 4.5 4.5 0 0 1 9 0ZM18.75 10.5h.008v.008h-.008V10.5Z"
+                          ></path>
+                        </svg>
+                      </label>
+                    </div>
+                  </div>
+                </div>
+                <h2 class="text-center mt-1 font-semibold dark:text-gray-300">
+                  Upload Profile and Cover Image
                 </h2>
-                <form
-                  onSubmit={handleSubmit}
-                  className="grid grid-cols-1 md:grid-cols-2 gap-2 "
-                >
-                  <div className="rounded-lg border border-gray-300 p-4">
-                    <label htmlFor="name" className="text-gray-600">
-                      Name:
+                <div class="flex lg:flex-row md:flex-col sm:flex-col xs:flex-col gap-2 justify-center w-full">
+                  <div class="w-full  mb-4 mt-6">
+                    <label for="" class="mb-2 dark:text-gray-300">
+                      First Name
                     </label>
                     <input
                       type="text"
-                      id="name"
-                      name="name"
-                      value={profile.name}
-                      onChange={handleInputChange}
-                      className="block w-full mt-1 bg-gray-200 rounded-md border-gray-300 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50"
+                      class="mt-2 p-4 w-full border-2 rounded-lg dark:text-gray-200 dark:border-gray-600 dark:bg-gray-800"
+                      placeholder="First Name"
                     />
                   </div>
-                  <div className="rounded-lg border border-gray-300 p-4">
-                    <label htmlFor="rollNumber" className="text-gray-600">
-                      Roll Number:
+                  <div class="w-full  mb-4 lg:mt-6">
+                    <label for="" class=" dark:text-gray-300">
+                      Last Name
                     </label>
                     <input
                       type="text"
-                      id="rollNumber"
-                      name="rollNumber"
-                      value={profile.rollNumber}
-                      onChange={handleInputChange}
-                      className="block w-full mt-1 bg-gray-200 rounded-md border-gray-300 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50"
+                      class="mt-2 p-4 w-full border-2 rounded-lg dark:text-gray-200 dark:border-gray-600 dark:bg-gray-800"
+                      placeholder="Last Name"
                     />
                   </div>
-                  <div className="rounded-lg border border-gray-300 p-4">
-                    <label htmlFor="email" className="text-gray-600">
-                      Email:
-                    </label>
-                    <input
-                      type="email"
-                      id="email"
-                      name="email"
-                      value={profile.email}
-                      onChange={handleInputChange}
-                      className="block w-full mt-1 bg-gray-200 rounded-md border-gray-300 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50"
-                    />
+                </div>
+
+                <div class="flex lg:flex-row md:flex-col sm:flex-col xs:flex-col gap-2 justify-center w-full">
+                  <div class="w-full">
+                    <h3 class="dark:text-gray-300 mb-2">Sex</h3>
+                    <select class="w-full text-grey border-2 rounded-lg p-4 pl-2 pr-2 dark:text-gray-200 dark:border-gray-600 dark:bg-gray-800">
+                      <option disabled value="">
+                        Select Sex
+                      </option>
+                      <option value="Male">Male</option>
+                      <option value="Female">Female</option>
+                    </select>
                   </div>
-                  <div className="rounded-lg border border-gray-300 p-4">
-                    <label htmlFor="course" className="text-gray-600">
-                      Course:
-                    </label>
-                    <input
-                      type="text"
-                      id="course"
-                      name="course"
-                      value={profile.course}
-                      onChange={handleInputChange}
-                      className="block w-full mt-1 bg-gray-200 rounded-md border-gray-300 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50"
-                    />
-                  </div>
-                  <div className="rounded-lg border border-gray-300 p-4">
-                    <label htmlFor="year" className="text-gray-600">
-                      Year:
-                    </label>
-                    <input
-                      type="text"
-                      id="year"
-                      name="year"
-                      value={profile.year}
-                      onChange={handleInputChange}
-                      className="block w-full mt-1 bg-gray-200 rounded-md border-gray-300 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50"
-                    />
-                  </div>
-                  <div className="rounded-lg border border-gray-300 p-4">
-                    <label htmlFor="semester" className="text-gray-600">
-                      Semester:
-                    </label>
-                    <input
-                      type="text"
-                      id="semester"
-                      name="semester"
-                      value={profile.semester}
-                      onChange={handleInputChange}
-                      className="block w-full mt-1 bg-gray-200 rounded-md border-gray-300 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50"
-                    />
-                  </div>
-                  <div className="rounded-lg border border-gray-300 p-4">
-                    <label htmlFor="phoneNumber" className="text-gray-600">
-                      Phone Number:
-                    </label>
-                    <input
-                      type="text"
-                      id="phoneNumber"
-                      name="phoneNumber"
-                      value={profile.phoneNumber}
-                      onChange={handleInputChange}
-                      className="block w-full mt-1 bg-gray-200 rounded-md border-gray-300 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50"
-                    />
-                  </div>
-                  <div className="rounded-lg border border-gray-300 p-4">
-                    <label htmlFor="dateOfBirth" className="text-gray-600">
-                      Date of Birth:
-                    </label>
+                  <div class="w-full">
+                    <h3 class="dark:text-gray-300 mb-2">Date Of Birth</h3>
                     <input
                       type="date"
-                      id="dateOfBirth"
-                      name="dateOfBirth"
-                      value={profile.dateOfBirth}
-                      onChange={handleInputChange}
-                      className="block w-full mt-1 bg-gray-200 rounded-md border-gray-300 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50"
+                      class="text-grey p-4 w-full border-2 rounded-lg dark:text-gray-200 dark:border-gray-600 dark:bg-gray-800"
                     />
                   </div>
-                  <div className="rounded-lg border border-gray-300 p-4">
-                    <label htmlFor="fatherName" className="text-gray-600">
-                      Father's Name:
-                    </label>
-                    <input
-                      type="text"
-                      id="fatherName"
-                      name="fatherName"
-                      value={profile.fatherName}
-                      onChange={handleInputChange}
-                      className="block w-full mt-1 bg-gray-200 bg-gray-200 rounded-md border-gray-300 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50"
-                    />
-                  </div>
-                  <div className="rounded-lg border border-gray-300 p-4">
-                    <label htmlFor="motherName" className="text-gray-600">
-                      Mother's Name:
-                    </label>
-                    <input
-                      type="text"
-                      id="motherName"
-                      name="motherName"
-                      value={profile.motherName}
-                      onChange={handleInputChange}
-                      className="block w-full mt-1 bg-gray-200 rounded-md border-gray-300 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50"
-                    />
-                  </div>
-                  <div className="rounded-lg border border-gray-300 p-4">
-                    <label htmlFor="gender" className="text-gray-600">
-                      Gender:
-                    </label>
-                    <select
-                      id="gender"
-                      name="gender"
-                      value={profile.gender}
-                      onChange={handleInputChange}
-                      className="block w-full mt-1 bg-gray-200 rounded-md border-gray-300 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50"
-                    />
-                  </div>
-                  <div className="rounded-lg border border-gray-300 p-4">
-                    <label htmlFor="state" className="text-gray-600">
-                      State:
-                    </label>
-                    <input
-                      type="text"
-                      id="state"
-                      name="state"
-                      value={profile.state}
-                      onChange={handleInputChange}
-                      className="block w-full mt-1 bg-gray-200 rounded-md border-gray-300 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50"
-                    />
-                  </div>
-                  <div className="rounded-lg border border-gray-300 p-4">
-                    <label htmlFor="country" className="text-gray-600">
-                      Country:
-                    </label>
-                    <input
-                      type="text"
-                      id="country"
-                      name="country"
-                      value={profile.country}
-                      onChange={handleInputChange}
-                      className="block w-full mt-1 bg-gray-200 rounded-md border-gray-300 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50"
-                    />
-                  </div>
-                  <div className="rounded-lg border border-gray-300 p-4">
-                    <label htmlFor="year" className="text-gray-600">
-                      Year:
-                    </label>
-                    <input
-                      type="text"
-                      id="year"
-                      name="year"
-                      value={profile.year}
-                      onChange={handleInputChange}
-                      className="block w-full mt-1 bg-gray-200 rounded-md border-gray-300 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50"
-                    />
-                  </div>
-                </form>
-              </div>
+                </div>
+                <div class="w-full rounded-lg bg-blue-500 mt-4 text-white text-lg font-semibold">
+                  <button type="submit" class="w-full p-4">
+                    Submit
+                  </button>
+                </div>
+              </form>
             </div>
           </div>
         </div>
-      </div>
+      </section>
     </div>
   );
 };

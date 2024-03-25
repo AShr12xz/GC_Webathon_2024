@@ -26,9 +26,8 @@ const CourseReg = () => {
   }, [user]);
   const abcd = [];
   const handleCheckboxChange = (index) => {
-    if(abcd.includes(index)){
-
-    };
+    if (abcd.includes(index)) {
+    }
     abcd.push(index);
 
     // setSelectedSubjects({selectedSubjects});
@@ -37,22 +36,21 @@ const CourseReg = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    for(let i=0;i<courses.length;i++){
+    for (let i = 0; i < courses.length; i++) {
       console.log(i);
-      const box=document.getElementById(`${i}`);
-      if(box.checked){
-          selectedSubjects.push(courses[i]);
+      const box = document.getElementById(`${i}`);
+      if (box.checked) {
+        selectedSubjects.push(courses[i]);
       }
     }
-    try{
+    try {
       const res = await axios.post(
-          "http://localhost:3000/studentCourses/selectCourses",
-          { selectedSubjects,rollno:user.uniqueId,studentName:user.name }
-        );
-        toast.success("Courses Selected Successfully");
-        console.log(res.data);
-    }
-    catch(error){
+        "http://localhost:3000/studentCourses/selectCourses",
+        { selectedSubjects, rollno: user.uniqueId, studentName: user.name }
+      );
+      toast.success("Courses Selected Successfully");
+      console.log(res.data);
+    } catch (error) {
       console.log(error);
     }
   };

@@ -58,23 +58,23 @@ const FeedbackForm = (props) => {
   };
 
   return (
-    <div className="w-full h-full bg-white rounded-l overflow-hidden shadow-lg p-6 border border-gray-200">
-      <ToastContainer></ToastContainer>
-      <h2 className="text-lg font-semibold mb-4 text-center">
-        Submit Feedback
+    <div className="w-full h-full bg-mygrey rounded-lg overflow-hidden shadow-lg p-6  border border-gray-200">
+      <h2 className="text-4xl font-serif text-center mt-0 mb-5 shadow-lg p-3 ">
+        Student's Feedback
       </h2>
-      <form onSubmit={handleSubmit}>
-        <div className="mb-4">
-          <label
-            htmlFor="teacher"
-            className="block text-gray-600 font-semibold mb-2"
-          >
-            Select Teacher:
+      <form
+        onSubmit={handleSubmit}
+        class="max-w-md mx-auto  mt-10 p-6 bg-white border rounded-lg shadow-lg mb-6"
+      >
+        <h2 class="text-2xl font-bold mb-6">Feedback Form</h2>
+        <div class="mb-4">
+          <label class="block text-gray-700 font-bold mb-2" htmlFor="teacher">
+            Professor's Name:
           </label>
           <select
             id="teacher"
             required
-            className="w-full border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:border-blue-500"
+            className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             value={selectedTeacher}
             onChange={(e) => setSelectedTeacher(e.target.value)}
           >
@@ -86,17 +86,16 @@ const FeedbackForm = (props) => {
             ))}
           </select>
         </div>
-        <div className="mb-4">
-          <label
-            htmlFor="feedback"
-            className="block text-gray-600 font-semibold mb-2"
-          >
+
+        <div class="mb-4">
+          <label class="block text-gray-700 font-bold mb-2" htmlFor="feedback">
             Feedback:
           </label>
           <textarea
+            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
             id="feedback"
-            className="w-full border border-gray-300 rounded-md py-2 px-3 focus:outline-none focus:border-blue-500"
-            rows="4"
+            placeholder="Enter your feedback"
+            rows="5"
             name="feedback"
             value={data.feedback}
             onChange={(e) =>
@@ -104,11 +103,12 @@ const FeedbackForm = (props) => {
             }
           ></textarea>
         </div>
-        <div className="text-center">
-          <button className="bg-blue-400 text-white font-semibold py-2 px-4 rounded-md hover:bg-blue-600 focus:outline-none focus:bg-blue-600">
-            Submit
-          </button>
-        </div>
+        <button
+          class="bg-blue-900 hover:bg-blue-800 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+          type="submit"
+        >
+          Submit
+        </button>
       </form>
     </div>
   );
