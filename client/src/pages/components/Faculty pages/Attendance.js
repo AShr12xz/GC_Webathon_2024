@@ -1,50 +1,87 @@
-import React, { useState } from "react";
+import { React, useState, useEffect } from "react";
+import axios from "axios";
+import { useUserContext } from "../../../store/UserContext";
+import { ToastContainer, toast } from "react-toastify";
 
 const StudentAttendancePortal = () => {
   // Sample data for courses, students, and attendance
-  const [courses] = useState(["Course A", "Course B", "Course C"]);
+  const { user } = useUserContext();
+  const [courses, setCourses] = useState([]);
+  const [coursenames, setCoursenames] = useState([]);
   const [selectedCourse, setSelectedCourse] = useState("");
   const [selectedDate, setSelectedDate] = useState("");
-  const [students, setStudents] = useState([]);
-  const [attendance, setAttendance] = useState([]);
+  const [students] = useState([]);
 
-  // Function to fetch students based on selected course
-  const fetchStudents = (course) => {
-    // Sample logic to fetch students based on course
-    // Replace with actual API call to fetch students
-    const sampleStudents = [
-      { id: 1, name: "Student 1", rollNumber: "001" },
-      { id: 2, name: "Student 2", rollNumber: "002" },
-      { id: 3, name: "Student 3", rollNumber: "003" },
-    ];
-    setStudents(sampleStudents);
-  };
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const res = await axios.post(
+          "http://localhost:3000/studentCourses/showAttendanceforStudent",
+          { facultycode: user.uniqueId }
+        );
 
-  // Function to handle checkbox change for marking attendance
-  const handleCheckboxChange = (studentId) => {
-    const updatedAttendance = attendance.map((student) => {
-      if (student.id === studentId) {
-        return { ...student, present: !student.present };
+        if (res.data.data.data) {
+          var cor = [];
+          console.log(res.data.data.data);
+          for (let i = 0; i < res.data.data.data.length; i++) {
+            if (!cor.includes(res.data.data.data[i].coursecode)) {
+              cor.push(res.data.data.data[i].coursecode);
+            }
+          }
+          console.log(cor);
+          setCoursenames(cor);
+        }
+
+        setCourses(res.data.data.data);
+      } catch (error) {
+        console.log(error);
       }
-      return student;
-    });
-    setAttendance(updatedAttendance);
-  };
+    };
+
+    fetchData();
+  }, [user, setCourses]);
 
   // Function to handle form submission
-  const handleSubmitAttendance = (e) => {
+  const handleSubmitAttendance = async (e) => {
     e.preventDefault();
-    // Implement logic to submit attendance
-    console.log("Attendance submitted:", attendance);
+    for (let i = 0; i < courses.length; i++) {
+      const box = document.getElementById(`${i}`);
+      if (courses[i].coursecode === selectedCourse) {
+        if (box.checked) {
+          students.push({
+            rollno: courses[i].rollno,
+            coursecode: courses[i].coursecode,
+            attended: selectedDate,
+            classes: selectedDate,
+          });
+        } else {
+          students.push({
+            rollno: courses[i].rollno,
+            coursecode: courses[i].coursecode,
+            attended: "0",
+            classes: selectedDate,
+          });
+        }
+      }
+    }
+    console.log(students);
+    try {
+      const res = await axios.post(
+        "http://localhost:3000/studentCourses/updateAttendance",
+        { students }
+      );
+      toast.success("Courses Selected Successfully");
+      console.log(res.data);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   // Calculate summary of attendance
-  const totalStudents = students.length;
-  const totalPresent = attendance.filter((student) => student.present).length;
-  const totalAbsent = totalStudents - totalPresent;
 
   return (
     <div className="w-full h-full bg-mygrey rounded-lg overflow-y-scroll shadow-lg p-6  border border-gray-200">
+      <ToastContainer></ToastContainer>
       <h2 className="text-xl md:text-4xl font-serif text-center mt-0 mb-5 shadow-lg p-3 ">
         Student Attendance Portal
       </h2>
@@ -56,16 +93,15 @@ const StudentAttendancePortal = () => {
             </label>
             <select
               id="course"
-              className="mt-1 block w-full rounded-sm p-2 border-gray-300 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50"
+              className="mt-1 block w-full text-black rounded-sm p-2 border-gray-300 shadow-sm focus:border-blue-300 focus:ring focus:ring-blue-200 focus:ring-opacity-50"
               value={selectedCourse}
               onChange={(e) => {
                 setSelectedCourse(e.target.value);
-                fetchStudents(e.target.value);
               }}
               required
             >
               <option value="">Select Course</option>
-              {courses.map((course, index) => (
+              {coursenames.map((course, index) => (
                 <option key={index} value={course}>
                   {course}
                 </option>
@@ -87,7 +123,7 @@ const StudentAttendancePortal = () => {
           </div>
         </div>
 
-        {students.length > 0 && (
+        {
           <form onSubmit={handleSubmitAttendance}>
             <div className="overflow-x-auto mb-4">
               <table className="min-w-full divide-y divide-gray-200">
@@ -105,27 +141,26 @@ const StudentAttendancePortal = () => {
                   </tr>
                 </thead>
                 <tbody className="bg-white divide-y text-[10px] md:text-lg divide-gray-200">
-                  {students.map((student) => (
-                    <tr key={student.id}>
-                      <td className="px-6 py-4 whitespace-nowrap">
-                        {student.name}
-                      </td>
-                      <td className="px-6 py-4 whitespace-nowrap">
-                        {student.rollNumber}
-                      </td>
-                      <td className="px-6 py-4 whitespace-nowrap">
-                        <input
-                          type="checkbox"
-                          checked={
-                            attendance.find((a) => a.id === student.id)
-                              ?.present || false
-                          }
-                          onChange={() => handleCheckboxChange(student.id)}
-                          className="form-checkbox h-5 w-5 text-blue-600"
-                        />
-                      </td>
-                    </tr>
-                  ))}
+                  {courses.map(
+                    (student, index) =>
+                      student.coursecode === selectedCourse && (
+                        <tr key={index}>
+                          <td className="px-6 py-4 whitespace-nowrap">
+                            {student.studentName}
+                          </td>
+                          <td className="px-6 py-4 whitespace-nowrap">
+                            {student.rollno}
+                          </td>
+                          <td className="px-6 py-4 whitespace-nowrap">
+                            <input
+                              id={`${index}`}
+                              type="checkbox"
+                              className="form-checkbox h-5 w-5 text-blue-600"
+                            />
+                          </td>
+                        </tr>
+                      )
+                  )}
                 </tbody>
               </table>
             </div>
@@ -137,18 +172,8 @@ const StudentAttendancePortal = () => {
                 Submit Attendance
               </button>
             </div>
-            <div className="flex justify-center">
-              <div className="mx-auto mt-6">
-                <h2 className="text-lg md:text-lg font-serif text-center mt-0 mb-5 shadow-lg p-3 ">
-                  Summary
-                </h2>
-                <p>Total Students: {totalStudents}</p>
-                <p>Total Present: {totalPresent}</p>
-                <p>Total Absent: {totalAbsent}</p>
-              </div>
-            </div>
           </form>
-        )}
+        }
       </div>
     </div>
   );
