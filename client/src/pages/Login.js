@@ -109,7 +109,7 @@ const Login = () => {
           <div className="flex justify-end w-full h-full">
             {/* left Side (Logo) */}
             <motion.div
-              animate={control2}
+              animate={control2} initial = {{width: "95%"}}
               className="sm:rotate(90deg) hidden absolute h-full sm:flex w-1/3 flex-col justify-center left-0 items-center bg-[#005ab3] z-[5]"
             >
               <div className="w-48 md:w-64 lg:w-72">

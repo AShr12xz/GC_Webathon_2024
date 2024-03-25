@@ -219,7 +219,7 @@ const SignUp = () => {
                           onChange={updateFormField}
                           value={form.DOB}
                           className="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500"
-                          //placeholder="John Doe"
+                        //placeholder="John Doe"
                         />
                       </div>
                     </div>
@@ -333,7 +333,7 @@ const SignUp = () => {
           </div>
         </div>
         <motion.div
-          animate={control2}
+          animate={control2} initial={{ width: "100%" }}
           className="sm:rotate(90deg) hidden h-screen absolute sm:flex w-1/3 flex-col justify-center right-0 top-0 items-center bg-[#005ab3] z-[50]"
         >
           <div className="w-48 md:w-64 lg:w-72">
