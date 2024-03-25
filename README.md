@@ -5,9 +5,9 @@ This web application serves as a comprehensive solution for managing various asp
 
 ## Features 
 ### User Roles:
--Admin: Manages overall system functionality, user roles, and permissions.
--Student: Accesses academic records, course registrations, and communication tools.
--Faculty: Manages courses, grades, and interacts with students.
+--Admin: Manages overall system functionality, user roles, and permissions.
+--Student: Accesses academic records, course registrations, and communication tools.
+--Faculty: Manages courses, grades, and interacts with students.
 
 ### Dashboard: 
 -Personalized dashboard providing an overview of key academic and administrative metrics.
