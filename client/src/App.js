@@ -21,6 +21,7 @@ import Survey from "./pages/components/Survey.js";
 
 import FeedbackBox from "./pages/components/Faculty pages/Feedback.js";
 import Material from "./pages/components/Faculty pages/Material.js";
+import StudentAttendancePortal from "./pages/components/Faculty pages/Attendance.js";
 
 
 function RoutesWithAnimation() {
@@ -65,6 +66,10 @@ function RoutesWithAnimation() {
         <Route
           path="/material"
           element={<Dashboard props={<Material/>} />}
+        />
+        <Route
+          path="/facultyattendance"
+          element={<Dashboard props={<StudentAttendancePortal/>} />}
         />
 
       </Routes>
