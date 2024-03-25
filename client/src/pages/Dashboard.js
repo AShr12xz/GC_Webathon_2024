@@ -5,6 +5,7 @@ import { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { useUserContext } from "../store/UserContext";
 import styles from "../styles/dashboard.module.css";
+import { Collapsible } from "react-collapsible";
 import { motion, useAnimationControls } from "framer-motion";
 
 const Dashboard = ({ props }) => {
@@ -67,7 +68,7 @@ const Dashboard = ({ props }) => {
       <div className="flex justify-between items-center w-full min-h-[11%] bg-gradient-to-r from-black via-black to-blue-950 py-2 px-5 rounded font-serif">
         <div className="flex justify-end items-center gap-2">
           <button onClick={handleToggle}>
-            <span class={`fa-solid fa-bars text-white ${styles.toggle}`}></span>
+            <span className={`fa-solid fa-bars text-white ${styles.toggle}`}></span>
           </button>
           <img
             className={`h-16 w-16 object-contain ${styles.gayab}`}
@@ -155,7 +156,7 @@ const Dashboard = ({ props }) => {
             </div>
             <div
               id="accordion-collapse-body-1"
-              class="hidden text-white flex flex-col w-full text-base"
+              className="hidden text-white flex flex-col w-full text-base"
               aria-labelledby="accordion-collapse-heading-1"
             >
               <button
@@ -165,7 +166,7 @@ const Dashboard = ({ props }) => {
                 className="flex justify-between items-center px-3 ml-5 h-10 hover:bg-gray-100 hover:text-black hover:rounded-xl "
               >
                 <div>Registration</div>
-                <div class="fa-regular fa-address-card text-xl"></div>
+                <div className="fa-regular fa-address-card text-xl"></div>
               </button>
               <button
                 onClick={() => {
@@ -233,7 +234,7 @@ const Dashboard = ({ props }) => {
             className="flex justify-between items-center h-10 w-full hover:bg-gray-100 hover:text-black hover:rounded-xl px-3"
           >
             <div className={`${styles.sidefont}`}>Assignment</div>
-            <div class={`fa-solid fa-list-check ${styles.sideicon}`}></div>
+            <div className={`fa-solid fa-list-check ${styles.sideicon}`}></div>
           </button>
         </motion.div>
         <div

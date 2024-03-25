@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { motion, useAnimationControls } from "framer-motion";
+import { AnimatePresence, motion, useAnimationControls } from "framer-motion";
 import logo from "../assets/IITBBSlogo.png";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
@@ -20,17 +20,17 @@ const SignUp = () => {
   const [isfaculty, setIsfaculty] = useState(false);
   const navigate = useNavigate();
   const control = useAnimationControls();
+  const control2 = useAnimationControls();
 
   useEffect(() => {
-    control.start({
-      scale: [15, 0],
+    control2.start({
+      width: ["100%", "33.3333%"],
       transition: {
         times: [0, 1],
-        ease: "easeInOut",
         duration: 0.4,
       },
     });
-  }, [control]);
+  }, [control2]);
 
   const updateFormField = (e) => {
     const { name, value } = e.target;
@@ -78,285 +78,273 @@ const SignUp = () => {
 
   return (
     // <!-- component -->
-    <div>
-      <script
-        src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.js"
-        defer
-      ></script>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/zxcvbn/4.4.2/zxcvbn.js"></script>
+    <AnimatePresence mode="wait">
+      <div className="min-w-screen min-h-screen bg-mygrey flex justify-start">
+        <script
+          src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.js"
+          defer
+        ></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/zxcvbn/4.4.2/zxcvbn.js"></script>
 
-      <style>
-        @import
-        url('https://cdnjs.cloudflare.com/ajax/libs/MaterialDesign-Webfont/5.3.45/css/materialdesignicons.min.css')
-      </style>
-      <form onSubmit={checkSignUp}>
-        <div class="min-w-screen min-h-screen bg-mygrey flex items-center justify-center px-5 py-5">
-          <div
-            class="bg-gray-100 text-gray-500 rounded-3xl shadow-xl w-full overflow-hidden"
-            style={{ maxWidth: "1000px" }}
-          >
-            <div class="md:flex w-full">
-              <div class="hidden md:block w-1/2 bg-[#005ab3] py-10 px-10">
-                <div className="">
-                  <div className="w-3/4">
-                    <div className="mt-14 pt-14 ">
-                      <img
-                        className="object-contain ml-10 pr-1 "
-                        src={logo}
-                        alt="IIT BBS"
+        <style>
+          @import
+          url('https://cdnjs.cloudflare.com/ajax/libs/MaterialDesign-Webfont/5.3.45/css/materialdesignicons.min.css')
+        </style>
+        <div className="w-full sm:w-2/3 flex items-center justify-center">
+          <div className="bg-gray-100 text-gray-500 rounded-3xl shadow-xl max-w-xl overflow-hidden">
+            <form onSubmit={checkSignUp} className="w-full p-5 md:px-10">
+              <div className="text-center mb-10">
+                <h1 className="font-bold text-3xl text-gray-900">SIGN UP</h1>
+                <p>Enter your information to register</p>
+              </div>
+              <div>
+                <div className="flex -mx-3">
+                  <div className="w-1/2 px-3 mb-3">
+                    <label
+                      htmlFor="name"
+                      className="text-xs font-semibold px-1"
+                    >
+                      Full Name
+                    </label>
+                    <div className="flex">
+                      <div className="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center">
+                        <i className="mdi mdi-account-outline text-gray-400 text-lg"></i>
+                      </div>
+                      <input
+                        type="text"
+                        id="name"
+                        name="name"
+                        onChange={updateFormField}
+                        value={form.name}
+                        className="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500"
+                        placeholder="John Doe"
                       />
                     </div>
-                    <h2 className="md:text-2xl text-xl px-2 text-white mt-3 ml-0"></h2>
+                  </div>
+                  <div className="w-1/2 px-3 mb-3">
+                    <label
+                      htmlFor="name"
+                      className="text-xs font-semibold px-1"
+                    >
+                      Role
+                    </label>
+                    <div className="flex">
+                      <div className="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center">
+                        <i className="mdi mdi-account-outline text-gray-400 text-lg"></i>
+                      </div>
+                      <select
+                        name="role"
+                        id="role"
+                        className="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500"
+                        placeholder="Smith"
+                        onChange={(event) => {
+                          if (event.target.value === "faculty") {
+                            setIsfaculty(true);
+                          } else {
+                            setIsfaculty(false);
+                          }
+                        }}
+                      >
+                        <option value="student">Student</option>
+                        <option value="faculty">Faculty</option>
+                      </select>
+                    </div>
                   </div>
                 </div>
-              </div>
-
-              <div class="w-full md:w-1/2 py-8 px-5 md:px-10">
-                <div class="text-center mb-10">
-                  <h1 class="font-bold text-3xl text-gray-900">SIGN UP</h1>
-                  <p>Enter your information to register</p>
+                <div className="flex -mx-3">
+                  <div className="w-full px-3 mb-3">
+                    <label
+                      htmlFor="email"
+                      className="text-xs font-semibold px-1"
+                    >
+                      Email
+                    </label>
+                    <div className="flex">
+                      <div className="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center">
+                        <i className="mdi mdi-email-outline text-gray-400 text-lg"></i>
+                      </div>
+                      <input
+                        type="text"
+                        id="email"
+                        name="email"
+                        onChange={updateFormField}
+                        value={form.email}
+                        className="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500"
+                        placeholder="20AG06***@iitbbs.ac.in"
+                      />
+                    </div>
+                  </div>
+                </div>
+                <div className="flex -mx-3">
+                  <div className="w-full px-3 mb-3">
+                    <label
+                      htmlFor="number"
+                      className="text-xs font-semibold px-1"
+                    >
+                      Roll No/Faculty Code
+                    </label>
+                    <div className="flex">
+                      <div className="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center">
+                        <i className="mdi mdi-email-outline text-gray-400 text-lg"></i>
+                      </div>
+                      <input
+                        type="text"
+                        id="uniqueId"
+                        name="uniqueId"
+                        onChange={updateFormField}
+                        value={form.uniqueId}
+                        className="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500"
+                        placeholder="AG456788"
+                      />
+                    </div>
+                  </div>
                 </div>
                 <div>
-                  <div class="flex -mx-3">
-                    <div class="w-1/2 px-3 mb-3">
-                      <label htmlFor="name" class="text-xs font-semibold px-1">
-                        Full Name
+                  <div className="flex -mx-3">
+                    <div className="w-1/2 px-3 mb-3">
+                      <label
+                        htmlFor="name"
+                        className="text-xs font-semibold px-1"
+                      >
+                        Date Of Birth
                       </label>
-                      <div class="flex">
-                        <div class="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center">
-                          <i class="mdi mdi-account-outline text-gray-400 text-lg"></i>
+                      <div className="flex">
+                        <div className="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center">
+                          <i className="mdi mdi-account-outline text-gray-400 text-lg"></i>
                         </div>
                         <input
-                          type="text"
-                          id="name"
-                          name="name"
+                          type="date"
+                          id="DOB"
+                          name="DOB"
                           onChange={updateFormField}
-                          value={form.name}
-                          class="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500"
-                          placeholder="John Doe"
+                          value={form.DOB}
+                          className="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500"
+                          //placeholder="John Doe"
                         />
                       </div>
                     </div>
-                    <div class="w-1/2 px-3 mb-3">
-                      <label htmlFor="name" class="text-xs font-semibold px-1">
-                        Role
-                      </label>
-                      <div class="flex">
-                        <div class="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center">
-                          <i class="mdi mdi-account-outline text-gray-400 text-lg"></i>
-                        </div>
-                        <select
-                          name="role"
-                          id="role"
-                          class="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500"
-                          placeholder="Smith"
-                          onChange={(event) => {
-                            if (event.target.value === "faculty") {
-                              setIsfaculty(true);
-                            } else {
-                              setIsfaculty(false);
-                            }
-                          }}
-                        >
-                          <option value="student">Student</option>
-                          <option value="faculty">Faculty</option>
-                        </select>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="flex -mx-3">
-                    <div class="w-full px-3 mb-3">
-                      <label htmlFor="email" class="text-xs font-semibold px-1">
-                        Email
-                      </label>
-                      <div class="flex">
-                        <div class="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center">
-                          <i class="mdi mdi-email-outline text-gray-400 text-lg"></i>
-                        </div>
-                        <input
-                          type="text"
-                          id="email"
-                          name="email"
-                          onChange={updateFormField}
-                          value={form.email}
-                          class="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500"
-                          placeholder="20AG06***@iitbbs.ac.in"
-                        />
-                      </div>
-                    </div>
-                  </div>
-                  <div class="flex -mx-3">
-                    <div class="w-full px-3 mb-3">
+                    <div className="w-1/2 px-3 mb-3">
                       <label
                         htmlFor="number"
-                        class="text-xs font-semibold px-1"
+                        className="text-xs font-semibold px-1"
                       >
-                        Roll No/Faculty Code
+                        Phone No
                       </label>
-                      <div class="flex">
-                        <div class="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center">
-                          <i class="mdi mdi-email-outline text-gray-400 text-lg"></i>
+                      <div className="flex">
+                        <div className="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center">
+                          <i className="mdi mdi-account-outline text-gray-400 text-lg"></i>
                         </div>
                         <input
-                          type="text"
-                          id="uniqueId"
-                          name="uniqueId"
+                          type="phone"
+                          id="phone"
+                          name="phone"
                           onChange={updateFormField}
-                          value={form.uniqueId}
-                          class="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500"
-                          placeholder="AG456788"
+                          value={form.phone}
+                          className="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500"
+                          placeholder="91-"
                         />
                       </div>
                     </div>
                   </div>
-                  <div>
-                    <div class="flex -mx-3">
-                      <div class="w-1/2 px-3 mb-3">
-                        <label
-                          htmlFor="name"
-                          class="text-xs font-semibold px-1"
-                        >
-                          Date Of Birth
-                        </label>
-                        <div class="flex">
-                          <div class="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center">
-                            <i class="mdi mdi-account-outline text-gray-400 text-lg"></i>
-                          </div>
-                          <input
-                            type="date"
-                            id="DOB"
-                            name="DOB"
-                            onChange={updateFormField}
-                            value={form.DOB}
-                            class="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500"
-                            //placeholder="John Doe"
-                          />
-                        </div>
-                      </div>
-                      <div class="w-1/2 px-3 mb-3">
-                        <label
-                          htmlFor="number"
-                          class="text-xs font-semibold px-1"
-                        >
-                          Phone No
-                        </label>
-                        <div class="flex">
-                          <div class="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center">
-                            <i class="mdi mdi-account-outline text-gray-400 text-lg"></i>
-                          </div>
-                          <input
-                            type="phone"
-                            id="phone"
-                            name="phone"
-                            onChange={updateFormField}
-                            value={form.phone}
-                            class="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500"
-                            placeholder="91-"
-                          />
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                  {isfaculty ? (
-                    <div class="flex -mx-3">
-                      <div class="w-full px-3 mb-3">
-                        <label
-                          htmlFor="number"
-                          class="text-xs font-semibold px-1"
-                        >
-                          Code
-                        </label>
-                        <div class="flex">
-                          <div class="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center">
-                            <i class="mdi mdi-lock-outline text-gray-400 text-lg"></i>
-                          </div>
-                          <input
-                            type="text"
-                            id="code"
-                            name="code"
-                            onChange={updateFormField}
-                            value={form.code}
-                            class="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500"
-                            placeholder="************"
-                          />
-                        </div>
-                      </div>
-                    </div>
-                  ) : null}
-                  <div class="flex -mx-3">
-                    <div class="w-full px-3 mb-3">
-                      <label htmlFor="name" class="text-xs font-semibold px-1">
-                        Password
+                </div>
+                {isfaculty ? (
+                  <div className="flex -mx-3">
+                    <div className="w-full px-3 mb-3">
+                      <label
+                        htmlFor="number"
+                        className="text-xs font-semibold px-1"
+                      >
+                        Code
                       </label>
-                      <div class="flex">
-                        <div class="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center">
-                          <i class="mdi mdi-lock-outline text-gray-400 text-lg"></i>
+                      <div className="flex">
+                        <div className="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center">
+                          <i className="mdi mdi-lock-outline text-gray-400 text-lg"></i>
                         </div>
                         <input
-                          type="password"
-                          id="password"
-                          name="password"
+                          type="text"
+                          id="code"
+                          name="code"
                           onChange={updateFormField}
-                          value={form.password}
-                          class="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500"
+                          value={form.code}
+                          className="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500"
                           placeholder="************"
                         />
                       </div>
                     </div>
                   </div>
-                  <div className="mb-4">
-                    <Link
-                      onClick={() => {
-                        control.start({
-                          scale: 15,
-                          transition: {
-                            ease: "easeInOut",
-                            duration: 0.6,
-                          },
-                        });
-                      }}
-                      to="/login"
+                ) : null}
+                <div className="flex -mx-3">
+                  <div className="w-full px-3 mb-3">
+                    <label
+                      htmlFor="name"
+                      className="text-xs font-semibold px-1"
                     >
-                      <span>
-                        Already have an account?{" "}
-                        <span className="text-[#005ab3]">Login</span>
-                      </span>
-                    </Link>
-                  </div>
-
-                  <div class="flex -mx-3">
-                    <div class="w-full px-3 mb-5">
-                      <button
-                        type="submit"
-                        class="btn block w-full max-w-xs mx-auto bg-[#005ab3] hover:bg-indigo-700 focus:bg-indigo-700 text-white rounded-lg px-3 py-3 font-semibold"
-                      >
-                        SUBMIT
-                      </button>
+                      Password
+                    </label>
+                    <div className="flex">
+                      <div className="w-10 z-10 pl-1 text-center pointer-events-none flex items-center justify-center">
+                        <i className="mdi mdi-lock-outline text-gray-400 text-lg"></i>
+                      </div>
+                      <input
+                        type="password"
+                        id="password"
+                        name="password"
+                        onChange={updateFormField}
+                        value={form.password}
+                        className="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500"
+                        placeholder="************"
+                      />
                     </div>
                   </div>
                 </div>
+                <div className="mb-4">
+                  <button
+                    onClick={() => {
+                      control2.start({
+                        width: `100vw`,
+                        transition: {
+                          duration: 0.4,
+                        },
+                      });
+                      setTimeout(() => {
+                        navigate("/login");
+                      }, 1000);
+                    }}
+                  >
+                    <span>
+                      Already have an account?{" "}
+                      <span className="text-[#005ab3]">Login</span>
+                    </span>
+                  </button>
+                </div>
+
+                <div className="flex -mx-3">
+                  <div className="w-full px-3 mb-5">
+                    <button
+                      type="submit"
+                      className="btn block w-full max-w-xs mx-auto bg-[#005ab3] hover:bg-indigo-700 focus:bg-indigo-700 text-white rounded-lg px-3 py-3 font-semibold"
+                    >
+                      SUBMIT
+                    </button>
+                  </div>
+                </div>
               </div>
-            </div>
+            </form>
           </div>
         </div>
-      </form>
-
-      <div class="flex items-end justify-end fixed bottom-0 right-0 mb-4 mr-4 z-10">
-        <div>
-          <a
-            title="Buy me a beer"
-            href="#"
-            target="_blank"
-            class="block w-16 h-16 rounded-full transition-all shadow hover:shadow-lg transform hover:scale-110 hover:rotate-12"
-          >
-            <img
-              class="object-cover object-center w-full h-full rounded-full"
-              src={logo}
-            />
-          </a>
-        </div>
+        <motion.div
+          animate={control2}
+          className="sm:rotate(90deg) hidden h-screen absolute sm:flex w-1/3 flex-col justify-center right-0 top-0 items-center bg-[#005ab3] z-[50]"
+        >
+          <div className="w-48 md:w-64 lg:w-72">
+            <img className="object-contain" src={logo} alt="IIT BBS" />
+          </div>
+          <h1 className="md:text-2xl lg:text-4xl text-xl text-center px-2 text-white mt-10">
+            Enterprise Resource Planning System
+          </h1>
+        </motion.div>
       </div>
-    </div>
+    </AnimatePresence>
   );
 };
 
