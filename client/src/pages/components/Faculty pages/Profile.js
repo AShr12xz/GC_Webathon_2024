@@ -15,7 +15,7 @@ const Profile = () => {
   //   } = student;
 
   return (
-    <div>
+    <div className="overflow-y-scroll">
       <div class="bg-blue-800">
         <div class="container mx-auto py-8">
           <div class="grid grid-cols-4 sm:grid-cols-12 gap-6 md:gap-24 px-4">
