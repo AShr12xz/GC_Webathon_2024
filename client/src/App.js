@@ -53,7 +53,7 @@ function RoutesWithAnimation() {
           element={<Dashboard props={<CourseReg />} />}
         />
         <Route
-          path="/coursesenrolled"
+          path="/mycourses"
           element={<Dashboard props={<CourseView />} />}
         />
 
