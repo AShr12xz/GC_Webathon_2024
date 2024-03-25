@@ -34,7 +34,7 @@ function RoutesWithAnimation() {
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/" element={<Navigate to="/login" />} />
-        <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/dashboard" element={<Dashboard props={<Profile />}/>} />
 
         <Route path="/profile" element={<Dashboard props={<Profile />} />} />
         <Route
