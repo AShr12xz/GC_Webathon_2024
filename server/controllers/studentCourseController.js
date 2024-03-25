@@ -38,17 +38,15 @@ exports.submitFeedback = asyncCheck(async (req, res, next) => {
 });
 
 exports.showFeedback = asyncCheck(async (req, res) => {
-  const feedback1 = await studentCourse
-    .find({ facultycode: req.body.facultycode })
-    .filter((feedback) => feedback.feedback !== "");
-  const { coursecode, courseName, feedback } = feedback1;
-
+  const facultyfeedback = await studentCourse.find({ facultycode: req.body.facultycode });
+  const data = student.filter((ele) => {
+    const { feedback } = ele;
+    return feedback;
+  });
   res.status(200).json({
     status: "success",
     data: {
-      courseName,
-      coursecode,
-      feedback,
+      data
     },
   });
 });
