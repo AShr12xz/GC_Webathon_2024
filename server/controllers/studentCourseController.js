@@ -145,15 +145,13 @@ exports.showGrade = asyncCheck(async (req, res) => {
 });
 
 exports.showCourses = asyncCheck(async (req, res) => {
+  console.log(req.body);
   const student = await studentCourse.find({ rollno: req.body.rollno });
   const data = student.filter((ele) => {
     const { courseName, coursecode, faculty, credits } = ele;
     return courseName, coursecode, faculty, credits;
   });
 
-  if (!data || data.length === 0) {
-    return next(new error("No courses found", 404));
-  }
   res.status(200).json({
     status: "success",
     data: {

@@ -7,7 +7,7 @@ const router = express.Router();
 router.post('/createStudentCourse', courseController.createStudentCourse);
 router.post('/submitFeedback',studentCourseController.submitFeedback);
 router.post('/showFeedback',studentCourseController.showFeedback);
-
+router.post("/showCourses", studentCourseController.showCourses);
 router.post('/showAttendanceforStudent',studentCourseController.showAttendanceforStudent);
 router.post('/showAttendanceforFaculty',studentCourseController.showAttendanceforFaculty);
 router.post('/updateAttendance', studentCourseController.updateAttendance)

@@ -7,6 +7,7 @@ import { useNavigate } from "react-router-dom";
 const StudentAttendancePortal = () => {
   // Sample data for courses, students, and attendance
   const { user } = useUserContext();
+  const [type, setType] = useState("password");
   const [courses, setCourses] = useState([]);
   const [coursenames, setCoursenames] = useState([]);
   const [selectedCourse, setSelectedCourse] = useState("");

@@ -230,18 +230,7 @@ const Login = () => {
                         </div>
                       </div>
 
-                      <div className="flex items-center mb-6 -mt-4">
-                        <div className="flex ml-auto">
-                          <Link to="/forgot">
-                            <a
-                              href="abc"
-                              className="inline-flex text-xs sm:text-sm text-blue-500 hover:text-blue-700 px-2 md:px-0"
-                            >
-                              Forgot Your Password?
-                            </a>
-                          </Link>
-                        </div>
-                      </div>
+                      
 
                       <div className="flex w-full px-2 md:px-0">
                         <button

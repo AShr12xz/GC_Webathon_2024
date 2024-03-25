@@ -9,15 +9,7 @@ const DB = process.env.DATABASE.replace(
   process.env.DATABASE_PASSWORD
 );
 
-app.use(cors(
-  {
-    origin: ["https://gc-webathon-2024.vercel.app"],
-    methods: ["GET", "POST"],
-    credentials: true,
-  }
-));
-
-
+app.use(cors());
 mongoose
   .connect(DB, {
     useNewUrlParser: true,

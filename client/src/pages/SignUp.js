@@ -21,6 +21,7 @@ const SignUp = () => {
   const navigate = useNavigate();
   const control = useAnimationControls();
   const control2 = useAnimationControls();
+  const [type, setType] = useState("password");
 
   useEffect(() => {
     control2.start({
@@ -31,6 +32,14 @@ const SignUp = () => {
       },
     });
   }, [control2]);
+const handleToggle = () => {
+  if (type === "password") {
+    setType("text");
+  } else {
+    setType("password");
+  }
+};
+
 
   const updateFormField = (e) => {
     const { name, value } = e.target;
@@ -116,6 +125,7 @@ const SignUp = () => {
                         name="name"
                         onChange={updateFormField}
                         value={form.name}
+                        autoComplete="off"
                         className="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500"
                         placeholder="John Doe"
                       />
@@ -169,6 +179,7 @@ const SignUp = () => {
                         name="email"
                         onChange={updateFormField}
                         value={form.email}
+                        autoComplete="off"
                         className="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500"
                         placeholder="20AG06***@iitbbs.ac.in"
                       />
@@ -193,6 +204,7 @@ const SignUp = () => {
                         name="uniqueId"
                         onChange={updateFormField}
                         value={form.uniqueId}
+                        autoComplete="off"
                         className="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500"
                         placeholder="AG456788"
                       />
@@ -218,6 +230,7 @@ const SignUp = () => {
                           name="DOB"
                           onChange={updateFormField}
                           value={form.DOB}
+                          autoComplete="off"
                           className="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500"
                           //placeholder="John Doe"
                         />
@@ -240,6 +253,7 @@ const SignUp = () => {
                           name="phone"
                           onChange={updateFormField}
                           value={form.phone}
+                          autoComplete="off"
                           className="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500"
                           placeholder="91-"
                         />
@@ -266,6 +280,7 @@ const SignUp = () => {
                           name="code"
                           onChange={updateFormField}
                           value={form.code}
+                          autoComplete="off"
                           className="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500"
                           placeholder="************"
                         />
@@ -289,11 +304,26 @@ const SignUp = () => {
                         type="password"
                         id="password"
                         name="password"
+                        autoComplete="off"
                         onChange={updateFormField}
                         value={form.password}
                         className="w-full -ml-10 pl-10 pr-3 py-2 rounded-lg border-2 border-gray-200 outline-none focus:border-indigo-500"
                         placeholder="************"
                       />
+                      {type === "text" && (
+                        <span
+                          className={`fa-solid fa-eye inline-flex items-center justify-center absolute right-1 top-0 h-full w-10`}
+                          style={{ color: "#2264a6" }}
+                          onClick={handleToggle}
+                        ></span>
+                      )}
+                      {type === "password" && (
+                        <span
+                          className={`fa-solid fa-eye-slash inline-flex items-center justify-center absolute right-1 top-0 h-full w-10`}
+                          style={{ color: "#2264a6" }}
+                          onClick={handleToggle}
+                        ></span>
+                      )}
                     </div>
                   </div>
                 </div>

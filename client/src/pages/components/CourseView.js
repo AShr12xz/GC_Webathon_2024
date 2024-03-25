@@ -12,11 +12,14 @@ const CourseReg = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await axios.get(
-          "http://localhost:3000/courses/getAllCourses"
+        const res = await axios.post(
+          "http://localhost:3000/studentCourses/showCourses",
+          { rollno: user.uniqueId }
         );
-        // console.log(res.data);
-        setCourses(res.data.data.courses);
+        if (res.data.data.data) {
+          setCourses(res.data.data.data);
+        }
+        console.log(res.data);
       } catch (error) {
         console.log(error);
       }
@@ -51,23 +54,28 @@ const CourseReg = () => {
               </tr>
             </thead>
             <tbody>
-              {courses.map((subject, index) => (
-                <tr
-                  key={subject.index}
-                  className={index % 2 !== 0 ? "bg-gray-100" : "bg-white"}
-                >
-                  <td className="border px-4 sm:px-6 py-4">{subject.name}</td>
-                  <td className="border px-4 sm:px-6 py-4">
-                    {subject.coursecode}
-                  </td>
-                  <td className="border px-4 sm:px-6 py-4">
-                    {subject.credits}
-                  </td>
-                  <td className="border px-4 sm:px-6 py-4">
-                    {subject.faculty}
-                  </td>
-                </tr>
-              ))}
+              {courses.map(
+                (subject, index) =>
+                  subject.rollno === user.uniqueId && (
+                    <tr
+                      key={subject.index}
+                      className={index % 2 !== 0 ? "bg-gray-100" : "bg-white"}
+                    >
+                      <td className="border px-4 sm:px-6 py-4">
+                        {subject.courseName}
+                      </td>
+                      <td className="border px-4 sm:px-6 py-4">
+                        {subject.coursecode}
+                      </td>
+                      <td className="border px-4 sm:px-6 py-4">
+                        {subject.credits}
+                      </td>
+                      <td className="border px-4 sm:px-6 py-4">
+                        {subject.faculty}
+                      </td>
+                    </tr>
+                  )
+              )}
             </tbody>
           </table>
         </div>
