@@ -74,7 +74,8 @@ const Attendance = () => {
                   <div className="w-full bg-gray-300 h-4 rounded-full ">
                     <div
                       className={
-                        record.percentage < 75
+                        (record.attended.length * 100) / record.classes.length <
+                        75
                           ? "bg-red-500 h-full rounded-full"
                           : "bg-green-500 h-full rounded-full"
                       }
