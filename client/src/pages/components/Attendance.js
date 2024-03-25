@@ -23,7 +23,9 @@ const Attendance = () => {
   }, [user, setCourses]);
 
   const calculateAttendancePercentage = (attended, total) => {
-    return total ? ((attended * 100) / total).toFixed(2) : "N/A";
+    var attendancePercentage = total ? (attended * 100) / total : 0;
+    console.log("Attendance Percentage:", attendancePercentage);
+    return attendancePercentage;
   };
 
   return (
@@ -38,22 +40,23 @@ const Attendance = () => {
               <th className="border px-4 sm:px-6 py-3 text-left text-lg sm:text-xl font-semibold">
                 Subject Name
               </th>
-              <th className=" border px-4 sm:px-6 py-3 text-left text-lg sm:text-xl font-semibold">
+              <th className="border px-4 sm:px-6 py-3 text-left text-lg sm:text-xl font-semibold">
                 Subject Code
               </th>
-              <th className=" border px-4 sm:px-6 py-3 text-left text-lg sm:text-xl font-semibold">
+              <th className="border px-4 sm:px-6 py-3 text-left text-lg sm:text-xl font-semibold">
                 Attendance Percentage
               </th>
-              <th className=" border px-4 sm:px-6 py-3 text-left text-lg sm:text-xl font-semibold">
+              <th className="border px-4 sm:px-6 py-3 text-left text-lg sm:text-xl font-semibold">
                 Attendance Bar
               </th>
             </tr>
           </thead>
           <tbody>
+            {/* {console.log(courses)} */}
             {courses.map((record, index) => (
               <tr
                 key={index}
-                className={index % 2 === 0 ? "bg-gray-100" : "bg-white"}
+                className={index % 2 === 0 ? "bg-gray-100 " : "bg-white"}
               >
                 <td className="border px-4 sm:px-6 py-4">
                   {record.courseName}
@@ -68,27 +71,22 @@ const Attendance = () => {
                     : "No classes held"}
                 </td>
                 <td className="border px-4 sm:px-6 py-4">
-                  <div className="relative">
-                    <div className="rounded-full border border-red-600 p-1">
-                      <div
-                        className={`${
-                          record.percentage < 75
-                            ? record.percentage < 40
-                              ? "bg-red-500"
-                              : "bg-yellow-500"
-                            : "bg-green-500"
-                        }flex h-6 items-center justify-center rounded-full text-xs leading-none`}
-                        style={{ width: "85%", height: "85%" }}
-                      >
-                        <span className="p-1 text-white">
-                          {record.classes.length
+                  <div className="w-full bg-gray-300 h-4 rounded-full ">
+                    <div
+                      className={
+                        record.percentage < 75
+                          ? "bg-red-500 h-full rounded-full"
+                          : "bg-green-500 h-full rounded-full"
+                      }
+                      style={{
+                        width: `${
+                          record.classes.length
                             ? (record.attended.length * 100) /
                               record.classes.length
-                            : 0}
-                          %
-                        </span>
-                      </div>
-                    </div>
+                            : 0
+                        }%`,
+                      }}
+                    ></div>
                   </div>
                 </td>
               </tr>

@@ -53,7 +53,7 @@ const Result = () => {
 
   return (
     <div className="w-full h-full bg-mygrey rounded-lg overflow-x-hidden lg:overflow-aut shadow-lg px-2 border border-gray-200">
-      <h2 className="text-4xl font-serif text-center mt-3 mb-5 shadow-lg p-3">
+      <h2 className="text-4xl font-serif text-center mt-5 mb-5 shadow-lg p-3">
         Subject-wise Grades
       </h2>
       <div className="overflow-x-auto">
