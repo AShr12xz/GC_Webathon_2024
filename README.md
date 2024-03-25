@@ -3,8 +3,8 @@
  ## Description
 This web application serves as a comprehensive solution for managing various aspects of college administration, including student information, faculty management, academic records, and administrative tasks.
 
-## Features
-## User Roles:
+## Features-
+### User Roles:
 
 Admin: Manages overall system functionality, user roles, and permissions.
 Student: Accesses academic records, course registrations, and communication tools.
