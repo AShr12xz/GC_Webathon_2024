@@ -23,7 +23,7 @@ import Assignment from "./pages/components/Assigments.js";
 import FeedbackBox from "./pages/components/Faculty pages/Feedback.js";
 import Material from "./pages/components/Faculty pages/Material.js";
 import StudentAttendancePortal from "./pages/components/Faculty pages/Attendance.js";
-
+import GradeUpload from "./pages/components/Faculty pages/Grade.js";
 
 function RoutesWithAnimation() {
   const location = useLocation();
@@ -75,6 +75,10 @@ function RoutesWithAnimation() {
         <Route
           path="/facultyattendance"
           element={<Dashboard props={<StudentAttendancePortal/>} />}
+        />
+        <Route
+          path="/grade"
+          element={<Dashboard props={<GradeUpload/>} />}
         />
 
       </Routes>
