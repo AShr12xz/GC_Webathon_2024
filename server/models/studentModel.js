@@ -48,16 +48,9 @@ const studentSchema = new mongoose.Schema({
         type: String,
         required: false
     },
-    marital: {
-        type: String,
-        enum: ['married', 'unmarried']
-    },
     Gender: {
         type: String,
         required: false
-    },
-    state: {
-        type: String,
     },
     country: {
         type: String
@@ -66,9 +59,7 @@ const studentSchema = new mongoose.Schema({
         type: String,
         required: false
     },
-    income: {
-        type: Number
-    }
+    
 })
 
 studentSchema.pre("save", async function (next) {

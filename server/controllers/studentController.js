@@ -26,3 +26,14 @@ exports.updateStudent = asyncCheck(async (req, res, next) => {
   });
 })
 
+exports.getStudentProfile = asyncCheck(async (req, res, next) => {
+  console.log(req.body);
+  const user = await Student.findOne({ uniqueId: req.body.rollno });
+  console.log(user);
+  res.status(200).json({
+    status: 'success',
+    data: {
+      user
+    }
+  });
+})

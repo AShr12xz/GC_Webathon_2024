@@ -64,26 +64,25 @@ const Attendance = () => {
                 <td className="border px-4 sm:px-6 py-4">
                   {record.classes.length
                     ? (record.attended.length * 100) / record.classes.length +
-                      "%"
+                    "%"
                     : "No classes held"}
                 </td>
                 <td className="border px-4 sm:px-6 py-4">
                   <div className="relative">
                     <div className="rounded-full border border-red-600 p-1">
                       <div
-                        className={`${
-                          record.percentage < 75
-                            ? record.percentage < 40
+                        className={`${((record.attended.length * 100 / record.classes.length) < 75)
+                            ? ((record.attended.length * 100 / record.classes.length) < 40)
                               ? "bg-red-500"
                               : "bg-yellow-500"
                             : "bg-green-500"
-                        }flex h-6 items-center justify-center rounded-full text-xs leading-none`}
-                        style={{ width: "85%", height: "85%" }}
+                          } flex h-6 items-center justify-center rounded-full text-xs leading-none`}
+                        style={{ width: "100%", height: "85%" }}
                       >
                         <span className="p-1 text-white">
                           {record.classes.length
                             ? (record.attended.length * 100) /
-                              record.classes.length
+                            record.classes.length
                             : 0}
                           %
                         </span>
