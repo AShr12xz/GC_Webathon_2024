@@ -163,8 +163,9 @@ exports.selectCourses = asyncCheck(async (req, res) => {
         feedback: "",
         grade: "",
       };
+      await studentCourse.create(data);
     }
-    await studentCourse.create(data);
+    
   });
 
   res.status(201).json({
