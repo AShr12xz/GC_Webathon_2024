@@ -1,14 +1,17 @@
 import logo from "../assets/IITBBSlogo.png";
 import { useCookies } from "react-cookie";
 import axios from "axios";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { useUserContext } from "../store/UserContext";
 import styles from "../styles/dashboard.module.css";
+import { motion, useAnimationControls } from "framer-motion";
 
 const Dashboard = ({ props }) => {
   const [cookies, , removeCookie] = useCookies("token");
   const { user, setUser } = useUserContext();
+  const control = useAnimationControls();
+  const pgRef = useRef();
   const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
   useEffect(() => {
@@ -32,15 +35,33 @@ const Dashboard = ({ props }) => {
   }, [cookies, navigate, removeCookie, setUser]);
   const handleToggle = () => {
     const sidebar = document.getElementById("sidebar");
+
     if (sidebar.classList.contains(styles.hide)) {
+      control.start({
+        x: ["-300px", "0px"],
+        opacity: [0, 1],
+        transition: {
+          times: [0, 1],
+          duration: 0.4,
+        },
+      });
       sidebar.classList.remove(`${styles.hide}`);
     } else {
+      control.start({
+        x: ["0px", "-300px"],
+        opacity: [1, 0],
+        transition: {
+          times: [0, 1],
+          duration: 0.4,
+        },
+      });
       sidebar.classList.add(`${styles.hide}`);
     }
   };
 
   return (
     <div
+      ref={pgRef}
       className={`flex flex-col justify-center items-center bg-gray-400 p-1 gap-1 ${styles.pg}`}
     >
       <div className="flex justify-between items-center w-full min-h-[11%] bg-gradient-to-r from-black via-black to-blue-950 py-2 px-5 rounded font-serif">
@@ -72,7 +93,7 @@ const Dashboard = ({ props }) => {
               <span className="fa fa-user text-l text-white"></span>
             </button>
             {isOpen && (
-              <div className="absolute shadow-lg top-16 right-4 w-40 h-max p-2 bg-white rounded-lg flex flex-col gap-2">
+              <div className="absolute shadow-lg top-16 right-4 w-40 h-max p-2 bg-white rounded-lg flex flex-col gap-2 z-[6]">
                 <button
                   onClick={() => {
                     console.log("abcdcd");
@@ -108,9 +129,10 @@ const Dashboard = ({ props }) => {
         </div>
       </div>
       <div className="flex w-full min-h-[88%] gap-1 ">
-        <div
+        <motion.div
           id="sidebar"
-          className={`flex flex-col justify-start items-center w-1/5 bg-gradient-to-r from-black via-black to-blue-950 px-2 text-white text-xl gap-2 py-3 rounded font-mono font-black ${styles.sidebar}`}
+          animate={control}
+          className={`flex flex-col justify-start items-center w-1/5 bg-gradient-to-r from-black via-black to-blue-950 px-2 text-white text-xl gap-2 py-3 rounded font-mono font-black ${styles.sidebar} origin-left ${styles.hide}`}
         >
           <div
             id="accordion-collapse"
@@ -213,8 +235,30 @@ const Dashboard = ({ props }) => {
             <div className={`${styles.sidefont}`}>Assignment</div>
             <div class={`fa-solid fa-list-check ${styles.sideicon}`}></div>
           </button>
-        </div>
+        </motion.div>
         <div
+          onClick={() => {
+            setIsOpen(false);
+            if (pgRef.current.clientWidth < 600) {
+              if (
+                !document
+                  .getElementById("sidebar")
+                  .classList.contains(styles.hide)
+              ) {
+                control.start({
+                  x: ["0px", "-400px"],
+                  opacity: [1, 0],
+                  transition: {
+                    times: [0, 1],
+                    duration: 0.4,
+                  },
+                });
+                document
+                  .getElementById("sidebar")
+                  .classList.add(`${styles.hide}`);
+              }
+            }
+          }}
           id="content"
           className={`flex flex-col justify-start items-start bg-blue-950 p-2 overflow-y-scroll ${styles.content} rounded`}
         >
