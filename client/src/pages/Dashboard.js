@@ -131,7 +131,7 @@ const Dashboard = ({ props }) => {
         </div>
       </div>
       <div className="flex w-full min-h-[88%] gap-1 ">
-        {user.role === "student" && (
+        
           <motion.div
             id="sidebar"
             animate={control}
@@ -241,14 +241,13 @@ const Dashboard = ({ props }) => {
               ></div>
             </button>
           </motion.div>
-        )}
+
         {user.role === "faculty" && (
           <motion.div
             id="sidebar"
             animate={control}
             className={`flex flex-col justify-start items-center w-1/5 bg-gradient-to-r from-black via-black to-blue-950 px-2 text-white text-xl gap-2 py-3 rounded font-mono font-black ${styles.sidebar} origin-left ${styles.hide}`}
           >
-
             <button
               onClick={() => {
                 navigate("/material");
@@ -270,6 +269,30 @@ const Dashboard = ({ props }) => {
               <div className={`${styles.sidefont}`}>Feedback</div>
               <div
                 className={`fa-regular fa-comment-dots ${styles.sideicon}`}
+              ></div>
+            </button>
+
+            <button
+              onClick={() => {
+                navigate("/addattendance");
+              }}
+              className="flex justify-between items-center h-10 w-full hover:bg-gray-100 hover:text-black hover:rounded-xl px-3"
+            >
+              <div className={`${styles.sidefont}`}>Add Attendance</div>
+              <div
+                className={`fa-solid fa-clipboard-user ${styles.sideicon}`}
+              ></div>
+            </button>
+
+            <button
+              onClick={() => {
+                navigate("/grade");
+              }}
+              className="flex justify-between items-center h-10 w-full hover:bg-gray-100 hover:text-black hover:rounded-xl px-3"
+            >
+              <div className={`${styles.sidefont}`}>Add Grade</div>
+              <div
+                className={`fa-solid fa-square-poll-vertical ${styles.sideicon}`}
               ></div>
             </button>
 

@@ -1,12 +1,31 @@
-import React, { useState } from "react";
+import { React, useState, useEffect } from "react";
+import axios from "axios";
+import { useUserContext } from "../../../store/UserContext";
 
 const StudentAttendancePortal = () => {
   // Sample data for courses, students, and attendance
-  const [courses] = useState(["Course A", "Course B", "Course C"]);
+  const { user } = useUserContext();
+  const [courses, setCourses] = useState([]);
   const [selectedCourse, setSelectedCourse] = useState("");
   const [selectedDate, setSelectedDate] = useState("");
   const [students, setStudents] = useState([]);
   const [attendance, setAttendance] = useState([]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const res = await axios.post(
+          "http://localhost:3000/studentCourses/showAttendanceforStudent",
+          { facultycode: user.uniqueId }
+        );
+        setCourses(res.data.data.data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    fetchData();
+  }, [user, setCourses]);
 
   // Function to fetch students based on selected course
   const fetchStudents = (course) => {
@@ -20,28 +39,28 @@ const StudentAttendancePortal = () => {
     setStudents(sampleStudents);
   };
 
-  // Function to handle checkbox change for marking attendance
-  const handleCheckboxChange = (studentId) => {
-    const updatedAttendance = attendance.map((student) => {
-      if (student.id === studentId) {
-        return { ...student, present: !student.present };
-      }
-      return student;
-    });
-    setAttendance(updatedAttendance);
-  };
+  // // Function to handle checkbox change for marking attendance
+  // const handleCheckboxChange = (studentId) => {
+  //   const updatedAttendance = attendance.map((student) => {
+  //     if (student.id === studentId) {
+  //       return { ...student, present: !student.present };
+  //     }
+  //     return student;
+  //   });
+  //   setAttendance(updatedAttendance);
+  // };
 
-  // Function to handle form submission
-  const handleSubmitAttendance = (e) => {
-    e.preventDefault();
-    // Implement logic to submit attendance
-    console.log("Attendance submitted:", attendance);
-  };
+  // // Function to handle form submission
+  // const handleSubmitAttendance = (e) => {
+  //   e.preventDefault();
+  //   // Implement logic to submit attendance
+  //   console.log("Attendance submitted:", attendance);
+  // };
 
-  // Calculate summary of attendance
-  const totalStudents = students.length;
-  const totalPresent = attendance.filter((student) => student.present).length;
-  const totalAbsent = totalStudents - totalPresent;
+  // // Calculate summary of attendance
+  // const totalStudents = students.length;
+  // const totalPresent = attendance.filter((student) => student.present).length;
+  // const totalAbsent = totalStudents - totalPresent;
 
   return (
     <div className="w-full h-full bg-mygrey rounded-lg overflow-y-scroll shadow-lg p-6  border border-gray-200">

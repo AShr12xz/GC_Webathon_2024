@@ -38,7 +38,9 @@ exports.submitFeedback = asyncCheck(async (req, res, next) => {
 });
 
 exports.showFeedback = asyncCheck(async (req, res) => {
-  const facultyfeedback = await studentCourse.find({ facultycode: req.body.facultycode });
+  const facultyfeedback = await studentCourse.find({
+    facultycode: req.body.facultycode,
+  });
   const data = student.filter((ele) => {
     const { feedback } = ele;
     return feedback;
@@ -46,24 +48,41 @@ exports.showFeedback = asyncCheck(async (req, res) => {
   res.status(200).json({
     status: "success",
     data: {
-      data
+      data,
     },
   });
 });
 
 exports.showAttendanceforStudent = async (req, res) => {
-  const student = await studentCourse.find({ rollno: req.body.rollno });
-  const data = student.filter((ele) => {
-    const { courseName, coursecode, attended, classes } = ele;
-    return courseName, coursecode, attended, classes;
-  });
+  if (req.body.rollno) {
+    const student = await studentCourse.find({ rollno: req.body.rollno });
+    const data = student.filter((ele) => {
+      const { courseName, coursecode, attended, classes } = ele;
+      return courseName, coursecode, attended, classes;
+    });
 
-  res.status(201).json({
-    status: "success",
-    data: {
-      data,
-    },
-  });
+    res.status(201).json({
+      status: "success",
+      data: {
+        data,
+      },
+    });
+  } else if (req.body.facultycode) {
+    const student = await studentCourse.find({
+      facultycode: req.body.facultycode,
+    });
+    const data = student.filter((ele) => {
+      const { name, rollno } = ele;
+      return name, rollno;
+    });
+
+    res.status(201).json({
+      status: "success",
+      data: {
+        data,
+      },
+    });
+  }
 };
 
 exports.showAttendanceforFaculty = async (req, res) => {
@@ -163,7 +182,6 @@ exports.selectCourses = asyncCheck(async (req, res) => {
       };
       await studentCourse.create(data);
     }
-    
   });
 
   res.status(201).json({

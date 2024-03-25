@@ -68,19 +68,16 @@ function RoutesWithAnimation() {
           path="/facultyfeedback"
           element={<Dashboard props={<FeedbackBox />} />}
         />
-        <Route
-          path="/material"
-          element={<Dashboard props={<Material/>} />}
-        />
+        <Route path="/material" element={<Dashboard props={<Material />} />} />
         <Route
           path="/facultyattendance"
-          element={<Dashboard props={<StudentAttendancePortal/>} />}
+          element={<Dashboard props={<StudentAttendancePortal />} />}
         />
         <Route
-          path="/grade"
-          element={<Dashboard props={<GradeUpload/>} />}
+          path="/addattendance"
+          element={<Dashboard props={<StudentAttendancePortal />} />}
         />
-
+        <Route path="/grade" element={<Dashboard props={<GradeUpload />} />} />
       </Routes>
     </AnimatePresence>
   );
