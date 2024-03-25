@@ -80,14 +80,12 @@ const Login = () => {
     } catch (error) {
       console.log(error.message);
       toast.error("Incorrect Roll No/ Emp Code or Password");
-      control.start({
-        scale: [15, 0],
+      setTimeout(()=>{control2.start({
+        width: `33.33%`,
         transition: {
-          times: [0, 1],
-          ease: "easeInOut",
-          duration: 0.5,
+          duration: 0.4,
         },
-      });
+      });},1000);
     }
     setUserForm({
       uniqueId: "",
@@ -96,12 +94,14 @@ const Login = () => {
   };
 
   return (
-    <AnimatePresence mode="wait">
+    
       <div
         ref={pgRef}
         className="flex justify-center items-center w-screen h-screen bg-mygrey "
       >
-        {/* <ToastContainer></ToastContainer> */}
+        <ToastContainer></ToastContainer>
+        <AnimatePresence mode="wait">
+        
         <div
           className="flex flex-col w-full h-screen p-0 sm:flex-row"
           // style={{ flexDirection: "column-reverse" }} // Reverses flex direction for smaller screens
@@ -296,8 +296,8 @@ const Login = () => {
             </div>
           </div>
         </div>
+        </AnimatePresence>
       </div>
-    </AnimatePresence>
   );
 };
 export default Login;
