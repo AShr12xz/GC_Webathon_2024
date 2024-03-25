@@ -1,15 +1,15 @@
 ﻿# GC_Webathon_2024
 
  ## Description
-This repository contains the source code for a bidding website built using the MERN (MongoDB, Express.js, React.js, Node.js) stack. The website allows users to bid on items and manage their bids.
+This web application serves as a comprehensive solution for managing various aspects of college administration, including student information, faculty management, academic records, and administrative tasks.
 
 ## Features
-User authentication,authorization and user account management
-Ability to create, update, and delete bidding items
-Responsive design for mobile and desktop devices
-Search functionality to find items by name or category
-User dashboard to manage bids and items
-Contact and user feedback/review  system
+## User Roles:
+
+Admin: Manages overall system functionality, user roles, and permissions.
+Student: Accesses academic records, course registrations, and communication tools.
+Faculty: Manages courses, grades, and interacts with students.
+
 
 ## Technologies Used
 MongoDB: Database to store item and user information
