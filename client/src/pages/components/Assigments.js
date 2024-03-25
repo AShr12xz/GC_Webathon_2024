@@ -195,36 +195,30 @@ const Material = () => {
           >
             <div class="p-5 border border-t-0 border-gray-200 dark:border-gray-700">
               <p class="mb-2 text-gray-500 dark:text-gray-400">
-                The main difference is that the core components from Flowbite
-                are open source under the MIT license, whereas Tailwind UI is a
-                paid product. Another difference is that Flowbite relies on
-                smaller and standalone components, whereas Tailwind UI offers
-                sections of pages.
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque exercitationem veniam molestiae quaerat hic ipsa eligendi ut dignissimos, blanditiis eaque, dicta suscipit voluptate aspernatur qui velit numquam sunt nisi iusto!
               </p>
               <p class="mb-2 text-gray-500 dark:text-gray-400">
-                However, we actually recommend using both Flowbite, Flowbite
-                Pro, and even Tailwind UI as there is no technical reason
-                stopping you from using the best of two worlds.
+                Lorem ipsum, dolor sit amet consectetur adipisicing elit. Magnam, ea?
               </p>
               <p class="mb-2 text-gray-500 dark:text-gray-400">
-                Learn more about these technologies:
+                Lorem ipsum dolor sit amet.
               </p>
               <ul class="ps-5 text-gray-500 list-disc dark:text-gray-400">
                 <li>
                   <a
-                    href="https://flowbite.com/pro/"
+                    href="#"
                     class="text-blue-600 dark:text-blue-500 hover:underline"
                   >
-                    Flowbite Pro
+                    lorem
                   </a>
                 </li>
                 <li>
                   <a
-                    href="https://tailwindui.com/"
+                    href="#"
                     rel="nofollow"
                     class="text-blue-600 dark:text-blue-500 hover:underline"
                   >
-                    Tailwind UI
+                    lorem
                   </a>
                 </li>
               </ul>
