@@ -23,7 +23,7 @@ app.use((req, res, next) => {
 app.use(cors());
 
 app.get("/", (req, res) => {
-  res.send({ message: "Welcome to the API" });
+  res.json("Hello");
 });
 
 // 2) ROUTES

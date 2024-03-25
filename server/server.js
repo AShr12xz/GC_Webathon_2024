@@ -1,12 +1,22 @@
 const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 const app = require("./app");
+const cors = require("cors");
 dotenv.config({ path: "./config.env" });
 
 const DB = process.env.DATABASE.replace(
   "<password>",
   process.env.DATABASE_PASSWORD
 );
+
+app.use(cors(
+  {
+    origin: ["https://gc-webathon-2024.vercel.app"],
+    methods: ["GET", "POST"],
+    credentials: true,
+  }
+));
+
 
 mongoose
   .connect(DB, {
