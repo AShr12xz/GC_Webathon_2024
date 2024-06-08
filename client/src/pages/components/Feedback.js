@@ -46,10 +46,7 @@ const FeedbackForm = (props) => {
     data.rollno = user.uniqueId;
     data.facultycode = fcode[0].facultycode;
     try {
-      await axios.post(
-        "http://localhost:3000/studentCourses/submitFeedback",
-        data
-      );
+      await axios.post(baseurl + "/studentCourses/submitFeedback", data);
       toast.success("Feedback Submitted Successfully");
     } catch (error) {
       toast.info("Feedback Already Submitted");

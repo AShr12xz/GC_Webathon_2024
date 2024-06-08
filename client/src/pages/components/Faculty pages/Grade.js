@@ -19,7 +19,7 @@ const GradeUpload = () => {
     const fetchData = async () => {
       try {
         const res = await axios.post(
-          "http://localhost:3000/studentCourses/showAttendanceforStudent",
+          baseurl + "studentCourses/showAttendanceforStudent",
           { facultycode: user.uniqueId }
         );
 

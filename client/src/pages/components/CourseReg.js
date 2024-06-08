@@ -34,10 +34,11 @@ const CourseReg = () => {
       }
     }
     try {
-      const res = await axios.post(
-        "http://localhost:3000/studentCourses/selectCourses",
-        { selectedSubjects, rollno: user.uniqueId, studentName: user.name }
-      );
+      const res = await axios.post(baseurl + "/studentCourses/selectCourses", {
+        selectedSubjects,
+        rollno: user.uniqueId,
+        studentName: user.name,
+      });
       toast.success("Courses Selected Successfully");
       console.log(res.data);
     } catch (error) {
