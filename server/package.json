@@ -4,9 +4,9 @@
   "description": "backend",
   "main": "app.js",
   "scripts": {
-    "prestart": "chmod +x node_modules/.bin/nodemon",
+    // "prestart": "chmod +x node_modules/.bin/nodemon",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon server.js"
+    "dev": "node server.js"
   },
   "author": "ashr12xz",
   "license": "ISC",
