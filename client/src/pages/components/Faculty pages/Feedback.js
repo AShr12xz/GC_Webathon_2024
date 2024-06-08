@@ -43,7 +43,7 @@ const FeedbackBox = () => {
             .slice(0, showAll ? feedback.length : 5)
             .map((feedback, index) => (
               <div key={index} className="p-4 bg-white rounded-lg shadow-md">
-                <p className="text-lg">{feedback}</p>
+                <p className="text-lg">{feedback.feedback}</p>
               </div>
             ))}
 
