@@ -13,7 +13,6 @@ const signToken = (id, user = 'student') => {
 };
 
 exports.fetchData = async (req, res) => {
-  console.log("1234\n");
   const user = await User.find();
   return res.json({ user });
 };
