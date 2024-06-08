@@ -28,6 +28,7 @@ app.get("/", (req, res) => {
 
 // 2) ROUTES
 
+
 app.use("/users", userRouter);
 app.use("/courses", courseRouter);
 app.use("/studentCourses", studentCourseRouter);

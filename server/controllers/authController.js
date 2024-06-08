@@ -12,6 +12,11 @@ const signToken = (id, user = 'student') => {
     });
 };
 
+exports.fetchData = async (req, res) => {
+  const user = await User.find();
+  return res.json({ user });
+};
+
 exports.signup = asyncCheck(async (req, res, next) => {
     if (req.body.role === 'faculty') {
         if (req.body.code != 'abcd') {
