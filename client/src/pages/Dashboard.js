@@ -7,6 +7,7 @@ import { useUserContext } from "../store/UserContext";
 import styles from "../styles/dashboard.module.css";
 import { motion, useAnimationControls } from "framer-motion";
 import { baseurl } from "../App.js";
+import { toast } from "react-toastify";
 
 const Dashboard = ({ props }) => {
   const [cookies, , removeCookie] = useCookies("token");
@@ -119,6 +120,7 @@ const Dashboard = ({ props }) => {
                 <button
                   onClick={() => {
                     removeCookie("token");
+                    toast.success("Logged out successfully");
                     navigate("/login");
                   }}
                   className="flex flex-row justify-between items-center hover:bg-zinc-100 p-2 rounded-lg text-black"

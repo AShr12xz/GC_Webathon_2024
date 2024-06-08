@@ -104,14 +104,14 @@ const SignUp = () => {
             <form onSubmit={checkSignUp} className="w-full p-5 md:px-10">
               <div className="text-center mb-10">
                 <h1 className="font-bold text-3xl text-gray-900">SIGN UP</h1>
-                <p>Enter your information to register</p>
+                {/* <p>Enter your information to register</p> */}
               </div>
               <div>
                 <div className="flex -mx-3">
                   <div className="w-1/2 px-3 mb-3">
                     <label
                       htmlFor="name"
-                      className="text-xs font-semibold px-1"
+                      className="text-sm font-semibold px-1"
                     >
                       Full Name
                     </label>
@@ -134,7 +134,7 @@ const SignUp = () => {
                   <div className="w-1/2 px-3 mb-3">
                     <label
                       htmlFor="name"
-                      className="text-xs font-semibold px-1"
+                      className="text-sm font-semibold px-1"
                     >
                       Role
                     </label>
@@ -165,7 +165,7 @@ const SignUp = () => {
                   <div className="w-full px-3 mb-3">
                     <label
                       htmlFor="email"
-                      className="text-xs font-semibold px-1"
+                      className="text-sm font-semibold px-1"
                     >
                       Email
                     </label>
@@ -190,7 +190,7 @@ const SignUp = () => {
                   <div className="w-full px-3 mb-3">
                     <label
                       htmlFor="number"
-                      className="text-xs font-semibold px-1"
+                      className="text-sm font-semibold px-1"
                     >
                       Roll No/Faculty Code
                     </label>
@@ -216,7 +216,7 @@ const SignUp = () => {
                     <div className="w-1/2 px-3 mb-3">
                       <label
                         htmlFor="name"
-                        className="text-xs font-semibold px-1"
+                        className="text-sm font-semibold px-1"
                       >
                         Date Of Birth
                       </label>
@@ -239,7 +239,7 @@ const SignUp = () => {
                     <div className="w-1/2 px-3 mb-3">
                       <label
                         htmlFor="number"
-                        className="text-xs font-semibold px-1"
+                        className="text-sm font-semibold px-1"
                       >
                         Phone No
                       </label>
@@ -266,7 +266,7 @@ const SignUp = () => {
                     <div className="w-full px-3 mb-3">
                       <label
                         htmlFor="number"
-                        className="text-xs font-semibold px-1"
+                        className="text-sm font-semibold px-1"
                       >
                         Code
                       </label>
@@ -292,7 +292,7 @@ const SignUp = () => {
                   <div className="w-full px-3 mb-3">
                     <label
                       htmlFor="name"
-                      className="text-xs font-semibold px-1"
+                      className="text-sm font-semibold px-1"
                     >
                       Password
                     </label>
@@ -329,6 +329,7 @@ const SignUp = () => {
                 </div>
                 <div className="mb-4">
                   <button
+                    type="button"
                     onClick={() => {
                       control2.start({
                         width: `100vw`,
@@ -348,11 +349,11 @@ const SignUp = () => {
                   </button>
                 </div>
 
-                <div className="flex -mx-3">
-                  <div className="w-full px-3 mb-5">
+                <div className="flex ">
+                  <div className="w-full mb-5">
                     <button
                       type="submit"
-                      className="btn block w-full max-w-xs mx-auto bg-[#005ab3] hover:bg-indigo-700 focus:bg-indigo-700 text-white rounded-lg px-3 py-3 font-semibold"
+                      className="btn block w-full  bg-[#005ab3] hover:bg-blue-900 focus:bg-indigo-700 text-white rounded-lg px-3 py-3 font-semibold"
                     >
                       SUBMIT
                     </button>
