@@ -2,6 +2,7 @@ import React from "react";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import { useUserContext } from "../../store/UserContext";
+import { baseurl } from "../../App.js";
 
 const Profile = () => {
   const [profile, setProfile] = useState({
@@ -24,7 +25,7 @@ const Profile = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await axios.post("http://localhost:3000/users/seeProfile", {
+        const res = await axios.post(baseurl + "/users/seeProfile", {
           rollno: user.uniqueId,
         });
         // console.log(res.data.data.user);

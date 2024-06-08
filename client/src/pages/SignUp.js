@@ -2,9 +2,10 @@ import { useState, useEffect } from "react";
 import { AnimatePresence, motion, useAnimationControls } from "framer-motion";
 import logo from "../assets/IITBBSlogo.png";
 import axios from "axios";
-import { Link, useNavigate } from "react-router-dom";
-import { ToastContainer, toast } from "react-toastify";
+import { useNavigate } from "react-router-dom";
+import {  toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { baseurl } from "../App.js";
 
 const SignUp = () => {
   const [form, setForm] = useState({
@@ -32,14 +33,13 @@ const SignUp = () => {
       },
     });
   }, [control2]);
-const handleToggle = () => {
-  if (type === "password") {
-    setType("text");
-  } else {
-    setType("password");
-  }
-};
-
+  const handleToggle = () => {
+    if (type === "password") {
+      setType("text");
+    } else {
+      setType("password");
+    }
+  };
 
   const updateFormField = (e) => {
     const { name, value } = e.target;
@@ -66,7 +66,7 @@ const handleToggle = () => {
     });
 
     try {
-      const res = await axios.post("http://localhost:3000/users/signup", form);
+      const res = await axios.post(baseurl + "/users/signup", form);
       if (res.data.status === "success") {
         navigate(`/dashboard`);
       } else {

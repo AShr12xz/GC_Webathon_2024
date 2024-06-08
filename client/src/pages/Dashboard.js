@@ -6,6 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { useUserContext } from "../store/UserContext";
 import styles from "../styles/dashboard.module.css";
 import { motion, useAnimationControls } from "framer-motion";
+import { baseurl } from "../App.js";
 
 const Dashboard = ({ props }) => {
   const [cookies, , removeCookie] = useCookies("token");
@@ -20,7 +21,7 @@ const Dashboard = ({ props }) => {
         return navigate("/login");
       }
       const res = await axios.post(
-        "http://localhost:3000/users/auth",
+        baseurl + "/users/auth",
         { token: cookies.token }
         // { withCredentials: true }
       );

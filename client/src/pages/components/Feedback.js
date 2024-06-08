@@ -2,6 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useUserContext } from "../../store/UserContext";
 import { ToastContainer, toast } from "react-toastify";
+import { baseurl } from "../../App.js";
 
 const FeedbackForm = (props) => {
   const { user } = useUserContext();
@@ -17,10 +18,9 @@ const FeedbackForm = (props) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await axios.post(
-          "http://localhost:3000/courses/findStudentCourse",
-          { rollno: user.uniqueId }
-        );
+        const res = await axios.post(baseurl + "/courses/findStudentCourse", {
+          rollno: user.uniqueId,
+        });
         setCourses(res.data.data.courses);
         // Extract faculty names from the response
         const teachers1 = res.data.data.courses.map((course) => course.faculty);

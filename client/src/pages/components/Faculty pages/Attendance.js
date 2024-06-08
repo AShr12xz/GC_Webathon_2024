@@ -3,6 +3,7 @@ import axios from "axios";
 import { useUserContext } from "../../../store/UserContext";
 import { ToastContainer, toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
+import { baseurl } from "../../../App.js";
 
 const StudentAttendancePortal = () => {
   // Sample data for courses, students, and attendance
@@ -19,7 +20,7 @@ const StudentAttendancePortal = () => {
     const fetchData = async () => {
       try {
         const res = await axios.post(
-          "http://localhost:3000/studentCourses/showAttendanceforStudent",
+          baseurl + "/studentCourses/showAttendanceforStudent",
           { facultycode: user.uniqueId }
         );
 

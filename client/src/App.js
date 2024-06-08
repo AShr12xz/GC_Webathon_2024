@@ -25,6 +25,9 @@ import Material from "./pages/components/Faculty pages/Material.js";
 import StudentAttendancePortal from "./pages/components/Faculty pages/Attendance.js";
 import GradeUpload from "./pages/components/Faculty pages/Grade.js";
 
+export const baseurl = "https://gc-webathon-2024-l5b7.onrender.com";
+// export const baseurl = "http://localhost:3000";
+
 function RoutesWithAnimation() {
   const location = useLocation();
   console.log(location);

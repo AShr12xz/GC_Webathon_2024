@@ -1,6 +1,7 @@
 import { React, useState, useEffect } from "react";
 import axios from "axios";
 import { useUserContext } from "../../store/UserContext";
+import { baseurl } from "../../App.js";
 
 const Result = () => {
   // Grades structured as an array of objects
@@ -39,7 +40,7 @@ const Result = () => {
     const fetchData = async () => {
       try {
         const res = await axios.post(
-          "http://localhost:3000/studentCourses/showAttendanceforStudent",
+          baseurl + "/studentCourses/showAttendanceforStudent",
           { rollno: user.uniqueId }
         );
         setCourses(res.data.data.data);

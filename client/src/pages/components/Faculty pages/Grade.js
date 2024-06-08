@@ -3,11 +3,12 @@ import axios from "axios";
 import { useUserContext } from "../../../store/UserContext";
 import { ToastContainer, toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
+import { baseurl } from "../../../App.js";
 
 const GradeUpload = () => {
   // Sample data for courses, students, and Grade
-   const { user } = useUserContext();
-  const [courses,setCourses] = useState([]);
+  const { user } = useUserContext();
+  const [courses, setCourses] = useState([]);
   const [selectedCourse, setSelectedCourse] = useState("");
   const [coursenames, setCoursenames] = useState([]);
   const [students, setStudents] = useState([]);
@@ -49,20 +50,19 @@ const GradeUpload = () => {
     for (let i = 0; i < courses.length; i++) {
       const box = document.getElementById(`${i}`);
       if (courses[i].coursecode === selectedCourse) {
-          students.push({
-            rollno: courses[i].rollno,
-            coursecode: courses[i].coursecode,
-            grade:box.value
-          });
-        } 
+        students.push({
+          rollno: courses[i].rollno,
+          coursecode: courses[i].coursecode,
+          grade: box.value,
+        });
       }
-    
+    }
+
     console.log(students);
     try {
-      const res = await axios.post(
-        "http://localhost:3000/studentCourses/addgrade",
-        { students }
-      );
+      const res = await axios.post(baseurl + "/studentCourses/addgrade", {
+        students,
+      });
       toast.success("Attendance updated Successfully");
       console.log(res.data);
     } catch (error) {
@@ -72,7 +72,6 @@ const GradeUpload = () => {
     }
   };
   // Calculate summary of Grade
- 
 
   return (
     <div className="w-full h-full bg-mygrey rounded-lg overflow-y-scroll shadow-lg p-6  border border-gray-200">

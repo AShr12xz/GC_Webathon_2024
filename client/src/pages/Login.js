@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import styles from "../styles/login.module.css";
 import logo from "../assets/IITBBSlogo.png";
-
+import { baseurl } from "../App.js";
 import axios from "axios";
 import { useCookies } from "react-cookie";
 import { Link, useNavigate } from "react-router-dom";
@@ -63,7 +63,7 @@ const Login = () => {
     });
     try {
       const res = await axios.post(
-        "http://localhost:3000/users/login",
+        baseurl+"/login",
         userForm
       );
       setTimeout(() => {

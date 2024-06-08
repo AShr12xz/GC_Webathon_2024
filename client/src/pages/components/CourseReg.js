@@ -2,6 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useUserContext } from "../../store/UserContext";
 import { ToastContainer, toast } from "react-toastify";
+import { baseurl } from "../../App.js";
 
 const CourseReg = () => {
   const { user } = useUserContext();
@@ -12,9 +13,7 @@ const CourseReg = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await axios.get(
-          "http://localhost:3000/courses/getAllCourses"
-        );
+        const res = await axios.get(baseurl + "/courses/getAllCourses");
         // console.log(res.data);
         setCourses(res.data.data.courses);
       } catch (error) {

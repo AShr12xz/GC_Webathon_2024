@@ -2,6 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { useUserContext } from "../../store/UserContext";
 import { ToastContainer, toast } from "react-toastify";
+import { baseurl } from "../../App.js";
 
 const CourseReg = () => {
   const { user } = useUserContext();
@@ -12,10 +13,9 @@ const CourseReg = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await axios.post(
-          "http://localhost:3000/studentCourses/showCourses",
-          { rollno: user.uniqueId }
-        );
+        const res = await axios.post(baseurl + "/studentCourses/showCourses", {
+          rollno: user.uniqueId,
+        });
         if (res.data.data.data) {
           setCourses(res.data.data.data);
         }

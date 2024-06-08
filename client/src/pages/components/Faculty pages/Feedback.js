@@ -1,6 +1,7 @@
 import { React, useState,useEffect } from "react";
 import axios from 'axios';
 import { useUserContext } from "../../../store/UserContext";
+import { baseurl } from "../../../App.js";
 
 const FeedbackBox = () => {
   // Hardcoded feedback data
@@ -11,7 +12,7 @@ const FeedbackBox = () => {
     const fetchData = async () => {
       try {
         const res = await axios.post(
-          "http://localhost:3000/studentCourses/showAttendanceforStudent",
+          baseurl+"/studentCourses/showAttendanceforStudent",
           { facultycode: user.uniqueId }
         );
         setFeedback(res.data.data.data);
