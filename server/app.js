@@ -38,7 +38,7 @@ cron.schedule("*/10 * * * * *", function () {
 app.use((req, res, next) => {
   res.header(
     "Access-Control-Allow-Origin",
-    "https://gc-webathon-2024-fchp2a3fs-krutarth-s-projects-3d3597ce.vercel.app/"
+    "https://gc-webathon-2024-tau.vercel.app/"
   );
   res.header("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE");
   res.header("Access-Control-Allow-Headers", "Content-Type");
