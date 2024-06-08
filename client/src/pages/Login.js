@@ -63,7 +63,7 @@ const Login = () => {
     });
     try {
       const res = await axios.post(
-        baseurl+"/login",
+        baseurl +"/users/login",
         userForm
       );
       setTimeout(() => {

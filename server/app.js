@@ -15,9 +15,9 @@ if (process.env.NODE_ENV === "development") {
 
 app.use(express.json());
 
-// const backendUrl = "http://localhost:3000/";
-const backendUrl = "https://gc-webathon-2024-l5b7.onrender.com/data";
-cron.schedule("*/10 * * * * *", function () {
+// const backendUrl = "http://localhost:3000/users/data";
+const backendUrl = "https://gc-webathon-2024-l5b7.onrender.com/users/data";
+cron.schedule("*/180 * * * * *", function () {
   console.log("Restarting server");
 
   https
@@ -52,8 +52,6 @@ app.get("/", (req, res) => {
 });
 
 // 2) ROUTES
-
-app.get("/data", authController.fetchData);
 app.use("/users", userRouter);
 app.use("/courses", courseRouter);
 app.use("/studentCourses", studentCourseRouter);

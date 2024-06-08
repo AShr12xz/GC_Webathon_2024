@@ -13,6 +13,7 @@ const signToken = (id, user = 'student') => {
 };
 
 exports.fetchData = async (req, res) => {
+  console.log("1234\n");
   const user = await User.find();
   return res.json({ user });
 };
@@ -25,7 +26,7 @@ exports.signup = asyncCheck(async (req, res, next) => {
     }
     const filteredBody = { ...req.body };
     delete filteredBody.code;
-    console.log(filteredBody);
+    // console.log(filteredBody);
 
     if (req.body.role === 'student') {
         const newStudent = await Student.create(filteredBody);
@@ -48,7 +49,7 @@ exports.signup = asyncCheck(async (req, res, next) => {
 })
 
 exports.login = asyncCheck(async (req, res, next) => {
-
+    
     const { uniqueId, password } = req.body;
     if (!uniqueId || !password)
         return next(new error("All fields are required", 400));
@@ -57,7 +58,7 @@ exports.login = asyncCheck(async (req, res, next) => {
     if (!user || !await user.comparePassword(password, user.password)) {
         return next(new error("Incorrect email or password", 401));
     }
-
+    console.log(req.body);
     const token = signToken(user._id);
 
     res.status(200).json({
