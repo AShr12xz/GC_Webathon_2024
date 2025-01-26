@@ -21,8 +21,8 @@ mongoose
   .connect(DB)
   .then(() => console.log("DB connection successful!"));
 
-// const backendUrl = "http://localhost:3000/users/data";
-const backendUrl = "https://gc-webathon-2024-l5b7.onrender.com/users/data";
+const backendUrl = "http://localhost:3000/users/data";
+// const backendUrl = "https://gc-webathon-2024-l5b7.onrender.com/users/data";
 cron.schedule("*/180 * * * * *", function () {
   console.log("Restarting server");
 
